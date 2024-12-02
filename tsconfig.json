@@ -10,6 +10,6 @@
     "rootDir": "./src",                    // Directory containing your TypeScript files
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/dogs/graphql/schema.ts"],               // Include all .ts files in the src folder
+  "include": ["src/**/*.ts"],               // Include all .ts files in the src folder
   "exclude": ["node_modules"]               // Exclude the node_modules folder
 }

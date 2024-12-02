@@ -40,6 +40,11 @@
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check src",
     "prettier:fix": "prettier --write src",
-    "format": "yarn prettier:fix && yarn lint:fix"
+    "format": "yarn prettier:fix && yarn lint:fix",
+    "seed": "ts-node src/seeds/seed.ts",
+    "devts": "npx copyfiles -u 1 'src/prisma/**/*' dist/ && nodemon --exec ts-node src/server.ts",
+    "prismaMigrate": "yarn prisma migrate dev --schema=./src/prisma/schema.prisma",
+    "prismaGenerate": "yarn prisma generate --schema=./src/prisma/schema.prisma",
+    "prismaPush": "yarn prisma db push --schema=./src/prisma/general/schema.prisma"
   }
 }
