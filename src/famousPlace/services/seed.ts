@@ -1,4 +1,4 @@
-import prismaClientDB from '../lib/prismadb';
+import prismaClientDB from '../../lib/prismadb';
 
 async function main() {
   // France

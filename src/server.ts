@@ -1,41 +1,60 @@
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const app = express();
-
-app.get('/', (_, res) => {
+import { resolvers, typeDefs } from './graphql';
+import cors from 'cors'
+require('dotenv').config(); 
+const app = express() as any;
+app.get('/', (_: any, res: { send: (arg0: string) => void; }) => {
   res.send('Example Server');
 });
 
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 5000;
-app.listen(port, () => console.log(`🚀 Server ready at http://localhost:${port}`));
+var corsOptions = {
+  origin: ['https://studio.apollographql.com', 'http://localhost:3000'],
+  credentials: true // <-- REQUIRED backend setting
+};
+app.use(cors(corsOptions));
+// app.use(cookieParser());
+app.use((req: any, res: any, next: () => void) => {
+  //     let user = null;
+  //      if (req.headers && req.headers.authorization) {
+  //       const token = req.headers.authorization.replace('Bearer ', '');
+  //       try {
+  //         user = verifyToken(token); // Assuming this verifies the token and returns user info
+  //       } catch (err) {
+  //         console.error('Token verification failed', err);
+  //       }
+  //     }
+  // // console.log(req);
 
-/*
-go to localhost:4000/graphql and then run this. It does not work like rest where you fetch a specific route localhost:4000/dogs but instead of the system through graphql that avoid all those routes.
-query {
-  dogs {
-    id
-    name
-    owner
-  }
+  // // }
+   next();
+})
+
+async function startServer() {
+  const server = new ApolloServer({
+    typeDefs,
+   resolvers,
+    context: async ({ req }) => {
+    },
+  });
+  await server.start();
+
+  server.applyMiddleware({
+    app,
+    path: '/',
+    cors: false, // disables the apollo-server-express cors to allow the cors middleware use
+  });
 }
-*/
 
-// route bellow replaced with graphQL
 
-// app.get('/', (req: Request, res: Response): void => {
-//   res.send('Hello, world!');
-// });
-// app.use('/api', dogRoutes);
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 4000;
 
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
 
-// checks for user in cookies and adds userId to the requests
-// const { token } = req.cookies;
-// if (token) {
-//   const { userId } = jwt.verify(token, process.env.USER_SECRET);
-//   req.userId = userId;
+startServer();
+
+app.listen({ port}, () =>
+  console.log(`🚀 Server ready at http://localhost:4000`)
+);
+
+
+
