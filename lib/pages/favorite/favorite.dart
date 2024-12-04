@@ -6,6 +6,11 @@ class FavoritePage extends StatelessWidget {
   static const routeName = "/favorite";
   @override
   Widget build(BuildContext context) {
-    return Places();
+    return Column(
+      children: const [
+        Text('Your favorite places will appear here'),
+        Places(),
+      ],
+    );
   }
 }
