@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/pages/booking/booking.dart';
-import 'package:flutter_famous_places/layouts/default/default.dart';
+import 'package:flutter_famous_places/features/layouts/default/default.dart';
 import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/home/home.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
