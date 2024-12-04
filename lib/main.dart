@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_famous_places/features/graphql/client.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'features/navigations/services/routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
-  runApp(const MainApp());
+  final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
+  runApp(
+      GraphQLProvider(client: graphQLClientSingleton, child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
