@@ -4,6 +4,7 @@ import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../pages/home/home.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyDefaultPage extends StatefulWidget {
   const MyDefaultPage({super.key});
@@ -32,6 +33,13 @@ class _MyWidgetState extends State<MyDefaultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // The [AppBar] title text should update its message
+        // according to the system locale of the target platform.
+        // Switching between English and Spanish locales should
+        // cause this text to update.
+        title: Text(AppLocalizations.of(context)!.greetingMessage('Nabil')),
+      ),
       body: _pages[currentPageIndex], // Show the selected widget
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(
