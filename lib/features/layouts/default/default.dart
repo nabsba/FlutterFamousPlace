@@ -3,7 +3,7 @@ import 'package:flutter_famous_places/pages/booking/booking.dart';
 import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../pages/home/home.dart';
+import '../../../pages/home/home.dart';
 
 class MyDefaultPage extends StatefulWidget {
   const MyDefaultPage({super.key});
