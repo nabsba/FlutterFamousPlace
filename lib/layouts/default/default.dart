@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/pages/booking/booking.dart';
 import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../pages/home/home.dart';
 
 class MyDefaultPage extends StatefulWidget {
@@ -32,31 +33,145 @@ class _MyWidgetState extends State<MyDefaultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[currentPageIndex], // Show the selected widget
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: currentPageIndex,
-        onDestinationSelected: _onDestinationSelected,
-        destinations: const <NavigationDestination>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: '',
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 16.0), // Add padding to left and right
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+          ), // Add padding to left and right
+          child: NavigationBar(
+            indicatorColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            selectedIndex: currentPageIndex,
+            elevation: 0.0, // Removes any shadows or elevation
+            shadowColor: Colors.transparent,
+            onDestinationSelected: _onDestinationSelected,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            destinations: <NavigationDestination>[
+              NavigationDestination(
+                selectedIcon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/navigationBottom/onSelection/home.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Positioned(
+                      bottom: -20,
+                      right: 7,
+                      child: Container(
+                        width: 10,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                icon: SvgPicture.asset(
+                  'assets/icons/navigationBottom/offSelection/home.svg',
+                  width: 25,
+                  height: 25,
+                ),
+                label: '',
+              ),
+              NavigationDestination(
+                selectedIcon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/navigationBottom/onSelection/time.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Positioned(
+                      bottom: -17,
+                      right: 6,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                icon: SvgPicture.asset(
+                  'assets/icons/navigationBottom/offSelection/time.svg',
+                  width: 25,
+                  height: 25,
+                ),
+                label: '',
+              ),
+              NavigationDestination(
+                selectedIcon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/navigationBottom/onSelection/heart.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Positioned(
+                      bottom: -17,
+                      right: 7,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                icon: SvgPicture.asset(
+                  'assets/icons/navigationBottom/offSelection/heart.svg',
+                  width: 25,
+                  height: 25,
+                ),
+                label: '',
+              ),
+              NavigationDestination(
+                selectedIcon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/navigationBottom/onSelection/user.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Positioned(
+                      bottom: -17,
+                      right: 5,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                icon: SvgPicture.asset(
+                  'assets/icons/navigationBottom/offSelection/user.svg',
+                  width: 25,
+                  height: 25,
+                ),
+                label: '',
+              ),
+            ],
           ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.info),
-            icon: Icon(Icons.info_outline),
-            label: '',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.contact_page),
-            icon: Icon(Icons.contact_page_outlined),
-            label: '',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.contact_page),
-            icon: Icon(Icons.contact_page_outlined),
-            label: '',
-          ),
-        ],
+        ),
       ),
     );
   }

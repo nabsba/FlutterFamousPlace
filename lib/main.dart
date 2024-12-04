@@ -48,6 +48,8 @@ class MainApp extends StatelessWidget {
       routerConfig: _router,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        splashColor:
+            Colors.transparent, // renmove the wave effect on button clicked
         useMaterial3: true,
       ),
     );
