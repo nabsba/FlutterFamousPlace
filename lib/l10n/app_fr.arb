@@ -1,12 +1,23 @@
 {
-  "helloWorld": "Bonjour le monde",
-  "greetingMessage": "Bonjour {name}, bienvenue à toi!",
+  "helloWorld": "Bonjour le monde!",
+  "@helloWorld": {
+    "description": "Le message conventionnel des nouveaux programmeurs"
+  },
+  "greetingMessage": "Bonjour {name}, bienvenue dans l'application!",
   "@greetingMessage": {
-    "description": "A greeting message with a name parameter",
+    "description": "Un message de bienvenue avec un paramètre de nom",
     "placeholders": {
       "name": {
         "type": "String"
       }
     }
+  },
+  "travel": "Voyage",
+  "@travel": {
+    "description": "Un mot unique représentant les voyages ou l'exploration"
+  },
+  "travelMessage": "Trouvez votre destination\nde rêve avec nous",
+  "@travelMessage": {
+    "description": "Un message promotionnel invitant les utilisateurs à explorer des opportunités de voyage"
   }
 }

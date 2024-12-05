@@ -11,5 +11,13 @@
         "type": "String"
       }
     }
+  },
+  "travel": "Travel",
+  "@travel": {
+    "description": "A single word representing journeys or exploration"
+  },
+ "travelMessage": "Find Your Dream\nDestination With Us",
+  "@travelMessage": {
+    "description": "A promotional message inviting users to explore travel opportunities"
   }
 }

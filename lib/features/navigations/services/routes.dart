@@ -4,14 +4,14 @@ import '../../../pages/booking/booking.dart';
 import '../../../pages/favorite/favorite.dart';
 import '../../../pages/home/home.dart';
 import '../../../pages/userProfile/userProfile.dart';
-import '../../layouts/default/default.dart';
+import '../../layouts/main/mainLayout.dart';
 
 final _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MyDefaultPage(),
+      builder: (context, state) => const MainLayout(),
     ),
     GoRoute(
       path: HomePage.routeName,
