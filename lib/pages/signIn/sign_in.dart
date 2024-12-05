@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_famous_places/features/styles/services/size.dart';
 
+import '../../features/authentification/components/button_signIn.dart';
 import '../../features/authentification/services/methods.dart';
 
 class SignIn extends StatelessWidget {
@@ -14,18 +16,19 @@ class SignIn extends StatelessWidget {
         ),
         body: Column(
           children: [
-            ElevatedButton(
+            SignInButton(
               onPressed: () async {
                 await signInWithGoogle();
               },
-              child: const Text('Sign in using google'),
+              iconType: 'google',
             ),
-            ElevatedButton(
+            SizedBox(height: AppStylesSpace.largeSpacing),
+            SignInButton(
               onPressed: () async {
                 await signInWithGit();
               },
-              child: const Text('Sign in with git'),
-            ),
+              iconType: 'git',
+            )
           ],
         ));
   }

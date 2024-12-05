@@ -34,4 +34,5 @@ flutter:
     - assets/icons/divers/
     - assets/icons/navigationBottom/offSelection/
     - assets/icons/navigationBottom/onSelection/
+    - assets/icons/medias/
   generate: true
