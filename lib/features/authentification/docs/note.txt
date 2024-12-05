@@ -10,3 +10,8 @@ Make sure the authentification plugging is added and configured use firebase. Th
 	<string>com.googleusercontent.apps.310893183264-7g06oveoqsasas5lour26dhimc95ga6h7o6ro</string>
     </array>
   </dict>
+
+
+
+
+  - Github: In the development environment, GitHub authentication fails because the callback URL must be an official, publicly accessible link. Once the application is hosted on a web server, update the callback URL in the GitHub application settings accordingly.

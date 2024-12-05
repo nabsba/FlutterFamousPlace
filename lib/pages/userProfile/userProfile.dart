@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -5,10 +6,20 @@ class UserProfilePage extends StatelessWidget {
   static const routeName = "/userProfile";
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: Text(
-      'Hello user profile page',
-      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return Center(
+        child: Column(
+      children: [
+        const Text(
+          'Hello user profile page',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            await FirebaseAuth.instance.signOut();
+          },
+          child: const Text('Sign out'),
+        ),
+      ],
     ));
   }
 }

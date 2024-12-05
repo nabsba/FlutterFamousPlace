@@ -9,15 +9,24 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Sign In"),
-      ),
-      body: ElevatedButton(
-        onPressed: () async {
-          await signInWithGoogle();
-        },
-        child: const Text('Sign in using google'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Sign In"),
+        ),
+        body: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                await signInWithGoogle();
+              },
+              child: const Text('Sign in using google'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await signInWithGit();
+              },
+              child: const Text('Sign in with git'),
+            ),
+          ],
+        ));
   }
 }

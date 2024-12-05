@@ -18,3 +18,11 @@ Future<UserCredential> signInWithGoogle() async {
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
+
+Future<UserCredential> signInWithGit() async {
+  // Trigger the authentication flow
+  final GithubAuthProvider gitHubProvider = GithubAuthProvider();
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithProvider(gitHubProvider);
+}
