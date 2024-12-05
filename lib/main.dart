@@ -14,7 +14,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   FirebaseAuth.instance.authStateChanges().listen((User? user) async {
     // print(user);
     if (user == null) {
@@ -24,6 +23,7 @@ Future<void> main() async {
     }
   });
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
+
   runApp(GraphQLProvider(
       client: graphQLClientSingleton,
       child: ProviderScope(child: const MainApp())));

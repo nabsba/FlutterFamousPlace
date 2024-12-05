@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../features/authentification/services/methods.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -9,8 +12,11 @@ class SignIn extends StatelessWidget {
       appBar: AppBar(
         title: Text("Sign In"),
       ),
-      body: Center(
-        child: Text("Please sign in to continue."),
+      body: ElevatedButton(
+        onPressed: () async {
+          await signInWithGoogle();
+        },
+        child: const Text('Sign in using google'),
       ),
     );
   }
