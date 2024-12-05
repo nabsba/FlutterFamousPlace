@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56544763641",
+    "project_id": "famousplacessba",
+    "storage_bucket": "famousplacessba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56544763641:android:a30619731e508ebcc08c28",
+        "android_client_info": {
+          "package_name": "com.famousplacesba.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56544763641-mi0no7nvm19hfr341q9a9gj9b9uapi0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9DpQ5BBq2SoickTCnDyY8YFdIQWz9Y4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56544763641-mi0no7nvm19hfr341q9a9gj9b9uapi0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
