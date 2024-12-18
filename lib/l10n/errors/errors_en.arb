@@ -1,0 +1,22 @@
+{
+  "login": "Login failed. Please check your credentials and try again.",
+  "@login": {
+    "description": "Error message for login failure"
+  },
+  "registerUser": "Registration failed. Please ensure all fields are correct.",
+  "@registerUser": {
+    "description": "Error message for registration failure"
+  },
+  "registerUserWithCookie": "Failed to register with the provided cookie. Please try again.",
+  "@registerUserWithCookie": {
+    "description": "Error message for failed registration with cookie"
+  },
+  "refreshToken": "Refresh token failed.",
+  "@refreshToken": {
+    "description": "Error message for refresh token failure"
+  },
+  "token": "The token is not valid.",
+  "@token": {
+    "description": "Error message for invalid token"
+  }
+}

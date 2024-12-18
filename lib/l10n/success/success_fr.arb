@@ -1,0 +1,22 @@
+{
+  "login": "Connexion réussie. Bon retour!",
+  "@login": {
+    "description": "Message pour une connexion réussie"
+  },
+  "registerUser": "Inscription réussie. Vous pouvez maintenant vous connecter.",
+  "@registerUser": {
+    "description": "Message pour une inscription réussie"
+  },
+  "registerUserWithCookie": "Inscription réussie avec le cookie fourni.",
+  "@registerUserWithCookie": {
+    "description": "Message pour une inscription réussie avec le cookie"
+  },
+  "refreshToken": "Le token a été rafraîchi.",
+  "@refreshToken": {
+    "description": "Message pour un token rafraîchi"
+  },
+  "token": "Le token est valide.",
+  "@token": {
+    "description": "Message pour un token valide"
+  }
+}

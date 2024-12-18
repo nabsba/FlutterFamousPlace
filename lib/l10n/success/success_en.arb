@@ -1,0 +1,22 @@
+{
+  "login": "Login successful. Welcome back!",
+  "@login": {
+    "description": "Message for successful login"
+  },
+  "registerUser": "Registration successful. You can now log in.",
+  "@registerUser": {
+    "description": "Message for successful registration"
+  },
+  "registerUserWithCookie": "Successfully registered using the provided cookie.",
+  "@registerUserWithCookie": {
+    "description": "Message for successful registration with cookie"
+  },
+  "refreshToken": "The token has been refreshed.",
+  "@refreshToken": {
+    "description": "Message for successful token refresh"
+  },
+  "token": "The token is valid.",
+  "@token": {
+    "description": "Message for valid token"
+  }
+}

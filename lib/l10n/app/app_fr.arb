@@ -16,7 +16,7 @@
   "@travel": {
     "description": "Un mot unique représentant les voyages ou l'exploration"
   },
-  "travelMessage": "Trouvez votre destination\nde rêve avec nous",
+  "travelMessage": "Trouvez votre destination\\nde rêve avec nous",
   "@travelMessage": {
     "description": "Un message promotionnel invitant les utilisateurs à explorer des opportunités de voyage"
   }

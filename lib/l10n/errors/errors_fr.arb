@@ -1,0 +1,22 @@
+{
+  "login": "Échec de la connexion. Veuillez vérifier vos identifiants et réessayer.",
+  "@login": {
+    "description": "Message d'erreur pour échec de la connexion"
+  },
+  "registerUser": "Échec de l'enregistrement. Veuillez vous assurer que tous les champs sont corrects.",
+  "@registerUser": {
+    "description": "Message d'erreur pour échec de l'enregistrement"
+  },
+  "registerUserWithCookie": "Échec de l'enregistrement avec le cookie fourni. Veuillez réessayer.",
+  "@registerUserWithCookie": {
+    "description": "Message d'erreur pour échec de l'enregistrement avec cookie"
+  },
+  "refreshToken": "Échec du rafraîchissement du token.",
+  "@refreshToken": {
+    "description": "Message d'erreur pour échec du rafraîchissement du token"
+  },
+  "token": "Le token n'est pas valide.",
+  "@token": {
+    "description": "Message d'erreur pour token invalide"
+  }
+}
