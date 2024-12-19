@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/animations/conditionalAnimatedSwitch.dart';
-import 'package:flutter_famous_places/features/security/authorisation.dart';
+import 'package:flutter_famous_places/features/authorisation/components/authorisation.dart';
 import 'package:flutter_famous_places/pages/booking/booking.dart';
 import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
@@ -50,14 +50,6 @@ class _MyWidgetState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
-        print(user.uid);
-        //WHQKLerr8tYnK3FVI7DyVPCgR6f1
-      } else {
-        print("salamoualeykoum");
-      }
-    });
     return ConditionalAnimatedSwitcher(
       firstWidget: const MainCover(),
       secondWidget: AuthorizationWrapper(
