@@ -1,27 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/graphql/client.dart';
 import 'package:flutter_famous_places/firebase_options.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'features/navigations/services/routes.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/errors_localizations.dart';
+import 'package:flutter_gen/gen_l10n/success_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'features/navigations/services/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseAuth.instance.authStateChanges().listen((User? user) async {
-    // print(user);
-    if (user == null) {
-      print('User is currently signed out!');
-    } else {
-      print('User is in!');
-    }
-  });
+
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
 
   runApp(GraphQLProvider(
@@ -38,6 +33,8 @@ class MainApp extends StatelessWidget {
       title: 'Favorite Place',
       localizationsDelegates: [
         AppLocalizations.delegate,
+        ErrorsLocalizations.delegate,
+        SuccessLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
