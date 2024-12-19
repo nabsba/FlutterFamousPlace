@@ -18,5 +18,9 @@
   "token": "The token is not valid.",
   "@token": {
     "description": "Error message for invalid token"
+  },
+  "defaultError": "An error has happened. Please try again. If the problem persists, contact us",
+  "@defaultError": {
+    "description": "Error message for unknown error"
   }
 }

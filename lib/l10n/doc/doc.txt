@@ -1,0 +1,2 @@
+- Whenever a change is made to one of .arb run: sh ./generate-l10n.sh
+- To retrieve dynamically a text from .arb look at error.dart the proccess.
