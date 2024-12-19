@@ -19,11 +19,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model UserAuthentification
- * 
- */
-export type UserAuthentification = $Result.DefaultSelection<Prisma.$UserAuthentificationPayload>
-/**
  * Model Session
  * 
  */
@@ -33,6 +28,11 @@ export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
  * 
  */
 export type Account = $Result.DefaultSelection<Prisma.$AccountPayload>
+/**
+ * Model UserAuthentification
+ * 
+ */
+export type UserAuthentification = $Result.DefaultSelection<Prisma.$UserAuthentificationPayload>
 /**
  * Model Role
  * 
@@ -208,16 +208,6 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs>;
 
   /**
-   * `prisma.userAuthentification`: Exposes CRUD operations for the **UserAuthentification** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserAuthentifications
-    * const userAuthentifications = await prisma.userAuthentification.findMany()
-    * ```
-    */
-  get userAuthentification(): Prisma.UserAuthentificationDelegate<ExtArgs>;
-
-  /**
    * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
@@ -236,6 +226,16 @@ export class PrismaClient<
     * ```
     */
   get account(): Prisma.AccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.userAuthentification`: Exposes CRUD operations for the **UserAuthentification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserAuthentifications
+    * const userAuthentifications = await prisma.userAuthentification.findMany()
+    * ```
+    */
+  get userAuthentification(): Prisma.UserAuthentificationDelegate<ExtArgs>;
 
   /**
    * `prisma.role`: Exposes CRUD operations for the **Role** model.
@@ -758,9 +758,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    UserAuthentification: 'UserAuthentification',
     Session: 'Session',
     Account: 'Account',
+    UserAuthentification: 'UserAuthentification',
     Role: 'Role',
     Country: 'Country',
     Address: 'Address',
@@ -784,7 +784,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "userAuthentification" | "session" | "account" | "role" | "country" | "address" | "city" | "place" | "placeDetail" | "language" | "booking"
+      modelProps: "user" | "session" | "account" | "userAuthentification" | "role" | "country" | "address" | "city" | "place" | "placeDetail" | "language" | "booking"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -855,76 +855,6 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
-          }
-        }
-      }
-      UserAuthentification: {
-        payload: Prisma.$UserAuthentificationPayload<ExtArgs>
-        fields: Prisma.UserAuthentificationFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserAuthentificationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserAuthentificationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          findFirst: {
-            args: Prisma.UserAuthentificationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserAuthentificationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          findMany: {
-            args: Prisma.UserAuthentificationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>[]
-          }
-          create: {
-            args: Prisma.UserAuthentificationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          createMany: {
-            args: Prisma.UserAuthentificationCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserAuthentificationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>[]
-          }
-          delete: {
-            args: Prisma.UserAuthentificationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          update: {
-            args: Prisma.UserAuthentificationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserAuthentificationDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserAuthentificationUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.UserAuthentificationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
-          }
-          aggregate: {
-            args: Prisma.UserAuthentificationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUserAuthentification>
-          }
-          groupBy: {
-            args: Prisma.UserAuthentificationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserAuthentificationGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserAuthentificationCountArgs<ExtArgs>
-            result: $Utils.Optional<UserAuthentificationCountAggregateOutputType> | number
           }
         }
       }
@@ -1065,6 +995,76 @@ export namespace Prisma {
           count: {
             args: Prisma.AccountCountArgs<ExtArgs>
             result: $Utils.Optional<AccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserAuthentification: {
+        payload: Prisma.$UserAuthentificationPayload<ExtArgs>
+        fields: Prisma.UserAuthentificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserAuthentificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserAuthentificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          findFirst: {
+            args: Prisma.UserAuthentificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserAuthentificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          findMany: {
+            args: Prisma.UserAuthentificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>[]
+          }
+          create: {
+            args: Prisma.UserAuthentificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          createMany: {
+            args: Prisma.UserAuthentificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserAuthentificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>[]
+          }
+          delete: {
+            args: Prisma.UserAuthentificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          update: {
+            args: Prisma.UserAuthentificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserAuthentificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserAuthentificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserAuthentificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserAuthentificationPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAuthentificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserAuthentification>
+          }
+          groupBy: {
+            args: Prisma.UserAuthentificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserAuthentificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserAuthentificationCountArgs<ExtArgs>
+            result: $Utils.Optional<UserAuthentificationCountAggregateOutputType> | number
           }
         }
       }
@@ -1825,37 +1825,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type UserAuthentificationCountOutputType
-   */
-
-  export type UserAuthentificationCountOutputType = {
-    User: number
-  }
-
-  export type UserAuthentificationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserAuthentificationCountOutputTypeCountUserArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserAuthentificationCountOutputType without action
-   */
-  export type UserAuthentificationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentificationCountOutputType
-     */
-    select?: UserAuthentificationCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserAuthentificationCountOutputType without action
-   */
-  export type UserAuthentificationCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-  }
-
-
-  /**
    * Count Type RoleCountOutputType
    */
 
@@ -2042,6 +2011,7 @@ export namespace Prisma {
     language: string | null
     createdAt: Date | null
     userAuthentificationId: string | null
+    isUserBlocked: boolean | null
     updatedAt: Date | null
   }
 
@@ -2054,6 +2024,7 @@ export namespace Prisma {
     language: string | null
     createdAt: Date | null
     userAuthentificationId: string | null
+    isUserBlocked: boolean | null
     updatedAt: Date | null
   }
 
@@ -2066,6 +2037,7 @@ export namespace Prisma {
     language: number
     createdAt: number
     userAuthentificationId: number
+    isUserBlocked: number
     updatedAt: number
     _all: number
   }
@@ -2080,6 +2052,7 @@ export namespace Prisma {
     language?: true
     createdAt?: true
     userAuthentificationId?: true
+    isUserBlocked?: true
     updatedAt?: true
   }
 
@@ -2092,6 +2065,7 @@ export namespace Prisma {
     language?: true
     createdAt?: true
     userAuthentificationId?: true
+    isUserBlocked?: true
     updatedAt?: true
   }
 
@@ -2104,6 +2078,7 @@ export namespace Prisma {
     language?: true
     createdAt?: true
     userAuthentificationId?: true
+    isUserBlocked?: true
     updatedAt?: true
     _all?: true
   }
@@ -2188,7 +2163,8 @@ export namespace Prisma {
     roleId: string
     language: string | null
     createdAt: Date
-    userAuthentificationId: string
+    userAuthentificationId: string | null
+    isUserBlocked: boolean | null
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -2218,11 +2194,11 @@ export namespace Prisma {
     language?: boolean
     createdAt?: boolean
     userAuthentificationId?: boolean
+    isUserBlocked?: boolean
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     role?: boolean | RoleDefaultArgs<ExtArgs>
-    UserAuthentification?: boolean | UserAuthentificationDefaultArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2235,9 +2211,9 @@ export namespace Prisma {
     language?: boolean
     createdAt?: boolean
     userAuthentificationId?: boolean
+    isUserBlocked?: boolean
     updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
-    UserAuthentification?: boolean | UserAuthentificationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2249,6 +2225,7 @@ export namespace Prisma {
     language?: boolean
     createdAt?: boolean
     userAuthentificationId?: boolean
+    isUserBlocked?: boolean
     updatedAt?: boolean
   }
 
@@ -2256,12 +2233,10 @@ export namespace Prisma {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     role?: boolean | RoleDefaultArgs<ExtArgs>
-    UserAuthentification?: boolean | UserAuthentificationDefaultArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | RoleDefaultArgs<ExtArgs>
-    UserAuthentification?: boolean | UserAuthentificationDefaultArgs<ExtArgs>
   }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2270,7 +2245,6 @@ export namespace Prisma {
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       role: Prisma.$RolePayload<ExtArgs>
-      UserAuthentification: Prisma.$UserAuthentificationPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2280,7 +2254,8 @@ export namespace Prisma {
       roleId: string
       language: string | null
       createdAt: Date
-      userAuthentificationId: string
+      userAuthentificationId: string | null
+      isUserBlocked: boolean | null
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2649,7 +2624,6 @@ export namespace Prisma {
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany"> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany"> | Null>
     role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    UserAuthentification<T extends UserAuthentificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserAuthentificationDefaultArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2687,6 +2661,7 @@ export namespace Prisma {
     readonly language: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly userAuthentificationId: FieldRef<"User", 'String'>
+    readonly isUserBlocked: FieldRef<"User", 'Boolean'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -3057,1036 +3032,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model UserAuthentification
-   */
-
-  export type AggregateUserAuthentification = {
-    _count: UserAuthentificationCountAggregateOutputType | null
-    _avg: UserAuthentificationAvgAggregateOutputType | null
-    _sum: UserAuthentificationSumAggregateOutputType | null
-    _min: UserAuthentificationMinAggregateOutputType | null
-    _max: UserAuthentificationMaxAggregateOutputType | null
-  }
-
-  export type UserAuthentificationAvgAggregateOutputType = {
-    attemptAuthentification: number | null
-  }
-
-  export type UserAuthentificationSumAggregateOutputType = {
-    attemptAuthentification: number | null
-  }
-
-  export type UserAuthentificationMinAggregateOutputType = {
-    id: string | null
-    userName: string | null
-    password: string | null
-    attemptAuthentification: number | null
-    dateLastAttempt: Date | null
-    isRedefinePassword: string | null
-    isUserBlocked: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type UserAuthentificationMaxAggregateOutputType = {
-    id: string | null
-    userName: string | null
-    password: string | null
-    attemptAuthentification: number | null
-    dateLastAttempt: Date | null
-    isRedefinePassword: string | null
-    isUserBlocked: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type UserAuthentificationCountAggregateOutputType = {
-    id: number
-    userName: number
-    password: number
-    attemptAuthentification: number
-    dateLastAttempt: number
-    isRedefinePassword: number
-    isUserBlocked: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type UserAuthentificationAvgAggregateInputType = {
-    attemptAuthentification?: true
-  }
-
-  export type UserAuthentificationSumAggregateInputType = {
-    attemptAuthentification?: true
-  }
-
-  export type UserAuthentificationMinAggregateInputType = {
-    id?: true
-    userName?: true
-    password?: true
-    attemptAuthentification?: true
-    dateLastAttempt?: true
-    isRedefinePassword?: true
-    isUserBlocked?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type UserAuthentificationMaxAggregateInputType = {
-    id?: true
-    userName?: true
-    password?: true
-    attemptAuthentification?: true
-    dateLastAttempt?: true
-    isRedefinePassword?: true
-    isUserBlocked?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type UserAuthentificationCountAggregateInputType = {
-    id?: true
-    userName?: true
-    password?: true
-    attemptAuthentification?: true
-    dateLastAttempt?: true
-    isRedefinePassword?: true
-    isUserBlocked?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type UserAuthentificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserAuthentification to aggregate.
-     */
-    where?: UserAuthentificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAuthentifications to fetch.
-     */
-    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserAuthentificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAuthentifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAuthentifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserAuthentifications
-    **/
-    _count?: true | UserAuthentificationCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserAuthentificationAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserAuthentificationSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserAuthentificationMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserAuthentificationMaxAggregateInputType
-  }
-
-  export type GetUserAuthentificationAggregateType<T extends UserAuthentificationAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserAuthentification]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserAuthentification[P]>
-      : GetScalarType<T[P], AggregateUserAuthentification[P]>
-  }
-
-
-
-
-  export type UserAuthentificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserAuthentificationWhereInput
-    orderBy?: UserAuthentificationOrderByWithAggregationInput | UserAuthentificationOrderByWithAggregationInput[]
-    by: UserAuthentificationScalarFieldEnum[] | UserAuthentificationScalarFieldEnum
-    having?: UserAuthentificationScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserAuthentificationCountAggregateInputType | true
-    _avg?: UserAuthentificationAvgAggregateInputType
-    _sum?: UserAuthentificationSumAggregateInputType
-    _min?: UserAuthentificationMinAggregateInputType
-    _max?: UserAuthentificationMaxAggregateInputType
-  }
-
-  export type UserAuthentificationGroupByOutputType = {
-    id: string
-    userName: string
-    password: string
-    attemptAuthentification: number
-    dateLastAttempt: Date | null
-    isRedefinePassword: string | null
-    isUserBlocked: boolean | null
-    createdAt: Date
-    updatedAt: Date
-    _count: UserAuthentificationCountAggregateOutputType | null
-    _avg: UserAuthentificationAvgAggregateOutputType | null
-    _sum: UserAuthentificationSumAggregateOutputType | null
-    _min: UserAuthentificationMinAggregateOutputType | null
-    _max: UserAuthentificationMaxAggregateOutputType | null
-  }
-
-  type GetUserAuthentificationGroupByPayload<T extends UserAuthentificationGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserAuthentificationGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserAuthentificationGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserAuthentificationGroupByOutputType[P]>
-            : GetScalarType<T[P], UserAuthentificationGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserAuthentificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userName?: boolean
-    password?: boolean
-    attemptAuthentification?: boolean
-    dateLastAttempt?: boolean
-    isRedefinePassword?: boolean
-    isUserBlocked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    User?: boolean | UserAuthentification$UserArgs<ExtArgs>
-    _count?: boolean | UserAuthentificationCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userAuthentification"]>
-
-  export type UserAuthentificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userName?: boolean
-    password?: boolean
-    attemptAuthentification?: boolean
-    dateLastAttempt?: boolean
-    isRedefinePassword?: boolean
-    isUserBlocked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["userAuthentification"]>
-
-  export type UserAuthentificationSelectScalar = {
-    id?: boolean
-    userName?: boolean
-    password?: boolean
-    attemptAuthentification?: boolean
-    dateLastAttempt?: boolean
-    isRedefinePassword?: boolean
-    isUserBlocked?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type UserAuthentificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserAuthentification$UserArgs<ExtArgs>
-    _count?: boolean | UserAuthentificationCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type UserAuthentificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $UserAuthentificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserAuthentification"
-    objects: {
-      User: Prisma.$UserPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userName: string
-      password: string
-      attemptAuthentification: number
-      dateLastAttempt: Date | null
-      isRedefinePassword: string | null
-      isUserBlocked: boolean | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["userAuthentification"]>
-    composites: {}
-  }
-
-  type UserAuthentificationGetPayload<S extends boolean | null | undefined | UserAuthentificationDefaultArgs> = $Result.GetResult<Prisma.$UserAuthentificationPayload, S>
-
-  type UserAuthentificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserAuthentificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: UserAuthentificationCountAggregateInputType | true
-    }
-
-  export interface UserAuthentificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserAuthentification'], meta: { name: 'UserAuthentification' } }
-    /**
-     * Find zero or one UserAuthentification that matches the filter.
-     * @param {UserAuthentificationFindUniqueArgs} args - Arguments to find a UserAuthentification
-     * @example
-     * // Get one UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserAuthentificationFindUniqueArgs>(args: SelectSubset<T, UserAuthentificationFindUniqueArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one UserAuthentification that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {UserAuthentificationFindUniqueOrThrowArgs} args - Arguments to find a UserAuthentification
-     * @example
-     * // Get one UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserAuthentificationFindUniqueOrThrowArgs>(args: SelectSubset<T, UserAuthentificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first UserAuthentification that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationFindFirstArgs} args - Arguments to find a UserAuthentification
-     * @example
-     * // Get one UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserAuthentificationFindFirstArgs>(args?: SelectSubset<T, UserAuthentificationFindFirstArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first UserAuthentification that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationFindFirstOrThrowArgs} args - Arguments to find a UserAuthentification
-     * @example
-     * // Get one UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserAuthentificationFindFirstOrThrowArgs>(args?: SelectSubset<T, UserAuthentificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more UserAuthentifications that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserAuthentifications
-     * const userAuthentifications = await prisma.userAuthentification.findMany()
-     * 
-     * // Get first 10 UserAuthentifications
-     * const userAuthentifications = await prisma.userAuthentification.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userAuthentificationWithIdOnly = await prisma.userAuthentification.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserAuthentificationFindManyArgs>(args?: SelectSubset<T, UserAuthentificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a UserAuthentification.
-     * @param {UserAuthentificationCreateArgs} args - Arguments to create a UserAuthentification.
-     * @example
-     * // Create one UserAuthentification
-     * const UserAuthentification = await prisma.userAuthentification.create({
-     *   data: {
-     *     // ... data to create a UserAuthentification
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserAuthentificationCreateArgs>(args: SelectSubset<T, UserAuthentificationCreateArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many UserAuthentifications.
-     * @param {UserAuthentificationCreateManyArgs} args - Arguments to create many UserAuthentifications.
-     * @example
-     * // Create many UserAuthentifications
-     * const userAuthentification = await prisma.userAuthentification.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserAuthentificationCreateManyArgs>(args?: SelectSubset<T, UserAuthentificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many UserAuthentifications and returns the data saved in the database.
-     * @param {UserAuthentificationCreateManyAndReturnArgs} args - Arguments to create many UserAuthentifications.
-     * @example
-     * // Create many UserAuthentifications
-     * const userAuthentification = await prisma.userAuthentification.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many UserAuthentifications and only return the `id`
-     * const userAuthentificationWithIdOnly = await prisma.userAuthentification.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserAuthentificationCreateManyAndReturnArgs>(args?: SelectSubset<T, UserAuthentificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a UserAuthentification.
-     * @param {UserAuthentificationDeleteArgs} args - Arguments to delete one UserAuthentification.
-     * @example
-     * // Delete one UserAuthentification
-     * const UserAuthentification = await prisma.userAuthentification.delete({
-     *   where: {
-     *     // ... filter to delete one UserAuthentification
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserAuthentificationDeleteArgs>(args: SelectSubset<T, UserAuthentificationDeleteArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one UserAuthentification.
-     * @param {UserAuthentificationUpdateArgs} args - Arguments to update one UserAuthentification.
-     * @example
-     * // Update one UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserAuthentificationUpdateArgs>(args: SelectSubset<T, UserAuthentificationUpdateArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more UserAuthentifications.
-     * @param {UserAuthentificationDeleteManyArgs} args - Arguments to filter UserAuthentifications to delete.
-     * @example
-     * // Delete a few UserAuthentifications
-     * const { count } = await prisma.userAuthentification.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserAuthentificationDeleteManyArgs>(args?: SelectSubset<T, UserAuthentificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserAuthentifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserAuthentifications
-     * const userAuthentification = await prisma.userAuthentification.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserAuthentificationUpdateManyArgs>(args: SelectSubset<T, UserAuthentificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one UserAuthentification.
-     * @param {UserAuthentificationUpsertArgs} args - Arguments to update or create a UserAuthentification.
-     * @example
-     * // Update or create a UserAuthentification
-     * const userAuthentification = await prisma.userAuthentification.upsert({
-     *   create: {
-     *     // ... data to create a UserAuthentification
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserAuthentification we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserAuthentificationUpsertArgs>(args: SelectSubset<T, UserAuthentificationUpsertArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of UserAuthentifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationCountArgs} args - Arguments to filter UserAuthentifications to count.
-     * @example
-     * // Count the number of UserAuthentifications
-     * const count = await prisma.userAuthentification.count({
-     *   where: {
-     *     // ... the filter for the UserAuthentifications we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserAuthentificationCountArgs>(
-      args?: Subset<T, UserAuthentificationCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserAuthentificationCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserAuthentification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserAuthentificationAggregateArgs>(args: Subset<T, UserAuthentificationAggregateArgs>): Prisma.PrismaPromise<GetUserAuthentificationAggregateType<T>>
-
-    /**
-     * Group by UserAuthentification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAuthentificationGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserAuthentificationGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserAuthentificationGroupByArgs['orderBy'] }
-        : { orderBy?: UserAuthentificationGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserAuthentificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserAuthentificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserAuthentification model
-   */
-  readonly fields: UserAuthentificationFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserAuthentification.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserAuthentificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserAuthentification$UserArgs<ExtArgs> = {}>(args?: Subset<T, UserAuthentification$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the UserAuthentification model
-   */ 
-  interface UserAuthentificationFieldRefs {
-    readonly id: FieldRef<"UserAuthentification", 'String'>
-    readonly userName: FieldRef<"UserAuthentification", 'String'>
-    readonly password: FieldRef<"UserAuthentification", 'String'>
-    readonly attemptAuthentification: FieldRef<"UserAuthentification", 'Int'>
-    readonly dateLastAttempt: FieldRef<"UserAuthentification", 'DateTime'>
-    readonly isRedefinePassword: FieldRef<"UserAuthentification", 'String'>
-    readonly isUserBlocked: FieldRef<"UserAuthentification", 'Boolean'>
-    readonly createdAt: FieldRef<"UserAuthentification", 'DateTime'>
-    readonly updatedAt: FieldRef<"UserAuthentification", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * UserAuthentification findUnique
-   */
-  export type UserAuthentificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAuthentification to fetch.
-     */
-    where: UserAuthentificationWhereUniqueInput
-  }
-
-  /**
-   * UserAuthentification findUniqueOrThrow
-   */
-  export type UserAuthentificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAuthentification to fetch.
-     */
-    where: UserAuthentificationWhereUniqueInput
-  }
-
-  /**
-   * UserAuthentification findFirst
-   */
-  export type UserAuthentificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAuthentification to fetch.
-     */
-    where?: UserAuthentificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAuthentifications to fetch.
-     */
-    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserAuthentifications.
-     */
-    cursor?: UserAuthentificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAuthentifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAuthentifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserAuthentifications.
-     */
-    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
-  }
-
-  /**
-   * UserAuthentification findFirstOrThrow
-   */
-  export type UserAuthentificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAuthentification to fetch.
-     */
-    where?: UserAuthentificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAuthentifications to fetch.
-     */
-    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserAuthentifications.
-     */
-    cursor?: UserAuthentificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAuthentifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAuthentifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserAuthentifications.
-     */
-    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
-  }
-
-  /**
-   * UserAuthentification findMany
-   */
-  export type UserAuthentificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter, which UserAuthentifications to fetch.
-     */
-    where?: UserAuthentificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserAuthentifications to fetch.
-     */
-    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserAuthentifications.
-     */
-    cursor?: UserAuthentificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserAuthentifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserAuthentifications.
-     */
-    skip?: number
-    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
-  }
-
-  /**
-   * UserAuthentification create
-   */
-  export type UserAuthentificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserAuthentification.
-     */
-    data: XOR<UserAuthentificationCreateInput, UserAuthentificationUncheckedCreateInput>
-  }
-
-  /**
-   * UserAuthentification createMany
-   */
-  export type UserAuthentificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserAuthentifications.
-     */
-    data: UserAuthentificationCreateManyInput | UserAuthentificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserAuthentification createManyAndReturn
-   */
-  export type UserAuthentificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many UserAuthentifications.
-     */
-    data: UserAuthentificationCreateManyInput | UserAuthentificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserAuthentification update
-   */
-  export type UserAuthentificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserAuthentification.
-     */
-    data: XOR<UserAuthentificationUpdateInput, UserAuthentificationUncheckedUpdateInput>
-    /**
-     * Choose, which UserAuthentification to update.
-     */
-    where: UserAuthentificationWhereUniqueInput
-  }
-
-  /**
-   * UserAuthentification updateMany
-   */
-  export type UserAuthentificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserAuthentifications.
-     */
-    data: XOR<UserAuthentificationUpdateManyMutationInput, UserAuthentificationUncheckedUpdateManyInput>
-    /**
-     * Filter which UserAuthentifications to update
-     */
-    where?: UserAuthentificationWhereInput
-  }
-
-  /**
-   * UserAuthentification upsert
-   */
-  export type UserAuthentificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserAuthentification to update in case it exists.
-     */
-    where: UserAuthentificationWhereUniqueInput
-    /**
-     * In case the UserAuthentification found by the `where` argument doesn't exist, create a new UserAuthentification with this data.
-     */
-    create: XOR<UserAuthentificationCreateInput, UserAuthentificationUncheckedCreateInput>
-    /**
-     * In case the UserAuthentification was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserAuthentificationUpdateInput, UserAuthentificationUncheckedUpdateInput>
-  }
-
-  /**
-   * UserAuthentification delete
-   */
-  export type UserAuthentificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
-    /**
-     * Filter which UserAuthentification to delete.
-     */
-    where: UserAuthentificationWhereUniqueInput
-  }
-
-  /**
-   * UserAuthentification deleteMany
-   */
-  export type UserAuthentificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserAuthentifications to delete
-     */
-    where?: UserAuthentificationWhereInput
-  }
-
-  /**
-   * UserAuthentification.User
-   */
-  export type UserAuthentification$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    cursor?: UserWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * UserAuthentification without action
-   */
-  export type UserAuthentificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserAuthentification
-     */
-    select?: UserAuthentificationSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserAuthentificationInclude<ExtArgs> | null
   }
 
 
@@ -6095,6 +5040,954 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: AccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserAuthentification
+   */
+
+  export type AggregateUserAuthentification = {
+    _count: UserAuthentificationCountAggregateOutputType | null
+    _avg: UserAuthentificationAvgAggregateOutputType | null
+    _sum: UserAuthentificationSumAggregateOutputType | null
+    _min: UserAuthentificationMinAggregateOutputType | null
+    _max: UserAuthentificationMaxAggregateOutputType | null
+  }
+
+  export type UserAuthentificationAvgAggregateOutputType = {
+    attemptAuthentification: number | null
+  }
+
+  export type UserAuthentificationSumAggregateOutputType = {
+    attemptAuthentification: number | null
+  }
+
+  export type UserAuthentificationMinAggregateOutputType = {
+    id: string | null
+    userName: string | null
+    password: string | null
+    attemptAuthentification: number | null
+    dateLastAttempt: Date | null
+    isRedefinePassword: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserAuthentificationMaxAggregateOutputType = {
+    id: string | null
+    userName: string | null
+    password: string | null
+    attemptAuthentification: number | null
+    dateLastAttempt: Date | null
+    isRedefinePassword: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserAuthentificationCountAggregateOutputType = {
+    id: number
+    userName: number
+    password: number
+    attemptAuthentification: number
+    dateLastAttempt: number
+    isRedefinePassword: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserAuthentificationAvgAggregateInputType = {
+    attemptAuthentification?: true
+  }
+
+  export type UserAuthentificationSumAggregateInputType = {
+    attemptAuthentification?: true
+  }
+
+  export type UserAuthentificationMinAggregateInputType = {
+    id?: true
+    userName?: true
+    password?: true
+    attemptAuthentification?: true
+    dateLastAttempt?: true
+    isRedefinePassword?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserAuthentificationMaxAggregateInputType = {
+    id?: true
+    userName?: true
+    password?: true
+    attemptAuthentification?: true
+    dateLastAttempt?: true
+    isRedefinePassword?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserAuthentificationCountAggregateInputType = {
+    id?: true
+    userName?: true
+    password?: true
+    attemptAuthentification?: true
+    dateLastAttempt?: true
+    isRedefinePassword?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserAuthentificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserAuthentification to aggregate.
+     */
+    where?: UserAuthentificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserAuthentifications to fetch.
+     */
+    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserAuthentificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserAuthentifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserAuthentifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserAuthentifications
+    **/
+    _count?: true | UserAuthentificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserAuthentificationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserAuthentificationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserAuthentificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserAuthentificationMaxAggregateInputType
+  }
+
+  export type GetUserAuthentificationAggregateType<T extends UserAuthentificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserAuthentification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserAuthentification[P]>
+      : GetScalarType<T[P], AggregateUserAuthentification[P]>
+  }
+
+
+
+
+  export type UserAuthentificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserAuthentificationWhereInput
+    orderBy?: UserAuthentificationOrderByWithAggregationInput | UserAuthentificationOrderByWithAggregationInput[]
+    by: UserAuthentificationScalarFieldEnum[] | UserAuthentificationScalarFieldEnum
+    having?: UserAuthentificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserAuthentificationCountAggregateInputType | true
+    _avg?: UserAuthentificationAvgAggregateInputType
+    _sum?: UserAuthentificationSumAggregateInputType
+    _min?: UserAuthentificationMinAggregateInputType
+    _max?: UserAuthentificationMaxAggregateInputType
+  }
+
+  export type UserAuthentificationGroupByOutputType = {
+    id: string
+    userName: string
+    password: string
+    attemptAuthentification: number
+    dateLastAttempt: Date | null
+    isRedefinePassword: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: UserAuthentificationCountAggregateOutputType | null
+    _avg: UserAuthentificationAvgAggregateOutputType | null
+    _sum: UserAuthentificationSumAggregateOutputType | null
+    _min: UserAuthentificationMinAggregateOutputType | null
+    _max: UserAuthentificationMaxAggregateOutputType | null
+  }
+
+  type GetUserAuthentificationGroupByPayload<T extends UserAuthentificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserAuthentificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserAuthentificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserAuthentificationGroupByOutputType[P]>
+            : GetScalarType<T[P], UserAuthentificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserAuthentificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userName?: boolean
+    password?: boolean
+    attemptAuthentification?: boolean
+    dateLastAttempt?: boolean
+    isRedefinePassword?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userAuthentification"]>
+
+  export type UserAuthentificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userName?: boolean
+    password?: boolean
+    attemptAuthentification?: boolean
+    dateLastAttempt?: boolean
+    isRedefinePassword?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userAuthentification"]>
+
+  export type UserAuthentificationSelectScalar = {
+    id?: boolean
+    userName?: boolean
+    password?: boolean
+    attemptAuthentification?: boolean
+    dateLastAttempt?: boolean
+    isRedefinePassword?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $UserAuthentificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserAuthentification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userName: string
+      password: string
+      attemptAuthentification: number
+      dateLastAttempt: Date | null
+      isRedefinePassword: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userAuthentification"]>
+    composites: {}
+  }
+
+  type UserAuthentificationGetPayload<S extends boolean | null | undefined | UserAuthentificationDefaultArgs> = $Result.GetResult<Prisma.$UserAuthentificationPayload, S>
+
+  type UserAuthentificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<UserAuthentificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: UserAuthentificationCountAggregateInputType | true
+    }
+
+  export interface UserAuthentificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserAuthentification'], meta: { name: 'UserAuthentification' } }
+    /**
+     * Find zero or one UserAuthentification that matches the filter.
+     * @param {UserAuthentificationFindUniqueArgs} args - Arguments to find a UserAuthentification
+     * @example
+     * // Get one UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserAuthentificationFindUniqueArgs>(args: SelectSubset<T, UserAuthentificationFindUniqueArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one UserAuthentification that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {UserAuthentificationFindUniqueOrThrowArgs} args - Arguments to find a UserAuthentification
+     * @example
+     * // Get one UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserAuthentificationFindUniqueOrThrowArgs>(args: SelectSubset<T, UserAuthentificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first UserAuthentification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationFindFirstArgs} args - Arguments to find a UserAuthentification
+     * @example
+     * // Get one UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserAuthentificationFindFirstArgs>(args?: SelectSubset<T, UserAuthentificationFindFirstArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first UserAuthentification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationFindFirstOrThrowArgs} args - Arguments to find a UserAuthentification
+     * @example
+     * // Get one UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserAuthentificationFindFirstOrThrowArgs>(args?: SelectSubset<T, UserAuthentificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more UserAuthentifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserAuthentifications
+     * const userAuthentifications = await prisma.userAuthentification.findMany()
+     * 
+     * // Get first 10 UserAuthentifications
+     * const userAuthentifications = await prisma.userAuthentification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userAuthentificationWithIdOnly = await prisma.userAuthentification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserAuthentificationFindManyArgs>(args?: SelectSubset<T, UserAuthentificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a UserAuthentification.
+     * @param {UserAuthentificationCreateArgs} args - Arguments to create a UserAuthentification.
+     * @example
+     * // Create one UserAuthentification
+     * const UserAuthentification = await prisma.userAuthentification.create({
+     *   data: {
+     *     // ... data to create a UserAuthentification
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserAuthentificationCreateArgs>(args: SelectSubset<T, UserAuthentificationCreateArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many UserAuthentifications.
+     * @param {UserAuthentificationCreateManyArgs} args - Arguments to create many UserAuthentifications.
+     * @example
+     * // Create many UserAuthentifications
+     * const userAuthentification = await prisma.userAuthentification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserAuthentificationCreateManyArgs>(args?: SelectSubset<T, UserAuthentificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserAuthentifications and returns the data saved in the database.
+     * @param {UserAuthentificationCreateManyAndReturnArgs} args - Arguments to create many UserAuthentifications.
+     * @example
+     * // Create many UserAuthentifications
+     * const userAuthentification = await prisma.userAuthentification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserAuthentifications and only return the `id`
+     * const userAuthentificationWithIdOnly = await prisma.userAuthentification.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserAuthentificationCreateManyAndReturnArgs>(args?: SelectSubset<T, UserAuthentificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a UserAuthentification.
+     * @param {UserAuthentificationDeleteArgs} args - Arguments to delete one UserAuthentification.
+     * @example
+     * // Delete one UserAuthentification
+     * const UserAuthentification = await prisma.userAuthentification.delete({
+     *   where: {
+     *     // ... filter to delete one UserAuthentification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserAuthentificationDeleteArgs>(args: SelectSubset<T, UserAuthentificationDeleteArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one UserAuthentification.
+     * @param {UserAuthentificationUpdateArgs} args - Arguments to update one UserAuthentification.
+     * @example
+     * // Update one UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserAuthentificationUpdateArgs>(args: SelectSubset<T, UserAuthentificationUpdateArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more UserAuthentifications.
+     * @param {UserAuthentificationDeleteManyArgs} args - Arguments to filter UserAuthentifications to delete.
+     * @example
+     * // Delete a few UserAuthentifications
+     * const { count } = await prisma.userAuthentification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserAuthentificationDeleteManyArgs>(args?: SelectSubset<T, UserAuthentificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserAuthentifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserAuthentifications
+     * const userAuthentification = await prisma.userAuthentification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserAuthentificationUpdateManyArgs>(args: SelectSubset<T, UserAuthentificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserAuthentification.
+     * @param {UserAuthentificationUpsertArgs} args - Arguments to update or create a UserAuthentification.
+     * @example
+     * // Update or create a UserAuthentification
+     * const userAuthentification = await prisma.userAuthentification.upsert({
+     *   create: {
+     *     // ... data to create a UserAuthentification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserAuthentification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserAuthentificationUpsertArgs>(args: SelectSubset<T, UserAuthentificationUpsertArgs<ExtArgs>>): Prisma__UserAuthentificationClient<$Result.GetResult<Prisma.$UserAuthentificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of UserAuthentifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationCountArgs} args - Arguments to filter UserAuthentifications to count.
+     * @example
+     * // Count the number of UserAuthentifications
+     * const count = await prisma.userAuthentification.count({
+     *   where: {
+     *     // ... the filter for the UserAuthentifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserAuthentificationCountArgs>(
+      args?: Subset<T, UserAuthentificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserAuthentificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserAuthentification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAuthentificationAggregateArgs>(args: Subset<T, UserAuthentificationAggregateArgs>): Prisma.PrismaPromise<GetUserAuthentificationAggregateType<T>>
+
+    /**
+     * Group by UserAuthentification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAuthentificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserAuthentificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserAuthentificationGroupByArgs['orderBy'] }
+        : { orderBy?: UserAuthentificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserAuthentificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserAuthentificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserAuthentification model
+   */
+  readonly fields: UserAuthentificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserAuthentification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserAuthentificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserAuthentification model
+   */ 
+  interface UserAuthentificationFieldRefs {
+    readonly id: FieldRef<"UserAuthentification", 'String'>
+    readonly userName: FieldRef<"UserAuthentification", 'String'>
+    readonly password: FieldRef<"UserAuthentification", 'String'>
+    readonly attemptAuthentification: FieldRef<"UserAuthentification", 'Int'>
+    readonly dateLastAttempt: FieldRef<"UserAuthentification", 'DateTime'>
+    readonly isRedefinePassword: FieldRef<"UserAuthentification", 'String'>
+    readonly createdAt: FieldRef<"UserAuthentification", 'DateTime'>
+    readonly updatedAt: FieldRef<"UserAuthentification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserAuthentification findUnique
+   */
+  export type UserAuthentificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter, which UserAuthentification to fetch.
+     */
+    where: UserAuthentificationWhereUniqueInput
+  }
+
+  /**
+   * UserAuthentification findUniqueOrThrow
+   */
+  export type UserAuthentificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter, which UserAuthentification to fetch.
+     */
+    where: UserAuthentificationWhereUniqueInput
+  }
+
+  /**
+   * UserAuthentification findFirst
+   */
+  export type UserAuthentificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter, which UserAuthentification to fetch.
+     */
+    where?: UserAuthentificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserAuthentifications to fetch.
+     */
+    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserAuthentifications.
+     */
+    cursor?: UserAuthentificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserAuthentifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserAuthentifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserAuthentifications.
+     */
+    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
+  }
+
+  /**
+   * UserAuthentification findFirstOrThrow
+   */
+  export type UserAuthentificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter, which UserAuthentification to fetch.
+     */
+    where?: UserAuthentificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserAuthentifications to fetch.
+     */
+    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserAuthentifications.
+     */
+    cursor?: UserAuthentificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserAuthentifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserAuthentifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserAuthentifications.
+     */
+    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
+  }
+
+  /**
+   * UserAuthentification findMany
+   */
+  export type UserAuthentificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter, which UserAuthentifications to fetch.
+     */
+    where?: UserAuthentificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserAuthentifications to fetch.
+     */
+    orderBy?: UserAuthentificationOrderByWithRelationInput | UserAuthentificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserAuthentifications.
+     */
+    cursor?: UserAuthentificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserAuthentifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserAuthentifications.
+     */
+    skip?: number
+    distinct?: UserAuthentificationScalarFieldEnum | UserAuthentificationScalarFieldEnum[]
+  }
+
+  /**
+   * UserAuthentification create
+   */
+  export type UserAuthentificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * The data needed to create a UserAuthentification.
+     */
+    data: XOR<UserAuthentificationCreateInput, UserAuthentificationUncheckedCreateInput>
+  }
+
+  /**
+   * UserAuthentification createMany
+   */
+  export type UserAuthentificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserAuthentifications.
+     */
+    data: UserAuthentificationCreateManyInput | UserAuthentificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserAuthentification createManyAndReturn
+   */
+  export type UserAuthentificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many UserAuthentifications.
+     */
+    data: UserAuthentificationCreateManyInput | UserAuthentificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserAuthentification update
+   */
+  export type UserAuthentificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * The data needed to update a UserAuthentification.
+     */
+    data: XOR<UserAuthentificationUpdateInput, UserAuthentificationUncheckedUpdateInput>
+    /**
+     * Choose, which UserAuthentification to update.
+     */
+    where: UserAuthentificationWhereUniqueInput
+  }
+
+  /**
+   * UserAuthentification updateMany
+   */
+  export type UserAuthentificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserAuthentifications.
+     */
+    data: XOR<UserAuthentificationUpdateManyMutationInput, UserAuthentificationUncheckedUpdateManyInput>
+    /**
+     * Filter which UserAuthentifications to update
+     */
+    where?: UserAuthentificationWhereInput
+  }
+
+  /**
+   * UserAuthentification upsert
+   */
+  export type UserAuthentificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * The filter to search for the UserAuthentification to update in case it exists.
+     */
+    where: UserAuthentificationWhereUniqueInput
+    /**
+     * In case the UserAuthentification found by the `where` argument doesn't exist, create a new UserAuthentification with this data.
+     */
+    create: XOR<UserAuthentificationCreateInput, UserAuthentificationUncheckedCreateInput>
+    /**
+     * In case the UserAuthentification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserAuthentificationUpdateInput, UserAuthentificationUncheckedUpdateInput>
+  }
+
+  /**
+   * UserAuthentification delete
+   */
+  export type UserAuthentificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
+    /**
+     * Filter which UserAuthentification to delete.
+     */
+    where: UserAuthentificationWhereUniqueInput
+  }
+
+  /**
+   * UserAuthentification deleteMany
+   */
+  export type UserAuthentificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserAuthentifications to delete
+     */
+    where?: UserAuthentificationWhereInput
+  }
+
+  /**
+   * UserAuthentification without action
+   */
+  export type UserAuthentificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAuthentification
+     */
+    select?: UserAuthentificationSelect<ExtArgs> | null
   }
 
 
@@ -13850,25 +13743,11 @@ export namespace Prisma {
     language: 'language',
     createdAt: 'createdAt',
     userAuthentificationId: 'userAuthentificationId',
+    isUserBlocked: 'isUserBlocked',
     updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-  export const UserAuthentificationScalarFieldEnum: {
-    id: 'id',
-    userName: 'userName',
-    password: 'password',
-    attemptAuthentification: 'attemptAuthentification',
-    dateLastAttempt: 'dateLastAttempt',
-    isRedefinePassword: 'isRedefinePassword',
-    isUserBlocked: 'isUserBlocked',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type UserAuthentificationScalarFieldEnum = (typeof UserAuthentificationScalarFieldEnum)[keyof typeof UserAuthentificationScalarFieldEnum]
 
 
   export const SessionScalarFieldEnum: {
@@ -13900,6 +13779,20 @@ export namespace Prisma {
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
+
+
+  export const UserAuthentificationScalarFieldEnum: {
+    id: 'id',
+    userName: 'userName',
+    password: 'password',
+    attemptAuthentification: 'attemptAuthentification',
+    dateLastAttempt: 'dateLastAttempt',
+    isRedefinePassword: 'isRedefinePassword',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserAuthentificationScalarFieldEnum = (typeof UserAuthentificationScalarFieldEnum)[keyof typeof UserAuthentificationScalarFieldEnum]
 
 
   export const RoleScalarFieldEnum: {
@@ -14046,6 +13939,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -14056,13 +13956,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -14094,12 +13987,12 @@ export namespace Prisma {
     roleId?: StringFilter<"User"> | string
     language?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    userAuthentificationId?: StringFilter<"User"> | string
+    userAuthentificationId?: StringNullableFilter<"User"> | string | null
+    isUserBlocked?: BoolNullableFilter<"User"> | boolean | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     role?: XOR<RoleRelationFilter, RoleWhereInput>
-    UserAuthentification?: XOR<UserAuthentificationRelationFilter, UserAuthentificationWhereInput>
   }
 
   export type UserOrderByWithRelationInput = {
@@ -14110,12 +14003,12 @@ export namespace Prisma {
     roleId?: SortOrder
     language?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    userAuthentificationId?: SortOrder
+    userAuthentificationId?: SortOrderInput | SortOrder
+    isUserBlocked?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     role?: RoleOrderByWithRelationInput
-    UserAuthentification?: UserAuthentificationOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14129,12 +14022,12 @@ export namespace Prisma {
     roleId?: StringFilter<"User"> | string
     language?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    userAuthentificationId?: StringFilter<"User"> | string
+    userAuthentificationId?: StringNullableFilter<"User"> | string | null
+    isUserBlocked?: BoolNullableFilter<"User"> | boolean | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     role?: XOR<RoleRelationFilter, RoleWhereInput>
-    UserAuthentification?: XOR<UserAuthentificationRelationFilter, UserAuthentificationWhereInput>
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -14145,7 +14038,8 @@ export namespace Prisma {
     roleId?: SortOrder
     language?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    userAuthentificationId?: SortOrder
+    userAuthentificationId?: SortOrderInput | SortOrder
+    isUserBlocked?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -14163,85 +14057,9 @@ export namespace Prisma {
     roleId?: StringWithAggregatesFilter<"User"> | string
     language?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    userAuthentificationId?: StringWithAggregatesFilter<"User"> | string
+    userAuthentificationId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    isUserBlocked?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-  }
-
-  export type UserAuthentificationWhereInput = {
-    AND?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
-    OR?: UserAuthentificationWhereInput[]
-    NOT?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
-    id?: StringFilter<"UserAuthentification"> | string
-    userName?: StringFilter<"UserAuthentification"> | string
-    password?: StringFilter<"UserAuthentification"> | string
-    attemptAuthentification?: IntFilter<"UserAuthentification"> | number
-    dateLastAttempt?: DateTimeNullableFilter<"UserAuthentification"> | Date | string | null
-    isRedefinePassword?: StringNullableFilter<"UserAuthentification"> | string | null
-    isUserBlocked?: BoolNullableFilter<"UserAuthentification"> | boolean | null
-    createdAt?: DateTimeFilter<"UserAuthentification"> | Date | string
-    updatedAt?: DateTimeFilter<"UserAuthentification"> | Date | string
-    User?: UserListRelationFilter
-  }
-
-  export type UserAuthentificationOrderByWithRelationInput = {
-    id?: SortOrder
-    userName?: SortOrder
-    password?: SortOrder
-    attemptAuthentification?: SortOrder
-    dateLastAttempt?: SortOrderInput | SortOrder
-    isRedefinePassword?: SortOrderInput | SortOrder
-    isUserBlocked?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    User?: UserOrderByRelationAggregateInput
-  }
-
-  export type UserAuthentificationWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    isRedefinePassword?: string
-    AND?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
-    OR?: UserAuthentificationWhereInput[]
-    NOT?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
-    userName?: StringFilter<"UserAuthentification"> | string
-    password?: StringFilter<"UserAuthentification"> | string
-    attemptAuthentification?: IntFilter<"UserAuthentification"> | number
-    dateLastAttempt?: DateTimeNullableFilter<"UserAuthentification"> | Date | string | null
-    isUserBlocked?: BoolNullableFilter<"UserAuthentification"> | boolean | null
-    createdAt?: DateTimeFilter<"UserAuthentification"> | Date | string
-    updatedAt?: DateTimeFilter<"UserAuthentification"> | Date | string
-    User?: UserListRelationFilter
-  }, "id" | "isRedefinePassword">
-
-  export type UserAuthentificationOrderByWithAggregationInput = {
-    id?: SortOrder
-    userName?: SortOrder
-    password?: SortOrder
-    attemptAuthentification?: SortOrder
-    dateLastAttempt?: SortOrderInput | SortOrder
-    isRedefinePassword?: SortOrderInput | SortOrder
-    isUserBlocked?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: UserAuthentificationCountOrderByAggregateInput
-    _avg?: UserAuthentificationAvgOrderByAggregateInput
-    _max?: UserAuthentificationMaxOrderByAggregateInput
-    _min?: UserAuthentificationMinOrderByAggregateInput
-    _sum?: UserAuthentificationSumOrderByAggregateInput
-  }
-
-  export type UserAuthentificationScalarWhereWithAggregatesInput = {
-    AND?: UserAuthentificationScalarWhereWithAggregatesInput | UserAuthentificationScalarWhereWithAggregatesInput[]
-    OR?: UserAuthentificationScalarWhereWithAggregatesInput[]
-    NOT?: UserAuthentificationScalarWhereWithAggregatesInput | UserAuthentificationScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"UserAuthentification"> | string
-    userName?: StringWithAggregatesFilter<"UserAuthentification"> | string
-    password?: StringWithAggregatesFilter<"UserAuthentification"> | string
-    attemptAuthentification?: IntWithAggregatesFilter<"UserAuthentification"> | number
-    dateLastAttempt?: DateTimeNullableWithAggregatesFilter<"UserAuthentification"> | Date | string | null
-    isRedefinePassword?: StringNullableWithAggregatesFilter<"UserAuthentification"> | string | null
-    isUserBlocked?: BoolNullableWithAggregatesFilter<"UserAuthentification"> | boolean | null
-    createdAt?: DateTimeWithAggregatesFilter<"UserAuthentification"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"UserAuthentification"> | Date | string
   }
 
   export type SessionWhereInput = {
@@ -14400,6 +14218,75 @@ export namespace Prisma {
     session_state?: StringNullableWithAggregatesFilter<"Account"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Account"> | Date | string
+  }
+
+  export type UserAuthentificationWhereInput = {
+    AND?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
+    OR?: UserAuthentificationWhereInput[]
+    NOT?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
+    id?: StringFilter<"UserAuthentification"> | string
+    userName?: StringFilter<"UserAuthentification"> | string
+    password?: StringFilter<"UserAuthentification"> | string
+    attemptAuthentification?: IntFilter<"UserAuthentification"> | number
+    dateLastAttempt?: DateTimeNullableFilter<"UserAuthentification"> | Date | string | null
+    isRedefinePassword?: StringNullableFilter<"UserAuthentification"> | string | null
+    createdAt?: DateTimeFilter<"UserAuthentification"> | Date | string
+    updatedAt?: DateTimeFilter<"UserAuthentification"> | Date | string
+  }
+
+  export type UserAuthentificationOrderByWithRelationInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    password?: SortOrder
+    attemptAuthentification?: SortOrder
+    dateLastAttempt?: SortOrderInput | SortOrder
+    isRedefinePassword?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAuthentificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    isRedefinePassword?: string
+    AND?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
+    OR?: UserAuthentificationWhereInput[]
+    NOT?: UserAuthentificationWhereInput | UserAuthentificationWhereInput[]
+    userName?: StringFilter<"UserAuthentification"> | string
+    password?: StringFilter<"UserAuthentification"> | string
+    attemptAuthentification?: IntFilter<"UserAuthentification"> | number
+    dateLastAttempt?: DateTimeNullableFilter<"UserAuthentification"> | Date | string | null
+    createdAt?: DateTimeFilter<"UserAuthentification"> | Date | string
+    updatedAt?: DateTimeFilter<"UserAuthentification"> | Date | string
+  }, "id" | "isRedefinePassword">
+
+  export type UserAuthentificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    password?: SortOrder
+    attemptAuthentification?: SortOrder
+    dateLastAttempt?: SortOrderInput | SortOrder
+    isRedefinePassword?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserAuthentificationCountOrderByAggregateInput
+    _avg?: UserAuthentificationAvgOrderByAggregateInput
+    _max?: UserAuthentificationMaxOrderByAggregateInput
+    _min?: UserAuthentificationMinOrderByAggregateInput
+    _sum?: UserAuthentificationSumOrderByAggregateInput
+  }
+
+  export type UserAuthentificationScalarWhereWithAggregatesInput = {
+    AND?: UserAuthentificationScalarWhereWithAggregatesInput | UserAuthentificationScalarWhereWithAggregatesInput[]
+    OR?: UserAuthentificationScalarWhereWithAggregatesInput[]
+    NOT?: UserAuthentificationScalarWhereWithAggregatesInput | UserAuthentificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserAuthentification"> | string
+    userName?: StringWithAggregatesFilter<"UserAuthentification"> | string
+    password?: StringWithAggregatesFilter<"UserAuthentification"> | string
+    attemptAuthentification?: IntWithAggregatesFilter<"UserAuthentification"> | number
+    dateLastAttempt?: DateTimeNullableWithAggregatesFilter<"UserAuthentification"> | Date | string | null
+    isRedefinePassword?: StringNullableWithAggregatesFilter<"UserAuthentification"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"UserAuthentification"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UserAuthentification"> | Date | string
   }
 
   export type RoleWhereInput = {
@@ -14860,11 +14747,12 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
-    UserAuthentification: UserAuthentificationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14875,7 +14763,8 @@ export namespace Prisma {
     roleId: string
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -14888,11 +14777,12 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
-    UserAuthentification?: UserAuthentificationUpdateOneRequiredWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14903,7 +14793,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -14917,7 +14808,8 @@ export namespace Prisma {
     roleId: string
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
   }
 
@@ -14928,6 +14820,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -14939,95 +14833,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAuthentificationCreateInput = {
-    id?: string
-    userName: string
-    password: string
-    attemptAuthentification?: number
-    dateLastAttempt?: Date | string | null
-    isRedefinePassword?: string | null
-    isUserBlocked?: boolean | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    User?: UserCreateNestedManyWithoutUserAuthentificationInput
-  }
-
-  export type UserAuthentificationUncheckedCreateInput = {
-    id?: string
-    userName: string
-    password: string
-    attemptAuthentification?: number
-    dateLastAttempt?: Date | string | null
-    isRedefinePassword?: string | null
-    isUserBlocked?: boolean | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    User?: UserUncheckedCreateNestedManyWithoutUserAuthentificationInput
-  }
-
-  export type UserAuthentificationUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateManyWithoutUserAuthentificationNestedInput
-  }
-
-  export type UserAuthentificationUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
-    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUncheckedUpdateManyWithoutUserAuthentificationNestedInput
-  }
-
-  export type UserAuthentificationCreateManyInput = {
-    id?: string
-    userName: string
-    password: string
-    attemptAuthentification?: number
-    dateLastAttempt?: Date | string | null
-    isRedefinePassword?: string | null
-    isUserBlocked?: boolean | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserAuthentificationUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
-    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAuthentificationUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
-    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -15200,6 +15007,83 @@ export namespace Prisma {
     scope?: NullableStringFieldUpdateOperationsInput | string | null
     id_token?: NullableStringFieldUpdateOperationsInput | string | null
     session_state?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAuthentificationCreateInput = {
+    id?: string
+    userName: string
+    password: string
+    attemptAuthentification?: number
+    dateLastAttempt?: Date | string | null
+    isRedefinePassword?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserAuthentificationUncheckedCreateInput = {
+    id?: string
+    userName: string
+    password: string
+    attemptAuthentification?: number
+    dateLastAttempt?: Date | string | null
+    isRedefinePassword?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserAuthentificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    attemptAuthentification?: IntFieldUpdateOperationsInput | number
+    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAuthentificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    attemptAuthentification?: IntFieldUpdateOperationsInput | number
+    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAuthentificationCreateManyInput = {
+    id?: string
+    userName: string
+    password: string
+    attemptAuthentification?: number
+    dateLastAttempt?: Date | string | null
+    isRedefinePassword?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserAuthentificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    attemptAuthentification?: IntFieldUpdateOperationsInput | number
+    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAuthentificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userName?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    attemptAuthentification?: IntFieldUpdateOperationsInput | number
+    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15689,6 +15573,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -15704,11 +15593,6 @@ export namespace Prisma {
   export type RoleRelationFilter = {
     is?: RoleWhereInput
     isNot?: RoleWhereInput
-  }
-
-  export type UserAuthentificationRelationFilter = {
-    is?: UserAuthentificationWhereInput
-    isNot?: UserAuthentificationWhereInput
   }
 
   export type SortOrderInput = {
@@ -15733,6 +15617,7 @@ export namespace Prisma {
     language?: SortOrder
     createdAt?: SortOrder
     userAuthentificationId?: SortOrder
+    isUserBlocked?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -15745,6 +15630,7 @@ export namespace Prisma {
     language?: SortOrder
     createdAt?: SortOrder
     userAuthentificationId?: SortOrder
+    isUserBlocked?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -15757,6 +15643,7 @@ export namespace Prisma {
     language?: SortOrder
     createdAt?: SortOrder
     userAuthentificationId?: SortOrder
+    isUserBlocked?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -15808,117 +15695,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
-  }
-
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserAuthentificationCountOrderByAggregateInput = {
-    id?: SortOrder
-    userName?: SortOrder
-    password?: SortOrder
-    attemptAuthentification?: SortOrder
-    dateLastAttempt?: SortOrder
-    isRedefinePassword?: SortOrder
-    isUserBlocked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAuthentificationAvgOrderByAggregateInput = {
-    attemptAuthentification?: SortOrder
-  }
-
-  export type UserAuthentificationMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userName?: SortOrder
-    password?: SortOrder
-    attemptAuthentification?: SortOrder
-    dateLastAttempt?: SortOrder
-    isRedefinePassword?: SortOrder
-    isUserBlocked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAuthentificationMinOrderByAggregateInput = {
-    id?: SortOrder
-    userName?: SortOrder
-    password?: SortOrder
-    attemptAuthentification?: SortOrder
-    dateLastAttempt?: SortOrder
-    isRedefinePassword?: SortOrder
-    isUserBlocked?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserAuthentificationSumOrderByAggregateInput = {
-    attemptAuthentification?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15975,6 +15751,7 @@ export namespace Prisma {
   export type AccountProvider_providerAccountIdCompoundUniqueInput = {
     provider: string
     providerAccountId: string
+    userId: string
   }
 
   export type AccountCountOrderByAggregateInput = {
@@ -16047,6 +15824,109 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type UserAuthentificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    password?: SortOrder
+    attemptAuthentification?: SortOrder
+    dateLastAttempt?: SortOrder
+    isRedefinePassword?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAuthentificationAvgOrderByAggregateInput = {
+    attemptAuthentification?: SortOrder
+  }
+
+  export type UserAuthentificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    password?: SortOrder
+    attemptAuthentification?: SortOrder
+    dateLastAttempt?: SortOrder
+    isRedefinePassword?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAuthentificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userName?: SortOrder
+    password?: SortOrder
+    attemptAuthentification?: SortOrder
+    dateLastAttempt?: SortOrder
+    isRedefinePassword?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAuthentificationSumOrderByAggregateInput = {
+    attemptAuthentification?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type RoleCountOrderByAggregateInput = {
@@ -16377,12 +16257,6 @@ export namespace Prisma {
     connect?: RoleWhereUniqueInput
   }
 
-  export type UserAuthentificationCreateNestedOneWithoutUserInput = {
-    create?: XOR<UserAuthentificationCreateWithoutUserInput, UserAuthentificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: UserAuthentificationCreateOrConnectWithoutUserInput
-    connect?: UserAuthentificationWhereUniqueInput
-  }
-
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16407,6 +16281,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -16445,14 +16323,6 @@ export namespace Prisma {
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUsersInput, RoleUpdateWithoutUsersInput>, RoleUncheckedUpdateWithoutUsersInput>
   }
 
-  export type UserAuthentificationUpdateOneRequiredWithoutUserNestedInput = {
-    create?: XOR<UserAuthentificationCreateWithoutUserInput, UserAuthentificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: UserAuthentificationCreateOrConnectWithoutUserInput
-    upsert?: UserAuthentificationUpsertWithoutUserInput
-    connect?: UserAuthentificationWhereUniqueInput
-    update?: XOR<XOR<UserAuthentificationUpdateToOneWithWhereWithoutUserInput, UserAuthentificationUpdateWithoutUserInput>, UserAuthentificationUncheckedUpdateWithoutUserInput>
-  }
-
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16479,64 +16349,6 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type UserCreateNestedManyWithoutUserAuthentificationInput = {
-    create?: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput> | UserCreateWithoutUserAuthentificationInput[] | UserUncheckedCreateWithoutUserAuthentificationInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutUserAuthentificationInput | UserCreateOrConnectWithoutUserAuthentificationInput[]
-    createMany?: UserCreateManyUserAuthentificationInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type UserUncheckedCreateNestedManyWithoutUserAuthentificationInput = {
-    create?: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput> | UserCreateWithoutUserAuthentificationInput[] | UserUncheckedCreateWithoutUserAuthentificationInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutUserAuthentificationInput | UserCreateOrConnectWithoutUserAuthentificationInput[]
-    createMany?: UserCreateManyUserAuthentificationInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
-  }
-
-  export type UserUpdateManyWithoutUserAuthentificationNestedInput = {
-    create?: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput> | UserCreateWithoutUserAuthentificationInput[] | UserUncheckedCreateWithoutUserAuthentificationInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutUserAuthentificationInput | UserCreateOrConnectWithoutUserAuthentificationInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutUserAuthentificationInput | UserUpsertWithWhereUniqueWithoutUserAuthentificationInput[]
-    createMany?: UserCreateManyUserAuthentificationInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutUserAuthentificationInput | UserUpdateWithWhereUniqueWithoutUserAuthentificationInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutUserAuthentificationInput | UserUpdateManyWithWhereWithoutUserAuthentificationInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type UserUncheckedUpdateManyWithoutUserAuthentificationNestedInput = {
-    create?: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput> | UserCreateWithoutUserAuthentificationInput[] | UserUncheckedCreateWithoutUserAuthentificationInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutUserAuthentificationInput | UserCreateOrConnectWithoutUserAuthentificationInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutUserAuthentificationInput | UserUpsertWithWhereUniqueWithoutUserAuthentificationInput[]
-    createMany?: UserCreateManyUserAuthentificationInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutUserAuthentificationInput | UserUpdateWithWhereUniqueWithoutUserAuthentificationInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutUserAuthentificationInput | UserUpdateManyWithWhereWithoutUserAuthentificationInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -16573,6 +16385,18 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type UserCreateNestedManyWithoutRoleInput = {
@@ -16936,6 +16760,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -17006,6 +16835,41 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -17015,11 +16879,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -17061,41 +16920,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17181,35 +17005,6 @@ export namespace Prisma {
   export type RoleCreateOrConnectWithoutUsersInput = {
     where: RoleWhereUniqueInput
     create: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
-  }
-
-  export type UserAuthentificationCreateWithoutUserInput = {
-    id?: string
-    userName: string
-    password: string
-    attemptAuthentification?: number
-    dateLastAttempt?: Date | string | null
-    isRedefinePassword?: string | null
-    isUserBlocked?: boolean | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserAuthentificationUncheckedCreateWithoutUserInput = {
-    id?: string
-    userName: string
-    password: string
-    attemptAuthentification?: number
-    dateLastAttempt?: Date | string | null
-    isRedefinePassword?: string | null
-    isUserBlocked?: boolean | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserAuthentificationCreateOrConnectWithoutUserInput = {
-    where: UserAuthentificationWhereUniqueInput
-    create: XOR<UserAuthentificationCreateWithoutUserInput, UserAuthentificationUncheckedCreateWithoutUserInput>
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -17300,108 +17095,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserAuthentificationUpsertWithoutUserInput = {
-    update: XOR<UserAuthentificationUpdateWithoutUserInput, UserAuthentificationUncheckedUpdateWithoutUserInput>
-    create: XOR<UserAuthentificationCreateWithoutUserInput, UserAuthentificationUncheckedCreateWithoutUserInput>
-    where?: UserAuthentificationWhereInput
-  }
-
-  export type UserAuthentificationUpdateToOneWithWhereWithoutUserInput = {
-    where?: UserAuthentificationWhereInput
-    data: XOR<UserAuthentificationUpdateWithoutUserInput, UserAuthentificationUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserAuthentificationUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
-    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserAuthentificationUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userName?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    attemptAuthentification?: IntFieldUpdateOperationsInput | number
-    dateLastAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isRedefinePassword?: NullableStringFieldUpdateOperationsInput | string | null
-    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserCreateWithoutUserAuthentificationInput = {
-    id?: string
-    name?: string | null
-    email: string
-    image?: string | null
-    language?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    role: RoleCreateNestedOneWithoutUsersInput
-  }
-
-  export type UserUncheckedCreateWithoutUserAuthentificationInput = {
-    id?: string
-    name?: string | null
-    email: string
-    image?: string | null
-    roleId: string
-    language?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutUserAuthentificationInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput>
-  }
-
-  export type UserCreateManyUserAuthentificationInputEnvelope = {
-    data: UserCreateManyUserAuthentificationInput | UserCreateManyUserAuthentificationInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithWhereUniqueWithoutUserAuthentificationInput = {
-    where: UserWhereUniqueInput
-    update: XOR<UserUpdateWithoutUserAuthentificationInput, UserUncheckedUpdateWithoutUserAuthentificationInput>
-    create: XOR<UserCreateWithoutUserAuthentificationInput, UserUncheckedCreateWithoutUserAuthentificationInput>
-  }
-
-  export type UserUpdateWithWhereUniqueWithoutUserAuthentificationInput = {
-    where: UserWhereUniqueInput
-    data: XOR<UserUpdateWithoutUserAuthentificationInput, UserUncheckedUpdateWithoutUserAuthentificationInput>
-  }
-
-  export type UserUpdateManyWithWhereWithoutUserAuthentificationInput = {
-    where: UserScalarWhereInput
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutUserAuthentificationInput>
-  }
-
-  export type UserScalarWhereInput = {
-    AND?: UserScalarWhereInput | UserScalarWhereInput[]
-    OR?: UserScalarWhereInput[]
-    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: StringFilter<"User"> | string
-    name?: StringNullableFilter<"User"> | string | null
-    email?: StringFilter<"User"> | string
-    image?: StringNullableFilter<"User"> | string | null
-    roleId?: StringFilter<"User"> | string
-    language?: StringNullableFilter<"User"> | string | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    userAuthentificationId?: StringFilter<"User"> | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-  }
-
   export type UserCreateWithoutSessionsInput = {
     id?: string
     name?: string | null
@@ -17409,10 +17102,11 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
-    UserAuthentification: UserAuthentificationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -17423,7 +17117,8 @@ export namespace Prisma {
     roleId: string
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
@@ -17451,10 +17146,11 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
-    UserAuthentification?: UserAuthentificationUpdateOneRequiredWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -17465,7 +17161,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -17477,10 +17174,11 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
-    UserAuthentification: UserAuthentificationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -17491,7 +17189,8 @@ export namespace Prisma {
     roleId: string
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -17519,10 +17218,11 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
-    UserAuthentification?: UserAuthentificationUpdateOneRequiredWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -17533,7 +17233,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -17545,10 +17246,11 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    UserAuthentification: UserAuthentificationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -17558,7 +17260,8 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -17588,6 +17291,22 @@ export namespace Prisma {
   export type UserUpdateManyWithWhereWithoutRoleInput = {
     where: UserScalarWhereInput
     data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutRoleInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
+    email?: StringFilter<"User"> | string
+    image?: StringNullableFilter<"User"> | string | null
+    roleId?: StringFilter<"User"> | string
+    language?: StringNullableFilter<"User"> | string | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    userAuthentificationId?: StringNullableFilter<"User"> | string | null
+    isUserBlocked?: BoolNullableFilter<"User"> | boolean | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type CityCreateWithoutCountryInput = {
@@ -18185,54 +17904,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserCreateManyUserAuthentificationInput = {
-    id?: string
-    name?: string | null
-    email: string
-    image?: string | null
-    roleId: string
-    language?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type UserUpdateWithoutUserAuthentificationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    language?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserAuthentificationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: StringFieldUpdateOperationsInput | string
-    language?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateManyWithoutUserAuthentificationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: StringFieldUpdateOperationsInput | string
-    language?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type UserCreateManyRoleInput = {
     id?: string
     name?: string | null
@@ -18240,7 +17911,8 @@ export namespace Prisma {
     image?: string | null
     language?: string | null
     createdAt?: Date | string
-    userAuthentificationId: string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
     updatedAt?: Date | string
   }
 
@@ -18251,10 +17923,11 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    UserAuthentification?: UserAuthentificationUpdateOneRequiredWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -18264,7 +17937,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -18277,7 +17951,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userAuthentificationId?: StringFieldUpdateOperationsInput | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18450,10 +18125,6 @@ export namespace Prisma {
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use UserAuthentificationCountOutputTypeDefaultArgs instead
-     */
-    export type UserAuthentificationCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserAuthentificationCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use RoleCountOutputTypeDefaultArgs instead
      */
     export type RoleCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = RoleCountOutputTypeDefaultArgs<ExtArgs>
@@ -18478,10 +18149,6 @@ export namespace Prisma {
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use UserAuthentificationDefaultArgs instead
-     */
-    export type UserAuthentificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserAuthentificationDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use SessionDefaultArgs instead
      */
     export type SessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SessionDefaultArgs<ExtArgs>
@@ -18489,6 +18156,10 @@ export namespace Prisma {
      * @deprecated Use AccountDefaultArgs instead
      */
     export type AccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserAuthentificationDefaultArgs instead
+     */
+    export type UserAuthentificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserAuthentificationDefaultArgs<ExtArgs>
     /**
      * @deprecated Use RoleDefaultArgs instead
      */

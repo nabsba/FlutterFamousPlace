@@ -131,18 +131,7 @@ exports.Prisma.UserScalarFieldEnum = {
   language: 'language',
   createdAt: 'createdAt',
   userAuthentificationId: 'userAuthentificationId',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.UserAuthentificationScalarFieldEnum = {
-  id: 'id',
-  userName: 'userName',
-  password: 'password',
-  attemptAuthentification: 'attemptAuthentification',
-  dateLastAttempt: 'dateLastAttempt',
-  isRedefinePassword: 'isRedefinePassword',
   isUserBlocked: 'isUserBlocked',
-  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
@@ -167,6 +156,17 @@ exports.Prisma.AccountScalarFieldEnum = {
   scope: 'scope',
   id_token: 'id_token',
   session_state: 'session_state',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserAuthentificationScalarFieldEnum = {
+  id: 'id',
+  userName: 'userName',
+  password: 'password',
+  attemptAuthentification: 'attemptAuthentification',
+  dateLastAttempt: 'dateLastAttempt',
+  isRedefinePassword: 'isRedefinePassword',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -251,9 +251,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  UserAuthentification: 'UserAuthentification',
   Session: 'Session',
   Account: 'Account',
+  UserAuthentification: 'UserAuthentification',
   Role: 'Role',
   Country: 'Country',
   Address: 'Address',
