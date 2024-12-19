@@ -1,16 +1,17 @@
-import { resolversPlace } from "../famousPlace";
-
+import { resolversAuth } from '../auth/graphQl/resolver';
+import { resolversPlace } from '../famousPlace';
+import { resolversJWT } from '../jwt';
 
 const resolvers = {
-    Query: {
-      ...resolversPlace.Query,
+  Query: {
+    ...resolversPlace.Query,
+    ...resolversAuth.Query,
+  },
+  Mutation: {
+    ...resolversPlace.Mutation,
+    ...resolversAuth.Mutation,
+    ...resolversJWT.Mutation,
+  },
+};
 
-    },
-    Mutation: {
-      ...resolversPlace.Mutation,
-
-    },
-  };
-
-
-  export {resolvers}
+export { resolvers };

@@ -1,16 +1,16 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { resolvers, typeDefs } from './graphql';
-import cors from 'cors'
-require('dotenv').config(); 
+import cors from 'cors';
+require('dotenv').config();
 const app = express() as any;
-app.get('/', (_: any, res: { send: (arg0: string) => void; }) => {
+app.get('/', (_: any, res: { send: (arg0: string) => void }) => {
   res.send('Example Server');
 });
 
-var corsOptions = {
+const corsOptions = {
   origin: ['https://studio.apollographql.com', 'http://localhost:3000'],
-  credentials: true // <-- REQUIRED backend setting
+  credentials: true, // <-- REQUIRED backend setting
 };
 app.use(cors(corsOptions));
 // app.use(cookieParser());
@@ -27,15 +27,14 @@ app.use((req: any, res: any, next: () => void) => {
   // // console.log(req);
 
   // // }
-   next();
-})
+  next();
+});
 
 async function startServer() {
   const server = new ApolloServer({
     typeDefs,
-   resolvers,
-    context: async ({ req }) => {
-    },
+    resolvers,
+    context: async ({ req }) => {},
   });
   await server.start();
 
@@ -46,15 +45,8 @@ async function startServer() {
   });
 }
 
-
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 4000;
-
 
 startServer();
 
-app.listen({ port}, () =>
-  console.log(`🚀 Server ready at http://localhost:4000`)
-);
-
-
-
+app.listen({ port }, () => console.log(`🚀 Server ready at http://localhost:4000`));

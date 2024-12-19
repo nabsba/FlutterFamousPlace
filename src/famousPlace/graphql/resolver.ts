@@ -1,10 +1,10 @@
-import prismaClientDB from "../../lib/prismadb";
-import { CreatePlace } from "../type";
+import prismaClientDB from '../../lib/prismadb';
+import { CreatePlace } from '../type';
 
 export const resolversPlace = {
-  Query:  {
+  Query: {
     places: async (_parent: any, args: any, _context: any) => {
-      const { language } = args; 
+      const { language } = args;
       return await prismaClientDB.place.findMany({
         include: {
           address: {

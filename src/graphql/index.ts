@@ -1,4 +1,4 @@
-import { resolvers } from "./combineResolver";
-import { typeDefs } from "./combineSchema";
+import { resolvers } from './combineResolver';
+import { typeDefs } from './combineSchema';
 
-export {typeDefs, resolvers }
+export { typeDefs, resolvers };

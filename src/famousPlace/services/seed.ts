@@ -2,14 +2,18 @@ import prismaClientDB from '../../lib/prismadb';
 
 async function main() {
   // France
-
-const languages = await prismaClientDB.language.createMany({
+  const clientRole = await prismaClientDB.role.create({
+    data: {
+      // Generate a unique ID for the role
+      roleName: 'client',
+    },
+  });
+  const languages = await prismaClientDB.language.createMany({
     data: [{ type: 'eng' }, { type: 'fr' }],
     skipDuplicates: true, // Optional: skips rows if they already exist
   });
-const hotelData = await prismaClientDB.place.create({
+  const hotelData = await prismaClientDB.place.create({
     data: {
-
       popularity: 10, // A high value assuming it's a popular place
       address: {
         create: {
@@ -22,33 +26,30 @@ const hotelData = await prismaClientDB.place.create({
               country: {
                 create: {
                   name: 'France',
-                  
                 },
               },
-              
             },
-          },   
+          },
         },
       },
       placeDetail: {
         create: [
-            {
-              name: 'Hôtel de Paris Monte-Carlo',
-              description: `Le majestueux Hôtel de Paris Monte-Carlo se dresse sur la place du Casino, avec le magnifique Palais Princier et la Méditerranée en toile de fond. Son emplacement privilégié, ses intérieurs contemporains récemment rénovés et son service ultra-personnalisé inspirent la détente, l'harmonie et le bien-être. C'est ici que vous pourrez créer votre propre histoire. L'hôtel abrite également l'un des meilleurs restaurants au monde, Le Louis XV - Alain Ducasse à l'Hôtel de Paris Monte-Carlo, qui élève la cuisine de la Riviera à un tout autre niveau exquis, en l'élevant avec les meilleurs ingrédients, des saveurs authentiques et appétissantes et une exécution sans faille. Le Grill a été créé pour exaucer le souhait de Maria Callas de dîner avec vue sur trois pays à la fois. Il y a également une rôtisserie de renommée mondiale et un toit-terrasse coulissant. Le Bar American est l'endroit idéal pour se mêler au glamour clinquant de Monaco, profiter de la musique live et savourer des cocktails originaux et intemporels.`,
-              languageId: 2, // French language ID
-            },
-            {
-                name: "Hotel de Paris Monte-Carlo",
-              description: `The majestic Hôtel de Paris Monte-Carlo is set like a breathtaking tableau on the Casino Square, with the scenic Prince’s Palace and Mediterranean as a backdrop. Its prime location, newly refurbished Contemporary interiors, and ultra-personalized service inspire relaxation, harmony, and well-being. Here is the stage to create your own story. The hotel is also home to one of the world’s premier restaurants, Le Louis XV - Alain Ducasse à l'Hôtel de Paris Monte-Carlo, which takes Riviera cuisine to a whole new exquisite level, elevating it with the finest ingredients, authentic, mouthwatering flavors, and flawless execution. Le Grill was established to fulfill a wish of Maria Callas’ to dine overlooking three countries at once. There is also a world-famous rotisserie and sliding rooftop. Le Bar American is the place to mingle with the glitzy glam of Monaco, enjoy live music, and savor original, timeless cocktails.`,
-              languageId: 1, // Another language ID (e.g., English)
-            },
-          ],
+          {
+            name: 'Hôtel de Paris Monte-Carlo',
+            description: `Le majestueux Hôtel de Paris Monte-Carlo se dresse sur la place du Casino, avec le magnifique Palais Princier et la Méditerranée en toile de fond. Son emplacement privilégié, ses intérieurs contemporains récemment rénovés et son service ultra-personnalisé inspirent la détente, l'harmonie et le bien-être. C'est ici que vous pourrez créer votre propre histoire. L'hôtel abrite également l'un des meilleurs restaurants au monde, Le Louis XV - Alain Ducasse à l'Hôtel de Paris Monte-Carlo, qui élève la cuisine de la Riviera à un tout autre niveau exquis, en l'élevant avec les meilleurs ingrédients, des saveurs authentiques et appétissantes et une exécution sans faille. Le Grill a été créé pour exaucer le souhait de Maria Callas de dîner avec vue sur trois pays à la fois. Il y a également une rôtisserie de renommée mondiale et un toit-terrasse coulissant. Le Bar American est l'endroit idéal pour se mêler au glamour clinquant de Monaco, profiter de la musique live et savourer des cocktails originaux et intemporels.`,
+            languageId: 2, // French language ID
+          },
+          {
+            name: 'Hotel de Paris Monte-Carlo',
+            description: `The majestic Hôtel de Paris Monte-Carlo is set like a breathtaking tableau on the Casino Square, with the scenic Prince’s Palace and Mediterranean as a backdrop. Its prime location, newly refurbished Contemporary interiors, and ultra-personalized service inspire relaxation, harmony, and well-being. Here is the stage to create your own story. The hotel is also home to one of the world’s premier restaurants, Le Louis XV - Alain Ducasse à l'Hôtel de Paris Monte-Carlo, which takes Riviera cuisine to a whole new exquisite level, elevating it with the finest ingredients, authentic, mouthwatering flavors, and flawless execution. Le Grill was established to fulfill a wish of Maria Callas’ to dine overlooking three countries at once. There is also a world-famous rotisserie and sliding rooftop. Le Bar American is the place to mingle with the glitzy glam of Monaco, enjoy live music, and savor original, timeless cocktails.`,
+            languageId: 1, // Another language ID (e.g., English)
+          },
+        ],
       },
     },
   });
-const colosseumData = await prismaClientDB.place.create({
+  const colosseumData = await prismaClientDB.place.create({
     data: {
-
       popularity: 10, // A high value assuming it's a popular place
       address: {
         create: {
@@ -104,7 +105,7 @@ const colosseumData = await prismaClientDB.place.create({
           {
             name: 'Tour penchée de Pise',
             description: `La Tour penchée de Pise, communément appelée la Tour de Pise, est l'un des monuments les plus célèbres d'Italie. Située sur la Piazza del Duomo à Pise, elle est célèbre pour son inclinaison caractéristique.`,
-            
+
             languageId: 2,
           },
           {
@@ -163,8 +164,7 @@ const colosseumData = await prismaClientDB.place.create({
           city: {
             create: {
               name: 'Amesbury',
-              countryId:3
-             
+              countryId: 3,
             },
           },
         },
@@ -239,7 +239,6 @@ const colosseumData = await prismaClientDB.place.create({
       },
     },
   });
-  
 }
 
 main()
