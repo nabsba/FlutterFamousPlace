@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/success_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
+import 'features/firebase/services/firebaseService.dart';
 import 'features/navigations/services/routes.dart';
 
 Future<void> main() async {
@@ -16,7 +16,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  const filePath = 'monaco/Hotel_de_Paris Monte-Carlo.png';
+  String downloadURL = await getDownloadURL(filePath);
+  print('Download URL: $downloadURL');
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
 
   runApp(GraphQLProvider(
