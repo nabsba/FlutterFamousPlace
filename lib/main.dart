@@ -16,9 +16,16 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  const filePath = 'monaco/Hotel_de_Paris Monte-Carlo.png';
+  const filePath =
+      'monaco/hotel_de_paris_monte-carlo/Hotel_de_Paris Monte-Carlo.png';
   String downloadURL = await getDownloadURL(filePath);
-  print('Download URL: $downloadURL');
+  print(downloadURL);
+  const folderName =
+      'monaco/hotel_de_paris_monte-carlo'; // Replace with your folder name
+
+  List<String> urls = await getAllFilesInFolder(folderName);
+  print(urls);
+
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
 
   runApp(GraphQLProvider(
