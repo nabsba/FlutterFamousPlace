@@ -1,13 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/graphql/client.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'features/navigations/services/routes.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_famous_places/firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/errors_localizations.dart';
+import 'package:flutter_gen/gen_l10n/success_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'features/firebase/services/firebaseService.dart';
+import 'features/navigations/services/routes.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  const filePath = 'monaco/Hotel_de_Paris Monte-Carlo.png';
+  String downloadURL = await getDownloadURL(filePath);
+  print('Download URL: $downloadURL');
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
+
   runApp(GraphQLProvider(
       client: graphQLClientSingleton,
       child: ProviderScope(child: const MainApp())));
@@ -22,6 +35,8 @@ class MainApp extends StatelessWidget {
       title: 'Favorite Place',
       localizationsDelegates: [
         AppLocalizations.delegate,
+        ErrorsLocalizations.delegate,
+        SuccessLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

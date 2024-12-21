@@ -1,0 +1,17 @@
+Make sure the authentification plugging is added and configured use firebase. Then go there and download googleServiceInfo.plist then in the info.plist of IOS add with the right credentials you find in google service.
+
+	<key>GIDClientID</key>
+<string>310893183264-7g06oveoq5lour2sasasas6dhimc95ga6h7o6ro.apps.googleusercontent.com</string>
+<key>CFBundleURLTypes</key>
+<array>
+  <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+	<string>com.googleusercontent.apps.310893183264-7g06oveoqsasas5lour26dhimc95ga6h7o6ro</string>
+    </array>
+  </dict>
+
+
+
+
+  - Github: In the development environment, GitHub authentication fails because the callback URL must be an official, publicly accessible link. Once the application is hosted on a web server, update the callback URL in the GitHub application settings accordingly.
