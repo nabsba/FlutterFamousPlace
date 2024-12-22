@@ -205,7 +205,8 @@ exports.Prisma.PlaceScalarFieldEnum = {
   id: 'id',
   popularity: 'popularity',
   createdAt: 'createdAt',
-  addressId: 'addressId'
+  addressId: 'addressId',
+  image: 'image'
 };
 
 exports.Prisma.PlaceDetailScalarFieldEnum = {

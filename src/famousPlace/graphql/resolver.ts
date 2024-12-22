@@ -1,3 +1,4 @@
+import { listFilesInFolder } from '../../firebase/services/firebase';
 import prismaClientDB from '../../lib/prismadb';
 import { CreatePlace } from '../type';
 
@@ -5,7 +6,7 @@ export const resolversPlace = {
   Query: {
     places: async (_parent: any, args: any, _context: any) => {
       const { language } = args;
-      return await prismaClientDB.place.findMany({
+    let result = await prismaClientDB.place.findMany({
         include: {
           address: {
             include: {
@@ -23,6 +24,14 @@ export const resolversPlace = {
           },
         },
       });
+
+      for (let i = 0; i < result.length; i++) {
+        result[i] = {
+          ...result[i],
+          image: await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
+        };
+      }
+      return result
     },
   },
   Mutation: {

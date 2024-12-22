@@ -33,3 +33,13 @@ dist/
 
 # TypeScript compiler output
 *.tsbuildinfo
+
+  modified:   src/prisma/generated/edge.js
+        modified:   src/prisma/generated/index-browser.js
+        modified:   src/prisma/generated/index.d.ts
+        modified:   src/prisma/generated/index.js
+        modified:   src/prisma/generated/package.json
+        modified:   src/prisma/generated/schema.prisma
+        modified:   src/prisma/generated/wasm.js
+
+src/firebase/services/serviceAccountKey.json

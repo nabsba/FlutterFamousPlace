@@ -7,6 +7,7 @@ const typeDefsPlaces = gql`
     popularity: Int # Popularity field of type Int
     address: Address # Address field related to Address type
     placeDetail: [PlaceDetail] # A list of PlaceDetails related to the Place
+    images: [String!]!
   }
 
   # GraphQL type definition for Address
