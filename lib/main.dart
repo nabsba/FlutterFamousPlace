@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/success_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'features/firebase/services/firebaseService.dart';
+
 import 'features/navigations/services/routes.dart';
 
 Future<void> main() async {
@@ -16,15 +16,14 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  const filePath =
-      'monaco/hotel_de_paris_monte-carlo/Hotel_de_Paris Monte-Carlo.png';
-  String downloadURL = await getDownloadURL(filePath);
-  print(downloadURL);
-  const folderName =
-      'monaco/hotel_de_paris_monte-carlo'; // Replace with your folder name
+  // const filePath =
+  //     'monaco/hotel_de_paris_monte-carlo/Hotel_de_Paris Monte-Carlo.png';
+  // String downloadURL = await getDownloadURL(filePath);
 
-  List<String> urls = await getAllFilesInFolder(folderName);
-  print(urls);
+  // const folderName =
+  //     'monaco/hotel_de_paris_monte-carlo'; // Replace with your folder name
+
+  // List<String> urls = await getAllFilesInFolder(folderName);
 
   final graphQLClientSingleton = GraphQLClientSingleton().getNotifier();
 
