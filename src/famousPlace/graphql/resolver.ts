@@ -20,18 +20,19 @@ export const resolversPlace = {
           placeDetail: {
             where: {
               languageId: language ? parseInt(language) : 1, // assuming 1 is the language ID for English
-            },
+            }
           },
         },
       });
-
+const finalResult =[];
       for (let i = 0; i < result.length; i++) {
-        result[i] = {
+        finalResult.push({
           ...result[i],
-          image: await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
-        };
+          placeDetail: result[i].placeDetail[0],
+          images: await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
+        });
       }
-      return result
+      return finalResult
     },
   },
   Mutation: {
