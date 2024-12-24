@@ -7,9 +7,25 @@
   "@exploreTheWorld": {
     "description": "An invitation to discover new horizons"
   },
+   "mostViewed": "Most viewed",
+  "@mostViewed": {
+    "description": "Label for the 'Most viewed' filter button"
+  },
+  "nearby": "Nearby",
+  "@nearby": {
+    "description": "Label for the 'Nearby' filter button"
+  },
+  "latest": "Latest",
+  "@latest": {
+    "description": "Label for the 'Latest' filter button"
+  },
   "searchPlaces": "Search places",
   "@searchPlaces": {
     "description": "The Search places to find a place"
+  },
+  "popularPlaces": "Popular places",
+  "@popularPlaces": {
+    "description": "An invitation to display Popular places"
   },
   "greetingMessage": "Hi, {name}!",
   "@greetingMessage": {

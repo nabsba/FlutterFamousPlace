@@ -16,6 +16,22 @@
   "@searchPlaces": {
     "description": "The Search places to find a place"
   },
+  "popularPlaces": "Les places populaires",
+  "@popularPlaces": {
+    "description": "Invitation pour afficher les places populaires"
+  },
+  "mostViewed": "Les plus vus",
+  "@mostViewed": {
+    "description": "Label for the 'Most viewed' filter button"
+  },
+  "nearby": "À proximité",
+  "@nearby": {
+    "description": "Label for the 'Nearby' filter button"
+  },
+  "latest": "Les plus récents",
+  "@latest": {
+    "description": "Label for the 'Latest' filter button"
+  },
    "exploreTheWorld": "Explorez le monde!",
   "@exploreTheWorld": {
     "description": "An invitation to discover new horizons"
