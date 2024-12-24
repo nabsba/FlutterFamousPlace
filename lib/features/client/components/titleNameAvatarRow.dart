@@ -19,7 +19,7 @@ class TitleNameAvatarRow extends ConsumerWidget {
         // Add space between the avatar and text
 
         Text(
-          AppLocalizations.of(context)!.greetingMessage(place!.name),
+          AppLocalizations.of(context)!.greetingMessage(place?.name ?? ""),
           style: TypographyStyles.montserrat,
         ),
         const SizedBox(width: AppStylesSpace.smallSpacing),
@@ -32,7 +32,7 @@ class TitleNameAvatarRow extends ConsumerWidget {
         CircleAvatar(
           radius: 20, // Adjust the size of the avatar
           backgroundImage: NetworkImage(
-            place.photoURL,
+            place?.photoURL ?? "",
           ),
           backgroundColor: Colors.grey[200], // Fallback background
         ),
