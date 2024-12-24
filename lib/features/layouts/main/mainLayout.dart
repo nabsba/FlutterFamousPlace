@@ -54,13 +54,13 @@ class _MyWidgetState extends State<MainLayout> {
       firstWidget: const MainCover(),
       secondWidget: AuthorizationWrapper(
         signedInWidget: Scaffold(
-          appBar: AppBar(
-            // The [AppBar] title text should update its message
-            // according to the system locale of the target platform.
-            // Switching between English and Spanish locales should
-            // cause this text to update.
-            title: Text(AppLocalizations.of(context)!.greetingMessage('Nabil')),
-          ),
+          // appBar: AppBar(
+          //   // The [AppBar] title text should update its message
+          //   // according to the system locale of the target platform.
+          //   // Switching between English and Spanish locales should
+          //   // cause this text to update.
+          //   title: Text(AppLocalizations.of(context)!.greetingMessage('Nabil')),
+          // ),
           body: _pages[currentPageIndex], // Show the selected widget
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.symmetric(

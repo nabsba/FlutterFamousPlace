@@ -3,7 +3,7 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
-  "greetingMessage": "Hello {name}, welcome to the app!",
+  "greetingMessage": "Hi, {name}!",
   "@greetingMessage": {
     "description": "A greeting message with a name parameter",
     "placeholders": {

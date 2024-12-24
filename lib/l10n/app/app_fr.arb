@@ -3,7 +3,7 @@
   "@helloWorld": {
     "description": "Le message conventionnel des nouveaux programmeurs"
   },
-  "greetingMessage": "Bonjour {name}, bienvenue dans l'application!",
+  "greetingMessage": "Bonjour, {name}!",
   "@greetingMessage": {
     "description": "Un message de bienvenue avec un paramètre de nom",
     "placeholders": {

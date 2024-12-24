@@ -9,9 +9,8 @@ class Places extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Watch the dogsProvider, which is a FutureProvider
-    // final dogListState = ref.watch(dogsProvider);
-    final dogListState = ref.watch(placesProviderGraphQL);
-    return dogListState.when(
+    final famousPlacesProvider = ref.watch(placesProviderGraphQL);
+    return famousPlacesProvider.when(
       data: (places) {
         // If the data is available, display the list of places
         if (places.isEmpty) {

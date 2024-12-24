@@ -2,19 +2,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/error/components/error.dart';
 import 'package:flutter_famous_places/pages/signIn/sign_in.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../authentification/services/authentication.dart';
+import '../../client/services/clientProvider.dart';
 import '../../graphql/services/response.dart';
 import '../../success/services/success.dart';
 
-class AuthorizationWrapper extends StatelessWidget {
+class AuthorizationWrapper extends ConsumerWidget {
   final Widget signedInWidget;
   const AuthorizationWrapper({
     super.key,
     required this.signedInWidget,
   });
+  void updatePlaceProvider(WidgetRef ref, String name, String photoURL) {
+    ref.read(placeProvider.notifier).state =
+        Place(name: name, photoURL: photoURL);
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
@@ -41,6 +47,13 @@ class AuthorizationWrapper extends StatelessWidget {
               if (tokenSnapshot.hasData) {
                 final result = tokenSnapshot.data!;
                 if (result.status == successStatus['OK'] && !result.isError) {
+                  Future(() {
+                    updatePlaceProvider(
+                      ref,
+                      user.displayName!,
+                      user.photoURL!,
+                    );
+                  });
                   return signedInWidget;
                 } else {
                   return ErrorComponent(errorKey: result.messageKey);
