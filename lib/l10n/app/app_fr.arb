@@ -12,6 +12,10 @@
       }
     }
   },
+   "searchPlaces": "Recherche une place",
+  "@searchPlaces": {
+    "description": "The Search places to find a place"
+  },
    "exploreTheWorld": "Explorez le monde!",
   "@exploreTheWorld": {
     "description": "An invitation to discover new horizons"

@@ -7,6 +7,10 @@
   "@exploreTheWorld": {
     "description": "An invitation to discover new horizons"
   },
+  "searchPlaces": "Search places",
+  "@searchPlaces": {
+    "description": "The Search places to find a place"
+  },
   "greetingMessage": "Hi, {name}!",
   "@greetingMessage": {
     "description": "A greeting message with a name parameter",

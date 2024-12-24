@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../features/client/components/titleNameAvatarRow.dart';
+import '../../features/inputs/components/inputSearch.dart';
 import '../../features/typohraphies/typography.dart';
 
 class HomePage extends StatelessWidget {
@@ -41,12 +42,8 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20), // Add space between widgets
-              const Center(
-                child: Text(
-                  'Hello Home',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ),
+
+              InputSearch(),
             ],
           ),
         ),
