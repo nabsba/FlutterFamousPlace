@@ -1,50 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TypographyStyles {
-  static const TextStyle montserrat = TextStyle(
-    fontFamily: 'Montserrat',
+  static TextStyle montserrat = GoogleFonts.montserrat(
     fontSize: 30,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle inter = TextStyle(
-    fontFamily: 'Inter',
+  static TextStyle inter = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle roboto500_16 = TextStyle(
-    fontFamily: 'Roboto',
+  static TextStyle roboto500_16 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle poppins = TextStyle(
-    fontFamily: 'Poppins',
+  static TextStyle poppins = GoogleFonts.poppins(
     fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle roboto600 = TextStyle(
-    fontFamily: 'Roboto',
+  static TextStyle roboto600 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle roboto500_14 = TextStyle(
-    fontFamily: 'Roboto',
+  static TextStyle roboto500_14 = GoogleFonts.roboto(
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle roboto500_18 = TextStyle(
-    fontFamily: 'Roboto',
+  static TextStyle roboto500_18 = GoogleFonts.roboto(
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle roboto500_20 = TextStyle(
-    fontFamily: 'Roboto',
+  static TextStyle roboto500_20 = GoogleFonts.roboto(
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
