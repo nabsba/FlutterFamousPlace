@@ -3,6 +3,10 @@
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
   },
+   "exploreTheWorld": "Explore the World!",
+  "@exploreTheWorld": {
+    "description": "An invitation to discover new horizons"
+  },
   "greetingMessage": "Hi, {name}!",
   "@greetingMessage": {
     "description": "A greeting message with a name parameter",

@@ -12,7 +12,11 @@ class TypographyStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
-
+  static const TextStyle inter20 = TextStyle(
+    fontFamily: 'Inter',
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
   static const TextStyle roboto500_16 = TextStyle(
     fontFamily: 'Roboto',
     fontSize: 16,

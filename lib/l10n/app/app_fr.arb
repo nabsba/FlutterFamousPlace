@@ -12,6 +12,10 @@
       }
     }
   },
+   "exploreTheWorld": "Explorez le monde!",
+  "@exploreTheWorld": {
+    "description": "An invitation to discover new horizons"
+  },
   "travel": "Voyage",
   "@travel": {
     "description": "Un mot unique représentant les voyages ou l'exploration"

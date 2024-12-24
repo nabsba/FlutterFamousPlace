@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'features/navigations/services/routes.dart';
+import 'features/styles/services/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,12 +54,9 @@ class MainApp extends StatelessWidget {
         Locale('fr'), // Spanish
       ],
       routerConfig: router,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        splashColor:
-            Colors.transparent, // renmove the wave effect on button clicked
-        useMaterial3: true,
-      ),
+      themeMode: ThemeMode.light, //or ThemeMode.dark
+      theme: GlobalThemData.lightThemeData,
+      darkTheme: GlobalThemData.darkThemeData,
     );
   }
 }
