@@ -11,6 +11,22 @@ class PlaceRepository {
           places {
             id
             popularity
+            address {
+          number
+          street
+          postcode
+          city {
+            name
+            country {
+              name
+            }
+          }
+        }
+        placeDetail {
+          name
+          description
+        }
+        images
           }
         }
       """),

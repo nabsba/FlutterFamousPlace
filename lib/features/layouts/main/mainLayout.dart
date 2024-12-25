@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/animations/conditionalAnimatedSwitch.dart';
 import 'package:flutter_famous_places/features/authorisation/components/authorisation.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_famous_places/pages/favorite/favorite.dart';
 import 'package:flutter_famous_places/pages/userProfile/userProfile.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../pages/home/home.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../covers/mainCover.dart';
 
 class MainLayout extends StatefulWidget {

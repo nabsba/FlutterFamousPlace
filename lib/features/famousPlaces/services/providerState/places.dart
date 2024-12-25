@@ -6,5 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final placesProviderGraphQL = FutureProvider<List<Place>>((ref) async {
   final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
   final places = await placeRepository.fetchPlaces();
+
   return places;
 });

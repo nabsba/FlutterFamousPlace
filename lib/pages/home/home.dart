@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../features/client/components/titleNameAvatarRow.dart';
 import '../../features/famousPlaces/components/FilterPlace.dart';
+import '../../features/famousPlaces/components/places.dart';
 import '../../features/inputs/components/inputSearch.dart';
-import '../../features/typohraphies/typography.dart';
+import '../../features/styles/services/typography.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -45,7 +46,8 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20), // Add space between widgets
               InputSearch(),
               const SizedBox(height: 20),
-              FilterButtons()
+              FilterButtons(),
+              Places()
             ],
           ),
         ),

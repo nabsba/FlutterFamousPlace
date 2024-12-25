@@ -1,5 +1,6 @@
 class AppStylesSpace {
   // Static variables to define size constants
+  static const double extraSmall = 3.0;
   static const double smallSpacing = 8.0; // Small size (8px)
   static const double mediumSpacing = 16.0; // Medium size (16px)
   static const double largeSpacing = 24.0; // Large size (24px)

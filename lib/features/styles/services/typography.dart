@@ -11,6 +11,10 @@ class TypographyStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle inter20 = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle roboto500_16 = GoogleFonts.roboto(
     fontSize: 16,
