@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/styles/services/size.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../styles/services/typography.dart';
 import '../services/clientProvider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TitleNameAvatarRow extends ConsumerWidget {
   const TitleNameAvatarRow({
@@ -31,9 +32,9 @@ class TitleNameAvatarRow extends ConsumerWidget {
         const Spacer(),
         CircleAvatar(
           radius: 20, // Adjust the size of the avatar
-          backgroundImage: NetworkImage(
-            place?.photoURL ?? "",
-          ),
+          backgroundImage: place?.photoURL.isNotEmpty == true
+              ? NetworkImage(place!.photoURL)
+              : AssetImage("assets/images/userDefault.jpg") as ImageProvider,
           backgroundColor: Colors.grey[200], // Fallback background
         ),
       ],
