@@ -18,5 +18,9 @@
   "token": "The token is valid.",
   "@token": {
     "description": "Message for valid token"
+  },
+   "getPlaces": "The places were retrieved successfully.",
+  "@defaultError": {
+    "getPlaces": "Success message The places were retrieved successfully."
   }
 }

@@ -43,5 +43,9 @@
   "travelMessage": "Trouvez votre destination\\nde rêve avec nous",
   "@travelMessage": {
     "description": "Un message promotionnel invitant les utilisateurs à explorer des opportunités de voyage"
+  },
+  "noPlaceFound": "Voyage",
+  "@noPlaceFound": {
+    "description": "Aucun endroit trouvé"
   }
 }

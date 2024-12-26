@@ -19,6 +19,10 @@
   "@token": {
     "description": "Error message for invalid token"
   },
+  "getPlaces": "Failed to retrieve the place. Please try again.",
+  "@getPlaces": {
+    "getPlaces": "Error message for unknown error"
+  },
   "defaultError": "An error has happened. Please try again. If the problem persists, contact us",
   "@defaultError": {
     "description": "Error message for unknown error"

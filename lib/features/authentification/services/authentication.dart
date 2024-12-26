@@ -67,7 +67,6 @@ class AuthenticationClass {
           messageKey: successMessagesKeys['TOKEN']!,
           data: null,
         );
-
         return resultGetToken;
       }
       if (token != null) {

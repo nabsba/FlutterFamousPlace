@@ -18,5 +18,9 @@
   "token": "Le token est valide.",
   "@token": {
     "description": "Message pour un token valide"
+  },
+  "getPlaces": "Échec de la récupération de l’endroit. Veuillez réessayer.",
+  "@defaultError": {
+    "getPlaces": "Message d’erreur pour une erreur inconnue"
   }
 }

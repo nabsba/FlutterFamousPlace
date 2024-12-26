@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providerState/places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import '../../error/components/error.dart';
 import 'cardPlace/CardPlace.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import '../services/providerDogs.dart';
 
 class Places extends ConsumerWidget {
@@ -14,10 +15,17 @@ class Places extends ConsumerWidget {
     final famousPlacesProvider = ref.watch(placesProviderGraphQL);
 
     return famousPlacesProvider.when(
-      data: (places) {
-        // If the data is available, display the list of places
+      data: (response) {
+        final places = response.data?['places'];
+        // // If the data is available, display the list of places
         if (places.isEmpty) {
-          return Center(child: Text('No places found.'));
+          return Center(
+              child: Text(AppLocalizations.of(context)!.noPlaceFound));
+        }
+        if (response.isError) {
+          return ErrorComponent(
+            errorKey: response.messageKey,
+          );
         }
         return Flexible(
           child: SizedBox(
@@ -31,12 +39,13 @@ class Places extends ConsumerWidget {
                 return Container(
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     child: CardPlace(
-                      backgroundImage:
-                          place.images.isNotEmpty ? place.images[0] : null,
-                      name: place.placeDetail.name,
-                      location: place.address.city.name,
-                      country: place.address.city.country.name,
-                      rating: place.popularity,
+                      backgroundImage: place['images'].isNotEmpty
+                          ? place['images'][0]
+                          : null,
+                      name: place['placeDetail']['name'],
+                      location: place['address']?['city']?['name'],
+                      country: place['address']?['city']?['country']?['name'],
+                      rating: place['popularity'],
                     ));
               },
             ),
@@ -49,7 +58,9 @@ class Places extends ConsumerWidget {
       },
       error: (error, stack) {
         // If there is an error, display an error message
-        return Center(child: Text('Error: $error'));
+        return ErrorComponent(
+          errorKey: 'defaultError',
+        );
       },
     );
   }

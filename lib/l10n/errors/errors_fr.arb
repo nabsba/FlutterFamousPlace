@@ -19,6 +19,10 @@
   "@token": {
     "description": "Message d'erreur pour token invalide"
   },
+  "getPlaces": "Échec de la récupération de l’endroit. Veuillez réessayer.",
+  "@defaultError": {
+      "getPlaces": "Message d’erreur pour une erreur inconnue"
+    },
    "defaultError": "Une erreur s'est produite. Veuillez réessayer. Si le problème persiste, contactez-nous",
   "@defaultError": {
     "description": "Message d'erreur pour une erreur inconnue"

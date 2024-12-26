@@ -63,10 +63,15 @@ class CardPlace extends StatelessWidget {
                   shape: BoxShape.circle, // Circular shape
                 ),
                 child: Center(
-                  child: SvgPicture.asset(
-                    'assets/icons/divers/heart.svg',
-                    width: 25,
-                    height: 25,
+                  child: GestureDetector(
+                    onTap: () {
+                      increasePopularity();
+                    },
+                    child: SvgPicture.asset(
+                      'assets/icons/divers/heart.svg',
+                      width: 25,
+                      height: 25,
+                    ),
                   ),
                 ),
               )),
