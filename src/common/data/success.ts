@@ -3,6 +3,8 @@ const SUCCESS_MESSAGES = {
   REGISTER_USER: 'Registration successful. You can now log in.',
   REGISTER_USER_WITH_COOKIE: 'Successfully registered using the provided cookie.',
   REFRESH_TOKEN: 'The token has been refreshed',
+  ADD_PLACE_TO_PREFERENCE: 'The location was successfully added as a preference.',
+  GET_PLACES: 'The places were retrieved successfully.',
 };
 
 const SUCCESS_MESSAGES_KEYS = {
@@ -10,8 +12,9 @@ const SUCCESS_MESSAGES_KEYS = {
   REGISTER_USER: 'registerUser',
   REGISTER_USER_WITH_COOKIE: 'registerUserWithCookie',
   REFRESH_TOKEN: 'refreshToken',
+  ADD_PLACE_TO_PREFERENCE: 'addPlaceToPreference',
+  GET_PLACES: 'getPlaces',
 };
-
 
 const SUCCESS_STATUS = {
   OK: 200, // Success status code
@@ -21,6 +24,4 @@ const SUCCESS_STATUS = {
   PARTIAL_CONTENT: 206, // Partial content returned
 };
 
-
-
-export {SUCCESS_MESSAGES, SUCCESS_MESSAGES_KEYS, SUCCESS_STATUS }
+export { SUCCESS_MESSAGES, SUCCESS_MESSAGES_KEYS, SUCCESS_STATUS };

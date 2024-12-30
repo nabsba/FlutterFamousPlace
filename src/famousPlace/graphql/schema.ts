@@ -8,8 +8,27 @@ const typeDefsPlaces = gql`
     address: Address # Address field related to Address type
     placeDetail: PlaceDetail # Place detail related to the Place
     images: [String!]!
+    isFavoritePlace: Boolean!
+  }
+  type placesData {
+    places: [Place!]! # Non-nullable array of non-nullable Place objects
+  }
+  type placesResponse {
+    status: Int! # Status code, e.g., 200 for success, 400 for failure
+    isError: Boolean! # Indicates if an error occurred
+    messageKey: String! # Message that provides additional information
+    data: placesData
   }
 
+  type PlaceId {
+    placeId: String!
+  }
+  type toggleFavoritePlace {
+    status: Int! # Status code, e.g., 200 for success, 400 for failure
+    isError: Boolean! # Indicates if an error occurred
+    messageKey: String! # Message that provides additional information
+    data: PlaceId
+  }
   # GraphQL type definition for Address
   type Address {
     number: Int
@@ -37,16 +56,19 @@ const typeDefsPlaces = gql`
 
   # Queries for fetching places
   type Query {
-    places(language: String): [Place]
+    places(language: String, type: String, userId: String): placesResponse
   }
+
   input CreatePlace {
     name: String!
     description: String
   }
+
   # Mutations for manipulating Place
   type Mutation {
     createPlace(input: CreatePlace): Place
     deletePlace(id: Int): Place
+    toggleFavoritePlace(placeId: String, userId: String): toggleFavoritePlace
   }
 `;
 

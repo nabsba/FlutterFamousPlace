@@ -11,7 +11,7 @@ const handleRefreshToken = async (data: ReturnTokenArgs) => {
         provider_providerAccountId: {
           provider: data.provider,
           providerAccountId: data.providerAccountId,
-          userId: data.id
+          userId: data.id,
         },
       },
       data: {

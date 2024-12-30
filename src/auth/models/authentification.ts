@@ -21,23 +21,21 @@ const handleLogin = async (data: LoginArgs) => {
 
 const handleRegisterUser = async (data: registerUser) => {
   try {
-
     return await prismaClientDB.$transaction(async (tx) => {
-      
       const account = await tx.account.findUnique({
         where: {
           provider_providerAccountId: {
             provider: data.data.providerAccountId,
             providerAccountId: data.data.providerAccountId,
-            userId: data.data.id
+            userId: data.data.id,
           },
         },
       });
 
-      if(account) {
-        return await handleRefreshToken(data.data)
+      if (account) {
+        return await handleRefreshToken(data.data);
       }
-      
+
       const clientRole = await tx.role.findUnique({
         where: { roleName: 'client' },
       });
@@ -46,25 +44,23 @@ const handleRegisterUser = async (data: registerUser) => {
       }
 
       const token = returnToken(data.data);
-     await tx.user.create({
-      data: {
-        id: data.data.id,
-        email: data.data.email,
-        name: data.data.userName, // Optional, set as per the data
-        roleId: clientRole.id, // Make sure to reference a valid role ID
-        accounts: {
-          create: {
-            type: data.data.type,
-            provider: data.data.providerAccountId,
-            providerAccountId: data.data.providerAccountId,
-            refresh_token: token, // Optional
-
+      await tx.user.create({
+        data: {
+          id: data.data.id,
+          email: data.data.email,
+          name: data.data.userName, // Optional, set as per the data
+          roleId: clientRole.id, // Make sure to reference a valid role ID
+          accounts: {
+            create: {
+              type: data.data.type,
+              provider: data.data.providerAccountId,
+              providerAccountId: data.data.providerAccountId,
+              refresh_token: token, // Optional
+            },
           },
         },
-      },
-      
-    });
-    return token
+      });
+      return token;
     });
   } catch (error) {
     logMessage(`${logErrorAsyncMessage('auth/models/authentification', `${ERROR_MESSAGES.REGISTER_USER}:`)},

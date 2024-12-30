@@ -3,6 +3,8 @@ const ERROR_MESSAGES = {
   REGISTER_USER: 'Registration failed. Please ensure all fields are correct.',
   REGISTER_USER_WITH_COOKIE: 'Failed to register with the provided cookie. Please try again.',
   REFRESH_TOKEN: 'Refresh token failed.',
+  ADD_PLACE_TO_PREFERENCE: 'Adding the location as a preference has failed.',
+  GET_PLACES: 'Failed to retrieve the place. Please try again.',
 };
 
 const ERROR_MESSAGES_KEYS = {
@@ -10,8 +12,9 @@ const ERROR_MESSAGES_KEYS = {
   REGISTER_USER: 'registerUser',
   REGISTER_USER_WITH_COOKIE: 'registerUserWithCookie',
   REFRESH_TOKEN: 'refreshToken',
+  ADD_PLACE_TO_PREFERENCE: 'addPlaceToPreference',
+  GET_PLACES: 'getPlaces',
 };
-
 
 const STATUS_SERVER = {
   SERVER_ERROR: 500,
@@ -25,4 +28,4 @@ const STATUS_SERVER = {
   NO_CONTENT: 204,
 };
 
-export {ERROR_MESSAGES,ERROR_MESSAGES_KEYS, STATUS_SERVER }
+export { ERROR_MESSAGES, ERROR_MESSAGES_KEYS, STATUS_SERVER };

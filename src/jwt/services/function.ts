@@ -16,9 +16,8 @@ const returnToken = (data: ReturnTokenArgs): string | null => {
       email,
       userName,
       provider,
-      providerAccountId
+      providerAccountId,
     };
-
 
     const token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + 864000, payload }, jwtSecretKey);
     return token;

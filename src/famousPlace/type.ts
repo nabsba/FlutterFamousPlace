@@ -35,3 +35,9 @@ export type CreatePlace = {
   name: string;
   description: string;
 };
+
+export type FavoritePlaceBody = {
+  placeId: string;
+  userId: string;
+};
+export type PlacesBody = { language: string; type: string; userId: string };

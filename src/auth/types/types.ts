@@ -8,12 +8,12 @@ export type RegisterArgs = {
   password: string;
 };
 export type registerUser = {
-data: {
-  id: string;
-  provider: string;
-  email: string;
-  userName: string;
-  providerAccountId: string;
-  type: string;
-}
+  data: {
+    id: string;
+    provider: string;
+    email: string;
+    userName: string;
+    providerAccountId: string;
+    type: string;
+  };
 };

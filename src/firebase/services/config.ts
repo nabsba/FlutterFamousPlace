@@ -1,14 +1,12 @@
-var admin = require("firebase-admin");
+const admin = require('firebase-admin');
 
-var serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "gs://famousplacessba.firebasestorage.app", 
-
+  storageBucket: 'gs://famousplacessba.firebasestorage.app',
 });
 
+const bucket = admin.storage().bucket();
 
-var bucket = admin.storage().bucket();
-
-export {bucket}
+export { bucket };

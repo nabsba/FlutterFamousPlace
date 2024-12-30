@@ -2,4 +2,13 @@ import { ERROR_MESSAGES, ERROR_MESSAGES_KEYS, STATUS_SERVER } from './data/error
 import { SUCCESS_STATUS, SUCCESS_MESSAGES_KEYS, SUCCESS_MESSAGES } from './data/success';
 import { logErrorAsyncMessage, logMessage } from './services/functions';
 
-export { logMessage, logErrorAsyncMessage, ERROR_MESSAGES,ERROR_MESSAGES_KEYS, STATUS_SERVER,  SUCCESS_MESSAGES, SUCCESS_MESSAGES_KEYS, SUCCESS_STATUS };
+export {
+  logMessage,
+  logErrorAsyncMessage,
+  ERROR_MESSAGES,
+  ERROR_MESSAGES_KEYS,
+  STATUS_SERVER,
+  SUCCESS_MESSAGES,
+  SUCCESS_MESSAGES_KEYS,
+  SUCCESS_STATUS,
+};

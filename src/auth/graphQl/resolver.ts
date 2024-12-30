@@ -1,4 +1,12 @@
-import { ERROR_MESSAGES, ERROR_MESSAGES_KEYS, logErrorAsyncMessage, logMessage, STATUS_SERVER,  SUCCESS_MESSAGES_KEYS, SUCCESS_STATUS } from '../../common';
+import {
+  ERROR_MESSAGES,
+  ERROR_MESSAGES_KEYS,
+  logErrorAsyncMessage,
+  logMessage,
+  STATUS_SERVER,
+  SUCCESS_MESSAGES_KEYS,
+  SUCCESS_STATUS,
+} from '../../common';
 import { handleLogin, handleRegisterUser, handleRegisterUserWithCookie } from '../models/authentification';
 import { LoginArgs, registerUser } from '../types/types';
 
@@ -17,15 +25,14 @@ export const resolversAuth = {
   Mutation: {
     registerUser: async (_: any, data: registerUser) => {
       try {
-
-       const result = await handleRegisterUser(data);
+        const result = await handleRegisterUser(data);
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,
           messageKey: SUCCESS_MESSAGES_KEYS.REGISTER_USER,
           data: {
-            token:result
-          }
+            token: result,
+          },
         };
       } catch (error) {
         logMessage(`${logErrorAsyncMessage('auth/graphql/resolver', `${ERROR_MESSAGES.REGISTER_USER}:`)},

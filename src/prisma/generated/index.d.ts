@@ -19,6 +19,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model Place
+ * 
+ */
+export type Place = $Result.DefaultSelection<Prisma.$PlacePayload>
+/**
+ * Model PlaceOnUser
+ * 
+ */
+export type PlaceOnUser = $Result.DefaultSelection<Prisma.$PlaceOnUserPayload>
+/**
  * Model Session
  * 
  */
@@ -53,11 +63,6 @@ export type Address = $Result.DefaultSelection<Prisma.$AddressPayload>
  * 
  */
 export type City = $Result.DefaultSelection<Prisma.$CityPayload>
-/**
- * Model Place
- * 
- */
-export type Place = $Result.DefaultSelection<Prisma.$PlacePayload>
 /**
  * Model PlaceDetail
  * 
@@ -208,6 +213,26 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs>;
 
   /**
+   * `prisma.place`: Exposes CRUD operations for the **Place** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Places
+    * const places = await prisma.place.findMany()
+    * ```
+    */
+  get place(): Prisma.PlaceDelegate<ExtArgs>;
+
+  /**
+   * `prisma.placeOnUser`: Exposes CRUD operations for the **PlaceOnUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlaceOnUsers
+    * const placeOnUsers = await prisma.placeOnUser.findMany()
+    * ```
+    */
+  get placeOnUser(): Prisma.PlaceOnUserDelegate<ExtArgs>;
+
+  /**
    * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
@@ -276,16 +301,6 @@ export class PrismaClient<
     * ```
     */
   get city(): Prisma.CityDelegate<ExtArgs>;
-
-  /**
-   * `prisma.place`: Exposes CRUD operations for the **Place** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Places
-    * const places = await prisma.place.findMany()
-    * ```
-    */
-  get place(): Prisma.PlaceDelegate<ExtArgs>;
 
   /**
    * `prisma.placeDetail`: Exposes CRUD operations for the **PlaceDetail** model.
@@ -553,7 +568,7 @@ export namespace Prisma {
   ? False
   : T extends Uint8Array
   ? False
-  : T extends BigInt
+  : T extends bigint
   ? False
   : T extends object
   ? True
@@ -758,6 +773,8 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    Place: 'Place',
+    PlaceOnUser: 'PlaceOnUser',
     Session: 'Session',
     Account: 'Account',
     UserAuthentification: 'UserAuthentification',
@@ -765,7 +782,6 @@ export namespace Prisma {
     Country: 'Country',
     Address: 'Address',
     City: 'City',
-    Place: 'Place',
     PlaceDetail: 'PlaceDetail',
     Language: 'Language',
     Booking: 'Booking'
@@ -784,7 +800,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "session" | "account" | "userAuthentification" | "role" | "country" | "address" | "city" | "place" | "placeDetail" | "language" | "booking"
+      modelProps: "user" | "place" | "placeOnUser" | "session" | "account" | "userAuthentification" | "role" | "country" | "address" | "city" | "placeDetail" | "language" | "booking"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -855,6 +871,146 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Place: {
+        payload: Prisma.$PlacePayload<ExtArgs>
+        fields: Prisma.PlaceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlaceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlaceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          findFirst: {
+            args: Prisma.PlaceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlaceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          findMany: {
+            args: Prisma.PlaceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>[]
+          }
+          create: {
+            args: Prisma.PlaceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          createMany: {
+            args: Prisma.PlaceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlaceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>[]
+          }
+          delete: {
+            args: Prisma.PlaceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          update: {
+            args: Prisma.PlaceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          deleteMany: {
+            args: Prisma.PlaceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlaceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlaceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
+          }
+          aggregate: {
+            args: Prisma.PlaceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlace>
+          }
+          groupBy: {
+            args: Prisma.PlaceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlaceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlaceCountArgs<ExtArgs>
+            result: $Utils.Optional<PlaceCountAggregateOutputType> | number
+          }
+        }
+      }
+      PlaceOnUser: {
+        payload: Prisma.$PlaceOnUserPayload<ExtArgs>
+        fields: Prisma.PlaceOnUserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlaceOnUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlaceOnUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          findFirst: {
+            args: Prisma.PlaceOnUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlaceOnUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          findMany: {
+            args: Prisma.PlaceOnUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>[]
+          }
+          create: {
+            args: Prisma.PlaceOnUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          createMany: {
+            args: Prisma.PlaceOnUserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlaceOnUserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>[]
+          }
+          delete: {
+            args: Prisma.PlaceOnUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          update: {
+            args: Prisma.PlaceOnUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlaceOnUserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlaceOnUserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PlaceOnUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlaceOnUserPayload>
+          }
+          aggregate: {
+            args: Prisma.PlaceOnUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlaceOnUser>
+          }
+          groupBy: {
+            args: Prisma.PlaceOnUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlaceOnUserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlaceOnUserCountArgs<ExtArgs>
+            result: $Utils.Optional<PlaceOnUserCountAggregateOutputType> | number
           }
         }
       }
@@ -1348,76 +1504,6 @@ export namespace Prisma {
           }
         }
       }
-      Place: {
-        payload: Prisma.$PlacePayload<ExtArgs>
-        fields: Prisma.PlaceFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PlaceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PlaceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          findFirst: {
-            args: Prisma.PlaceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PlaceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          findMany: {
-            args: Prisma.PlaceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>[]
-          }
-          create: {
-            args: Prisma.PlaceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          createMany: {
-            args: Prisma.PlaceCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PlaceCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>[]
-          }
-          delete: {
-            args: Prisma.PlaceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          update: {
-            args: Prisma.PlaceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          deleteMany: {
-            args: Prisma.PlaceDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PlaceUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PlaceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PlacePayload>
-          }
-          aggregate: {
-            args: Prisma.PlaceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePlace>
-          }
-          groupBy: {
-            args: Prisma.PlaceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PlaceGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PlaceCountArgs<ExtArgs>
-            result: $Utils.Optional<PlaceCountAggregateOutputType> | number
-          }
-        }
-      }
       PlaceDetail: {
         payload: Prisma.$PlaceDetailPayload<ExtArgs>
         fields: Prisma.PlaceDetailFieldRefs
@@ -1789,11 +1875,13 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
+    places: number
     accounts: number
     sessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    places?: boolean | UserCountOutputTypeCountPlacesArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   }
@@ -1812,6 +1900,13 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountPlacesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlaceOnUserWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccountWhereInput
   }
@@ -1821,6 +1916,55 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionWhereInput
+  }
+
+
+  /**
+   * Count Type PlaceCountOutputType
+   */
+
+  export type PlaceCountOutputType = {
+    placeDetail: number
+    bookings: number
+    users: number
+  }
+
+  export type PlaceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    placeDetail?: boolean | PlaceCountOutputTypeCountPlaceDetailArgs
+    bookings?: boolean | PlaceCountOutputTypeCountBookingsArgs
+    users?: boolean | PlaceCountOutputTypeCountUsersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PlaceCountOutputType without action
+   */
+  export type PlaceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceCountOutputType
+     */
+    select?: PlaceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PlaceCountOutputType without action
+   */
+  export type PlaceCountOutputTypeCountPlaceDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlaceDetailWhereInput
+  }
+
+  /**
+   * PlaceCountOutputType without action
+   */
+  export type PlaceCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
+  }
+
+  /**
+   * PlaceCountOutputType without action
+   */
+  export type PlaceCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlaceOnUserWhereInput
   }
 
 
@@ -1945,46 +2089,6 @@ export namespace Prisma {
    */
   export type CityCountOutputTypeCountAddressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AddressWhereInput
-  }
-
-
-  /**
-   * Count Type PlaceCountOutputType
-   */
-
-  export type PlaceCountOutputType = {
-    placeDetail: number
-    bookings: number
-  }
-
-  export type PlaceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    placeDetail?: boolean | PlaceCountOutputTypeCountPlaceDetailArgs
-    bookings?: boolean | PlaceCountOutputTypeCountBookingsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * PlaceCountOutputType without action
-   */
-  export type PlaceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlaceCountOutputType
-     */
-    select?: PlaceCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PlaceCountOutputType without action
-   */
-  export type PlaceCountOutputTypeCountPlaceDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlaceDetailWhereInput
-  }
-
-  /**
-   * PlaceCountOutputType without action
-   */
-  export type PlaceCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookingWhereInput
   }
 
 
@@ -2196,6 +2300,7 @@ export namespace Prisma {
     userAuthentificationId?: boolean
     isUserBlocked?: boolean
     updatedAt?: boolean
+    places?: boolean | User$placesArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     role?: boolean | RoleDefaultArgs<ExtArgs>
@@ -2230,6 +2335,7 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    places?: boolean | User$placesArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     role?: boolean | RoleDefaultArgs<ExtArgs>
@@ -2242,6 +2348,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      places: Prisma.$PlaceOnUserPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       role: Prisma.$RolePayload<ExtArgs>
@@ -2621,6 +2728,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    places<T extends User$placesArgs<ExtArgs> = {}>(args?: Subset<T, User$placesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findMany"> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany"> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany"> | Null>
     role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
@@ -2981,6 +3089,26 @@ export namespace Prisma {
   }
 
   /**
+   * User.places
+   */
+  export type User$placesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    where?: PlaceOnUserWhereInput
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    cursor?: PlaceOnUserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlaceOnUserScalarFieldEnum | PlaceOnUserScalarFieldEnum[]
+  }
+
+  /**
    * User.accounts
    */
   export type User$accountsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3032,6 +3160,1950 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Place
+   */
+
+  export type AggregatePlace = {
+    _count: PlaceCountAggregateOutputType | null
+    _avg: PlaceAvgAggregateOutputType | null
+    _sum: PlaceSumAggregateOutputType | null
+    _min: PlaceMinAggregateOutputType | null
+    _max: PlaceMaxAggregateOutputType | null
+  }
+
+  export type PlaceAvgAggregateOutputType = {
+    popularity: number | null
+  }
+
+  export type PlaceSumAggregateOutputType = {
+    popularity: number | null
+  }
+
+  export type PlaceMinAggregateOutputType = {
+    id: string | null
+    popularity: number | null
+    createdAt: Date | null
+    addressId: string | null
+    image: string | null
+  }
+
+  export type PlaceMaxAggregateOutputType = {
+    id: string | null
+    popularity: number | null
+    createdAt: Date | null
+    addressId: string | null
+    image: string | null
+  }
+
+  export type PlaceCountAggregateOutputType = {
+    id: number
+    popularity: number
+    createdAt: number
+    addressId: number
+    image: number
+    _all: number
+  }
+
+
+  export type PlaceAvgAggregateInputType = {
+    popularity?: true
+  }
+
+  export type PlaceSumAggregateInputType = {
+    popularity?: true
+  }
+
+  export type PlaceMinAggregateInputType = {
+    id?: true
+    popularity?: true
+    createdAt?: true
+    addressId?: true
+    image?: true
+  }
+
+  export type PlaceMaxAggregateInputType = {
+    id?: true
+    popularity?: true
+    createdAt?: true
+    addressId?: true
+    image?: true
+  }
+
+  export type PlaceCountAggregateInputType = {
+    id?: true
+    popularity?: true
+    createdAt?: true
+    addressId?: true
+    image?: true
+    _all?: true
+  }
+
+  export type PlaceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Place to aggregate.
+     */
+    where?: PlaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Places to fetch.
+     */
+    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Places from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Places.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Places
+    **/
+    _count?: true | PlaceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlaceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlaceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlaceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlaceMaxAggregateInputType
+  }
+
+  export type GetPlaceAggregateType<T extends PlaceAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlace]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlace[P]>
+      : GetScalarType<T[P], AggregatePlace[P]>
+  }
+
+
+
+
+  export type PlaceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlaceWhereInput
+    orderBy?: PlaceOrderByWithAggregationInput | PlaceOrderByWithAggregationInput[]
+    by: PlaceScalarFieldEnum[] | PlaceScalarFieldEnum
+    having?: PlaceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlaceCountAggregateInputType | true
+    _avg?: PlaceAvgAggregateInputType
+    _sum?: PlaceSumAggregateInputType
+    _min?: PlaceMinAggregateInputType
+    _max?: PlaceMaxAggregateInputType
+  }
+
+  export type PlaceGroupByOutputType = {
+    id: string
+    popularity: number
+    createdAt: Date
+    addressId: string
+    image: string | null
+    _count: PlaceCountAggregateOutputType | null
+    _avg: PlaceAvgAggregateOutputType | null
+    _sum: PlaceSumAggregateOutputType | null
+    _min: PlaceMinAggregateOutputType | null
+    _max: PlaceMaxAggregateOutputType | null
+  }
+
+  type GetPlaceGroupByPayload<T extends PlaceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlaceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlaceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlaceGroupByOutputType[P]>
+            : GetScalarType<T[P], PlaceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlaceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    popularity?: boolean
+    createdAt?: boolean
+    addressId?: boolean
+    image?: boolean
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+    placeDetail?: boolean | Place$placeDetailArgs<ExtArgs>
+    bookings?: boolean | Place$bookingsArgs<ExtArgs>
+    users?: boolean | Place$usersArgs<ExtArgs>
+    _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["place"]>
+
+  export type PlaceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    popularity?: boolean
+    createdAt?: boolean
+    addressId?: boolean
+    image?: boolean
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["place"]>
+
+  export type PlaceSelectScalar = {
+    id?: boolean
+    popularity?: boolean
+    createdAt?: boolean
+    addressId?: boolean
+    image?: boolean
+  }
+
+  export type PlaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+    placeDetail?: boolean | Place$placeDetailArgs<ExtArgs>
+    bookings?: boolean | Place$bookingsArgs<ExtArgs>
+    users?: boolean | Place$usersArgs<ExtArgs>
+    _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type PlaceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+  }
+
+  export type $PlacePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Place"
+    objects: {
+      address: Prisma.$AddressPayload<ExtArgs>
+      placeDetail: Prisma.$PlaceDetailPayload<ExtArgs>[]
+      bookings: Prisma.$BookingPayload<ExtArgs>[]
+      users: Prisma.$PlaceOnUserPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      popularity: number
+      createdAt: Date
+      addressId: string
+      image: string | null
+    }, ExtArgs["result"]["place"]>
+    composites: {}
+  }
+
+  type PlaceGetPayload<S extends boolean | null | undefined | PlaceDefaultArgs> = $Result.GetResult<Prisma.$PlacePayload, S>
+
+  type PlaceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlaceFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlaceCountAggregateInputType | true
+    }
+
+  export interface PlaceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Place'], meta: { name: 'Place' } }
+    /**
+     * Find zero or one Place that matches the filter.
+     * @param {PlaceFindUniqueArgs} args - Arguments to find a Place
+     * @example
+     * // Get one Place
+     * const place = await prisma.place.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlaceFindUniqueArgs>(args: SelectSubset<T, PlaceFindUniqueArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Place that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PlaceFindUniqueOrThrowArgs} args - Arguments to find a Place
+     * @example
+     * // Get one Place
+     * const place = await prisma.place.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlaceFindUniqueOrThrowArgs>(args: SelectSubset<T, PlaceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Place that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceFindFirstArgs} args - Arguments to find a Place
+     * @example
+     * // Get one Place
+     * const place = await prisma.place.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlaceFindFirstArgs>(args?: SelectSubset<T, PlaceFindFirstArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Place that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceFindFirstOrThrowArgs} args - Arguments to find a Place
+     * @example
+     * // Get one Place
+     * const place = await prisma.place.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlaceFindFirstOrThrowArgs>(args?: SelectSubset<T, PlaceFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Places that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Places
+     * const places = await prisma.place.findMany()
+     * 
+     * // Get first 10 Places
+     * const places = await prisma.place.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const placeWithIdOnly = await prisma.place.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlaceFindManyArgs>(args?: SelectSubset<T, PlaceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Place.
+     * @param {PlaceCreateArgs} args - Arguments to create a Place.
+     * @example
+     * // Create one Place
+     * const Place = await prisma.place.create({
+     *   data: {
+     *     // ... data to create a Place
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlaceCreateArgs>(args: SelectSubset<T, PlaceCreateArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Places.
+     * @param {PlaceCreateManyArgs} args - Arguments to create many Places.
+     * @example
+     * // Create many Places
+     * const place = await prisma.place.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlaceCreateManyArgs>(args?: SelectSubset<T, PlaceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Places and returns the data saved in the database.
+     * @param {PlaceCreateManyAndReturnArgs} args - Arguments to create many Places.
+     * @example
+     * // Create many Places
+     * const place = await prisma.place.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Places and only return the `id`
+     * const placeWithIdOnly = await prisma.place.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlaceCreateManyAndReturnArgs>(args?: SelectSubset<T, PlaceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Place.
+     * @param {PlaceDeleteArgs} args - Arguments to delete one Place.
+     * @example
+     * // Delete one Place
+     * const Place = await prisma.place.delete({
+     *   where: {
+     *     // ... filter to delete one Place
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlaceDeleteArgs>(args: SelectSubset<T, PlaceDeleteArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Place.
+     * @param {PlaceUpdateArgs} args - Arguments to update one Place.
+     * @example
+     * // Update one Place
+     * const place = await prisma.place.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlaceUpdateArgs>(args: SelectSubset<T, PlaceUpdateArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Places.
+     * @param {PlaceDeleteManyArgs} args - Arguments to filter Places to delete.
+     * @example
+     * // Delete a few Places
+     * const { count } = await prisma.place.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlaceDeleteManyArgs>(args?: SelectSubset<T, PlaceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Places.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Places
+     * const place = await prisma.place.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlaceUpdateManyArgs>(args: SelectSubset<T, PlaceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Place.
+     * @param {PlaceUpsertArgs} args - Arguments to update or create a Place.
+     * @example
+     * // Update or create a Place
+     * const place = await prisma.place.upsert({
+     *   create: {
+     *     // ... data to create a Place
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Place we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlaceUpsertArgs>(args: SelectSubset<T, PlaceUpsertArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Places.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceCountArgs} args - Arguments to filter Places to count.
+     * @example
+     * // Count the number of Places
+     * const count = await prisma.place.count({
+     *   where: {
+     *     // ... the filter for the Places we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlaceCountArgs>(
+      args?: Subset<T, PlaceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlaceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Place.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlaceAggregateArgs>(args: Subset<T, PlaceAggregateArgs>): Prisma.PrismaPromise<GetPlaceAggregateType<T>>
+
+    /**
+     * Group by Place.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlaceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlaceGroupByArgs['orderBy'] }
+        : { orderBy?: PlaceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlaceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlaceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Place model
+   */
+  readonly fields: PlaceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Place.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    placeDetail<T extends Place$placeDetailArgs<ExtArgs> = {}>(args?: Subset<T, Place$placeDetailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceDetailPayload<ExtArgs>, T, "findMany"> | Null>
+    bookings<T extends Place$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Place$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany"> | Null>
+    users<T extends Place$usersArgs<ExtArgs> = {}>(args?: Subset<T, Place$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Place model
+   */ 
+  interface PlaceFieldRefs {
+    readonly id: FieldRef<"Place", 'String'>
+    readonly popularity: FieldRef<"Place", 'Int'>
+    readonly createdAt: FieldRef<"Place", 'DateTime'>
+    readonly addressId: FieldRef<"Place", 'String'>
+    readonly image: FieldRef<"Place", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Place findUnique
+   */
+  export type PlaceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter, which Place to fetch.
+     */
+    where: PlaceWhereUniqueInput
+  }
+
+  /**
+   * Place findUniqueOrThrow
+   */
+  export type PlaceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter, which Place to fetch.
+     */
+    where: PlaceWhereUniqueInput
+  }
+
+  /**
+   * Place findFirst
+   */
+  export type PlaceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter, which Place to fetch.
+     */
+    where?: PlaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Places to fetch.
+     */
+    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Places.
+     */
+    cursor?: PlaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Places from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Places.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Places.
+     */
+    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
+  }
+
+  /**
+   * Place findFirstOrThrow
+   */
+  export type PlaceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter, which Place to fetch.
+     */
+    where?: PlaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Places to fetch.
+     */
+    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Places.
+     */
+    cursor?: PlaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Places from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Places.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Places.
+     */
+    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
+  }
+
+  /**
+   * Place findMany
+   */
+  export type PlaceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter, which Places to fetch.
+     */
+    where?: PlaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Places to fetch.
+     */
+    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Places.
+     */
+    cursor?: PlaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Places from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Places.
+     */
+    skip?: number
+    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
+  }
+
+  /**
+   * Place create
+   */
+  export type PlaceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Place.
+     */
+    data: XOR<PlaceCreateInput, PlaceUncheckedCreateInput>
+  }
+
+  /**
+   * Place createMany
+   */
+  export type PlaceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Places.
+     */
+    data: PlaceCreateManyInput | PlaceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Place createManyAndReturn
+   */
+  export type PlaceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Places.
+     */
+    data: PlaceCreateManyInput | PlaceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Place update
+   */
+  export type PlaceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Place.
+     */
+    data: XOR<PlaceUpdateInput, PlaceUncheckedUpdateInput>
+    /**
+     * Choose, which Place to update.
+     */
+    where: PlaceWhereUniqueInput
+  }
+
+  /**
+   * Place updateMany
+   */
+  export type PlaceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Places.
+     */
+    data: XOR<PlaceUpdateManyMutationInput, PlaceUncheckedUpdateManyInput>
+    /**
+     * Filter which Places to update
+     */
+    where?: PlaceWhereInput
+  }
+
+  /**
+   * Place upsert
+   */
+  export type PlaceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Place to update in case it exists.
+     */
+    where: PlaceWhereUniqueInput
+    /**
+     * In case the Place found by the `where` argument doesn't exist, create a new Place with this data.
+     */
+    create: XOR<PlaceCreateInput, PlaceUncheckedCreateInput>
+    /**
+     * In case the Place was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlaceUpdateInput, PlaceUncheckedUpdateInput>
+  }
+
+  /**
+   * Place delete
+   */
+  export type PlaceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+    /**
+     * Filter which Place to delete.
+     */
+    where: PlaceWhereUniqueInput
+  }
+
+  /**
+   * Place deleteMany
+   */
+  export type PlaceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Places to delete
+     */
+    where?: PlaceWhereInput
+  }
+
+  /**
+   * Place.placeDetail
+   */
+  export type Place$placeDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceDetail
+     */
+    select?: PlaceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceDetailInclude<ExtArgs> | null
+    where?: PlaceDetailWhereInput
+    orderBy?: PlaceDetailOrderByWithRelationInput | PlaceDetailOrderByWithRelationInput[]
+    cursor?: PlaceDetailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlaceDetailScalarFieldEnum | PlaceDetailScalarFieldEnum[]
+  }
+
+  /**
+   * Place.bookings
+   */
+  export type Place$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Booking
+     */
+    select?: BookingSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BookingInclude<ExtArgs> | null
+    where?: BookingWhereInput
+    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+    cursor?: BookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+  /**
+   * Place.users
+   */
+  export type Place$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    where?: PlaceOnUserWhereInput
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    cursor?: PlaceOnUserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlaceOnUserScalarFieldEnum | PlaceOnUserScalarFieldEnum[]
+  }
+
+  /**
+   * Place without action
+   */
+  export type PlaceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Place
+     */
+    select?: PlaceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PlaceOnUser
+   */
+
+  export type AggregatePlaceOnUser = {
+    _count: PlaceOnUserCountAggregateOutputType | null
+    _min: PlaceOnUserMinAggregateOutputType | null
+    _max: PlaceOnUserMaxAggregateOutputType | null
+  }
+
+  export type PlaceOnUserMinAggregateOutputType = {
+    userId: string | null
+    placeId: string | null
+  }
+
+  export type PlaceOnUserMaxAggregateOutputType = {
+    userId: string | null
+    placeId: string | null
+  }
+
+  export type PlaceOnUserCountAggregateOutputType = {
+    userId: number
+    placeId: number
+    _all: number
+  }
+
+
+  export type PlaceOnUserMinAggregateInputType = {
+    userId?: true
+    placeId?: true
+  }
+
+  export type PlaceOnUserMaxAggregateInputType = {
+    userId?: true
+    placeId?: true
+  }
+
+  export type PlaceOnUserCountAggregateInputType = {
+    userId?: true
+    placeId?: true
+    _all?: true
+  }
+
+  export type PlaceOnUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlaceOnUser to aggregate.
+     */
+    where?: PlaceOnUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlaceOnUsers to fetch.
+     */
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlaceOnUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlaceOnUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlaceOnUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlaceOnUsers
+    **/
+    _count?: true | PlaceOnUserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlaceOnUserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlaceOnUserMaxAggregateInputType
+  }
+
+  export type GetPlaceOnUserAggregateType<T extends PlaceOnUserAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlaceOnUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlaceOnUser[P]>
+      : GetScalarType<T[P], AggregatePlaceOnUser[P]>
+  }
+
+
+
+
+  export type PlaceOnUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlaceOnUserWhereInput
+    orderBy?: PlaceOnUserOrderByWithAggregationInput | PlaceOnUserOrderByWithAggregationInput[]
+    by: PlaceOnUserScalarFieldEnum[] | PlaceOnUserScalarFieldEnum
+    having?: PlaceOnUserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlaceOnUserCountAggregateInputType | true
+    _min?: PlaceOnUserMinAggregateInputType
+    _max?: PlaceOnUserMaxAggregateInputType
+  }
+
+  export type PlaceOnUserGroupByOutputType = {
+    userId: string
+    placeId: string
+    _count: PlaceOnUserCountAggregateOutputType | null
+    _min: PlaceOnUserMinAggregateOutputType | null
+    _max: PlaceOnUserMaxAggregateOutputType | null
+  }
+
+  type GetPlaceOnUserGroupByPayload<T extends PlaceOnUserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlaceOnUserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlaceOnUserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlaceOnUserGroupByOutputType[P]>
+            : GetScalarType<T[P], PlaceOnUserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlaceOnUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    placeId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    place?: boolean | PlaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["placeOnUser"]>
+
+  export type PlaceOnUserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    userId?: boolean
+    placeId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    place?: boolean | PlaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["placeOnUser"]>
+
+  export type PlaceOnUserSelectScalar = {
+    userId?: boolean
+    placeId?: boolean
+  }
+
+  export type PlaceOnUserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    place?: boolean | PlaceDefaultArgs<ExtArgs>
+  }
+  export type PlaceOnUserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    place?: boolean | PlaceDefaultArgs<ExtArgs>
+  }
+
+  export type $PlaceOnUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlaceOnUser"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      place: Prisma.$PlacePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      userId: string
+      placeId: string
+    }, ExtArgs["result"]["placeOnUser"]>
+    composites: {}
+  }
+
+  type PlaceOnUserGetPayload<S extends boolean | null | undefined | PlaceOnUserDefaultArgs> = $Result.GetResult<Prisma.$PlaceOnUserPayload, S>
+
+  type PlaceOnUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PlaceOnUserFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PlaceOnUserCountAggregateInputType | true
+    }
+
+  export interface PlaceOnUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlaceOnUser'], meta: { name: 'PlaceOnUser' } }
+    /**
+     * Find zero or one PlaceOnUser that matches the filter.
+     * @param {PlaceOnUserFindUniqueArgs} args - Arguments to find a PlaceOnUser
+     * @example
+     * // Get one PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlaceOnUserFindUniqueArgs>(args: SelectSubset<T, PlaceOnUserFindUniqueArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one PlaceOnUser that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {PlaceOnUserFindUniqueOrThrowArgs} args - Arguments to find a PlaceOnUser
+     * @example
+     * // Get one PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlaceOnUserFindUniqueOrThrowArgs>(args: SelectSubset<T, PlaceOnUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first PlaceOnUser that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserFindFirstArgs} args - Arguments to find a PlaceOnUser
+     * @example
+     * // Get one PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlaceOnUserFindFirstArgs>(args?: SelectSubset<T, PlaceOnUserFindFirstArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first PlaceOnUser that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserFindFirstOrThrowArgs} args - Arguments to find a PlaceOnUser
+     * @example
+     * // Get one PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlaceOnUserFindFirstOrThrowArgs>(args?: SelectSubset<T, PlaceOnUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more PlaceOnUsers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlaceOnUsers
+     * const placeOnUsers = await prisma.placeOnUser.findMany()
+     * 
+     * // Get first 10 PlaceOnUsers
+     * const placeOnUsers = await prisma.placeOnUser.findMany({ take: 10 })
+     * 
+     * // Only select the `userId`
+     * const placeOnUserWithUserIdOnly = await prisma.placeOnUser.findMany({ select: { userId: true } })
+     * 
+     */
+    findMany<T extends PlaceOnUserFindManyArgs>(args?: SelectSubset<T, PlaceOnUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a PlaceOnUser.
+     * @param {PlaceOnUserCreateArgs} args - Arguments to create a PlaceOnUser.
+     * @example
+     * // Create one PlaceOnUser
+     * const PlaceOnUser = await prisma.placeOnUser.create({
+     *   data: {
+     *     // ... data to create a PlaceOnUser
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlaceOnUserCreateArgs>(args: SelectSubset<T, PlaceOnUserCreateArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many PlaceOnUsers.
+     * @param {PlaceOnUserCreateManyArgs} args - Arguments to create many PlaceOnUsers.
+     * @example
+     * // Create many PlaceOnUsers
+     * const placeOnUser = await prisma.placeOnUser.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlaceOnUserCreateManyArgs>(args?: SelectSubset<T, PlaceOnUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PlaceOnUsers and returns the data saved in the database.
+     * @param {PlaceOnUserCreateManyAndReturnArgs} args - Arguments to create many PlaceOnUsers.
+     * @example
+     * // Create many PlaceOnUsers
+     * const placeOnUser = await prisma.placeOnUser.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PlaceOnUsers and only return the `userId`
+     * const placeOnUserWithUserIdOnly = await prisma.placeOnUser.createManyAndReturn({ 
+     *   select: { userId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlaceOnUserCreateManyAndReturnArgs>(args?: SelectSubset<T, PlaceOnUserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a PlaceOnUser.
+     * @param {PlaceOnUserDeleteArgs} args - Arguments to delete one PlaceOnUser.
+     * @example
+     * // Delete one PlaceOnUser
+     * const PlaceOnUser = await prisma.placeOnUser.delete({
+     *   where: {
+     *     // ... filter to delete one PlaceOnUser
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlaceOnUserDeleteArgs>(args: SelectSubset<T, PlaceOnUserDeleteArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one PlaceOnUser.
+     * @param {PlaceOnUserUpdateArgs} args - Arguments to update one PlaceOnUser.
+     * @example
+     * // Update one PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlaceOnUserUpdateArgs>(args: SelectSubset<T, PlaceOnUserUpdateArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more PlaceOnUsers.
+     * @param {PlaceOnUserDeleteManyArgs} args - Arguments to filter PlaceOnUsers to delete.
+     * @example
+     * // Delete a few PlaceOnUsers
+     * const { count } = await prisma.placeOnUser.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlaceOnUserDeleteManyArgs>(args?: SelectSubset<T, PlaceOnUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlaceOnUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlaceOnUsers
+     * const placeOnUser = await prisma.placeOnUser.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlaceOnUserUpdateManyArgs>(args: SelectSubset<T, PlaceOnUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PlaceOnUser.
+     * @param {PlaceOnUserUpsertArgs} args - Arguments to update or create a PlaceOnUser.
+     * @example
+     * // Update or create a PlaceOnUser
+     * const placeOnUser = await prisma.placeOnUser.upsert({
+     *   create: {
+     *     // ... data to create a PlaceOnUser
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlaceOnUser we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlaceOnUserUpsertArgs>(args: SelectSubset<T, PlaceOnUserUpsertArgs<ExtArgs>>): Prisma__PlaceOnUserClient<$Result.GetResult<Prisma.$PlaceOnUserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of PlaceOnUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserCountArgs} args - Arguments to filter PlaceOnUsers to count.
+     * @example
+     * // Count the number of PlaceOnUsers
+     * const count = await prisma.placeOnUser.count({
+     *   where: {
+     *     // ... the filter for the PlaceOnUsers we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlaceOnUserCountArgs>(
+      args?: Subset<T, PlaceOnUserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlaceOnUserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlaceOnUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlaceOnUserAggregateArgs>(args: Subset<T, PlaceOnUserAggregateArgs>): Prisma.PrismaPromise<GetPlaceOnUserAggregateType<T>>
+
+    /**
+     * Group by PlaceOnUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlaceOnUserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlaceOnUserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlaceOnUserGroupByArgs['orderBy'] }
+        : { orderBy?: PlaceOnUserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlaceOnUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlaceOnUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlaceOnUser model
+   */
+  readonly fields: PlaceOnUserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlaceOnUser.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlaceOnUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    place<T extends PlaceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PlaceDefaultArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlaceOnUser model
+   */ 
+  interface PlaceOnUserFieldRefs {
+    readonly userId: FieldRef<"PlaceOnUser", 'String'>
+    readonly placeId: FieldRef<"PlaceOnUser", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlaceOnUser findUnique
+   */
+  export type PlaceOnUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter, which PlaceOnUser to fetch.
+     */
+    where: PlaceOnUserWhereUniqueInput
+  }
+
+  /**
+   * PlaceOnUser findUniqueOrThrow
+   */
+  export type PlaceOnUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter, which PlaceOnUser to fetch.
+     */
+    where: PlaceOnUserWhereUniqueInput
+  }
+
+  /**
+   * PlaceOnUser findFirst
+   */
+  export type PlaceOnUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter, which PlaceOnUser to fetch.
+     */
+    where?: PlaceOnUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlaceOnUsers to fetch.
+     */
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlaceOnUsers.
+     */
+    cursor?: PlaceOnUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlaceOnUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlaceOnUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlaceOnUsers.
+     */
+    distinct?: PlaceOnUserScalarFieldEnum | PlaceOnUserScalarFieldEnum[]
+  }
+
+  /**
+   * PlaceOnUser findFirstOrThrow
+   */
+  export type PlaceOnUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter, which PlaceOnUser to fetch.
+     */
+    where?: PlaceOnUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlaceOnUsers to fetch.
+     */
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlaceOnUsers.
+     */
+    cursor?: PlaceOnUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlaceOnUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlaceOnUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlaceOnUsers.
+     */
+    distinct?: PlaceOnUserScalarFieldEnum | PlaceOnUserScalarFieldEnum[]
+  }
+
+  /**
+   * PlaceOnUser findMany
+   */
+  export type PlaceOnUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter, which PlaceOnUsers to fetch.
+     */
+    where?: PlaceOnUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlaceOnUsers to fetch.
+     */
+    orderBy?: PlaceOnUserOrderByWithRelationInput | PlaceOnUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlaceOnUsers.
+     */
+    cursor?: PlaceOnUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlaceOnUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlaceOnUsers.
+     */
+    skip?: number
+    distinct?: PlaceOnUserScalarFieldEnum | PlaceOnUserScalarFieldEnum[]
+  }
+
+  /**
+   * PlaceOnUser create
+   */
+  export type PlaceOnUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlaceOnUser.
+     */
+    data: XOR<PlaceOnUserCreateInput, PlaceOnUserUncheckedCreateInput>
+  }
+
+  /**
+   * PlaceOnUser createMany
+   */
+  export type PlaceOnUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlaceOnUsers.
+     */
+    data: PlaceOnUserCreateManyInput | PlaceOnUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlaceOnUser createManyAndReturn
+   */
+  export type PlaceOnUserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many PlaceOnUsers.
+     */
+    data: PlaceOnUserCreateManyInput | PlaceOnUserCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlaceOnUser update
+   */
+  export type PlaceOnUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlaceOnUser.
+     */
+    data: XOR<PlaceOnUserUpdateInput, PlaceOnUserUncheckedUpdateInput>
+    /**
+     * Choose, which PlaceOnUser to update.
+     */
+    where: PlaceOnUserWhereUniqueInput
+  }
+
+  /**
+   * PlaceOnUser updateMany
+   */
+  export type PlaceOnUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlaceOnUsers.
+     */
+    data: XOR<PlaceOnUserUpdateManyMutationInput, PlaceOnUserUncheckedUpdateManyInput>
+    /**
+     * Filter which PlaceOnUsers to update
+     */
+    where?: PlaceOnUserWhereInput
+  }
+
+  /**
+   * PlaceOnUser upsert
+   */
+  export type PlaceOnUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlaceOnUser to update in case it exists.
+     */
+    where: PlaceOnUserWhereUniqueInput
+    /**
+     * In case the PlaceOnUser found by the `where` argument doesn't exist, create a new PlaceOnUser with this data.
+     */
+    create: XOR<PlaceOnUserCreateInput, PlaceOnUserUncheckedCreateInput>
+    /**
+     * In case the PlaceOnUser was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlaceOnUserUpdateInput, PlaceOnUserUncheckedUpdateInput>
+  }
+
+  /**
+   * PlaceOnUser delete
+   */
+  export type PlaceOnUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
+    /**
+     * Filter which PlaceOnUser to delete.
+     */
+    where: PlaceOnUserWhereUniqueInput
+  }
+
+  /**
+   * PlaceOnUser deleteMany
+   */
+  export type PlaceOnUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlaceOnUsers to delete
+     */
+    where?: PlaceOnUserWhereInput
+  }
+
+  /**
+   * PlaceOnUser without action
+   */
+  export type PlaceOnUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlaceOnUser
+     */
+    select?: PlaceOnUserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlaceOnUserInclude<ExtArgs> | null
   }
 
 
@@ -9892,1023 +11964,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Place
-   */
-
-  export type AggregatePlace = {
-    _count: PlaceCountAggregateOutputType | null
-    _avg: PlaceAvgAggregateOutputType | null
-    _sum: PlaceSumAggregateOutputType | null
-    _min: PlaceMinAggregateOutputType | null
-    _max: PlaceMaxAggregateOutputType | null
-  }
-
-  export type PlaceAvgAggregateOutputType = {
-    popularity: number | null
-  }
-
-  export type PlaceSumAggregateOutputType = {
-    popularity: number | null
-  }
-
-  export type PlaceMinAggregateOutputType = {
-    id: string | null
-    popularity: number | null
-    createdAt: Date | null
-    addressId: string | null
-    image: string | null
-  }
-
-  export type PlaceMaxAggregateOutputType = {
-    id: string | null
-    popularity: number | null
-    createdAt: Date | null
-    addressId: string | null
-    image: string | null
-  }
-
-  export type PlaceCountAggregateOutputType = {
-    id: number
-    popularity: number
-    createdAt: number
-    addressId: number
-    image: number
-    _all: number
-  }
-
-
-  export type PlaceAvgAggregateInputType = {
-    popularity?: true
-  }
-
-  export type PlaceSumAggregateInputType = {
-    popularity?: true
-  }
-
-  export type PlaceMinAggregateInputType = {
-    id?: true
-    popularity?: true
-    createdAt?: true
-    addressId?: true
-    image?: true
-  }
-
-  export type PlaceMaxAggregateInputType = {
-    id?: true
-    popularity?: true
-    createdAt?: true
-    addressId?: true
-    image?: true
-  }
-
-  export type PlaceCountAggregateInputType = {
-    id?: true
-    popularity?: true
-    createdAt?: true
-    addressId?: true
-    image?: true
-    _all?: true
-  }
-
-  export type PlaceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Place to aggregate.
-     */
-    where?: PlaceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Places to fetch.
-     */
-    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PlaceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Places from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Places.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Places
-    **/
-    _count?: true | PlaceCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PlaceAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PlaceSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PlaceMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PlaceMaxAggregateInputType
-  }
-
-  export type GetPlaceAggregateType<T extends PlaceAggregateArgs> = {
-        [P in keyof T & keyof AggregatePlace]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePlace[P]>
-      : GetScalarType<T[P], AggregatePlace[P]>
-  }
-
-
-
-
-  export type PlaceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PlaceWhereInput
-    orderBy?: PlaceOrderByWithAggregationInput | PlaceOrderByWithAggregationInput[]
-    by: PlaceScalarFieldEnum[] | PlaceScalarFieldEnum
-    having?: PlaceScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PlaceCountAggregateInputType | true
-    _avg?: PlaceAvgAggregateInputType
-    _sum?: PlaceSumAggregateInputType
-    _min?: PlaceMinAggregateInputType
-    _max?: PlaceMaxAggregateInputType
-  }
-
-  export type PlaceGroupByOutputType = {
-    id: string
-    popularity: number
-    createdAt: Date
-    addressId: string
-    image: string | null
-    _count: PlaceCountAggregateOutputType | null
-    _avg: PlaceAvgAggregateOutputType | null
-    _sum: PlaceSumAggregateOutputType | null
-    _min: PlaceMinAggregateOutputType | null
-    _max: PlaceMaxAggregateOutputType | null
-  }
-
-  type GetPlaceGroupByPayload<T extends PlaceGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PlaceGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PlaceGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PlaceGroupByOutputType[P]>
-            : GetScalarType<T[P], PlaceGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PlaceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    popularity?: boolean
-    createdAt?: boolean
-    addressId?: boolean
-    image?: boolean
-    address?: boolean | AddressDefaultArgs<ExtArgs>
-    placeDetail?: boolean | Place$placeDetailArgs<ExtArgs>
-    bookings?: boolean | Place$bookingsArgs<ExtArgs>
-    _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["place"]>
-
-  export type PlaceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    popularity?: boolean
-    createdAt?: boolean
-    addressId?: boolean
-    image?: boolean
-    address?: boolean | AddressDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["place"]>
-
-  export type PlaceSelectScalar = {
-    id?: boolean
-    popularity?: boolean
-    createdAt?: boolean
-    addressId?: boolean
-    image?: boolean
-  }
-
-  export type PlaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    address?: boolean | AddressDefaultArgs<ExtArgs>
-    placeDetail?: boolean | Place$placeDetailArgs<ExtArgs>
-    bookings?: boolean | Place$bookingsArgs<ExtArgs>
-    _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PlaceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    address?: boolean | AddressDefaultArgs<ExtArgs>
-  }
-
-  export type $PlacePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Place"
-    objects: {
-      address: Prisma.$AddressPayload<ExtArgs>
-      placeDetail: Prisma.$PlaceDetailPayload<ExtArgs>[]
-      bookings: Prisma.$BookingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      popularity: number
-      createdAt: Date
-      addressId: string
-      image: string | null
-    }, ExtArgs["result"]["place"]>
-    composites: {}
-  }
-
-  type PlaceGetPayload<S extends boolean | null | undefined | PlaceDefaultArgs> = $Result.GetResult<Prisma.$PlacePayload, S>
-
-  type PlaceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PlaceFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PlaceCountAggregateInputType | true
-    }
-
-  export interface PlaceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Place'], meta: { name: 'Place' } }
-    /**
-     * Find zero or one Place that matches the filter.
-     * @param {PlaceFindUniqueArgs} args - Arguments to find a Place
-     * @example
-     * // Get one Place
-     * const place = await prisma.place.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PlaceFindUniqueArgs>(args: SelectSubset<T, PlaceFindUniqueArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Place that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {PlaceFindUniqueOrThrowArgs} args - Arguments to find a Place
-     * @example
-     * // Get one Place
-     * const place = await prisma.place.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PlaceFindUniqueOrThrowArgs>(args: SelectSubset<T, PlaceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Place that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceFindFirstArgs} args - Arguments to find a Place
-     * @example
-     * // Get one Place
-     * const place = await prisma.place.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PlaceFindFirstArgs>(args?: SelectSubset<T, PlaceFindFirstArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Place that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceFindFirstOrThrowArgs} args - Arguments to find a Place
-     * @example
-     * // Get one Place
-     * const place = await prisma.place.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PlaceFindFirstOrThrowArgs>(args?: SelectSubset<T, PlaceFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Places that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Places
-     * const places = await prisma.place.findMany()
-     * 
-     * // Get first 10 Places
-     * const places = await prisma.place.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const placeWithIdOnly = await prisma.place.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PlaceFindManyArgs>(args?: SelectSubset<T, PlaceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Place.
-     * @param {PlaceCreateArgs} args - Arguments to create a Place.
-     * @example
-     * // Create one Place
-     * const Place = await prisma.place.create({
-     *   data: {
-     *     // ... data to create a Place
-     *   }
-     * })
-     * 
-     */
-    create<T extends PlaceCreateArgs>(args: SelectSubset<T, PlaceCreateArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Places.
-     * @param {PlaceCreateManyArgs} args - Arguments to create many Places.
-     * @example
-     * // Create many Places
-     * const place = await prisma.place.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PlaceCreateManyArgs>(args?: SelectSubset<T, PlaceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Places and returns the data saved in the database.
-     * @param {PlaceCreateManyAndReturnArgs} args - Arguments to create many Places.
-     * @example
-     * // Create many Places
-     * const place = await prisma.place.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Places and only return the `id`
-     * const placeWithIdOnly = await prisma.place.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PlaceCreateManyAndReturnArgs>(args?: SelectSubset<T, PlaceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Place.
-     * @param {PlaceDeleteArgs} args - Arguments to delete one Place.
-     * @example
-     * // Delete one Place
-     * const Place = await prisma.place.delete({
-     *   where: {
-     *     // ... filter to delete one Place
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PlaceDeleteArgs>(args: SelectSubset<T, PlaceDeleteArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Place.
-     * @param {PlaceUpdateArgs} args - Arguments to update one Place.
-     * @example
-     * // Update one Place
-     * const place = await prisma.place.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PlaceUpdateArgs>(args: SelectSubset<T, PlaceUpdateArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Places.
-     * @param {PlaceDeleteManyArgs} args - Arguments to filter Places to delete.
-     * @example
-     * // Delete a few Places
-     * const { count } = await prisma.place.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PlaceDeleteManyArgs>(args?: SelectSubset<T, PlaceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Places.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Places
-     * const place = await prisma.place.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PlaceUpdateManyArgs>(args: SelectSubset<T, PlaceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Place.
-     * @param {PlaceUpsertArgs} args - Arguments to update or create a Place.
-     * @example
-     * // Update or create a Place
-     * const place = await prisma.place.upsert({
-     *   create: {
-     *     // ... data to create a Place
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Place we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PlaceUpsertArgs>(args: SelectSubset<T, PlaceUpsertArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Places.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceCountArgs} args - Arguments to filter Places to count.
-     * @example
-     * // Count the number of Places
-     * const count = await prisma.place.count({
-     *   where: {
-     *     // ... the filter for the Places we want to count
-     *   }
-     * })
-    **/
-    count<T extends PlaceCountArgs>(
-      args?: Subset<T, PlaceCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PlaceCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Place.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PlaceAggregateArgs>(args: Subset<T, PlaceAggregateArgs>): Prisma.PrismaPromise<GetPlaceAggregateType<T>>
-
-    /**
-     * Group by Place.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PlaceGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PlaceGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PlaceGroupByArgs['orderBy'] }
-        : { orderBy?: PlaceGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PlaceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlaceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Place model
-   */
-  readonly fields: PlaceFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Place.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PlaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    placeDetail<T extends Place$placeDetailArgs<ExtArgs> = {}>(args?: Subset<T, Place$placeDetailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaceDetailPayload<ExtArgs>, T, "findMany"> | Null>
-    bookings<T extends Place$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Place$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Place model
-   */ 
-  interface PlaceFieldRefs {
-    readonly id: FieldRef<"Place", 'String'>
-    readonly popularity: FieldRef<"Place", 'Int'>
-    readonly createdAt: FieldRef<"Place", 'DateTime'>
-    readonly addressId: FieldRef<"Place", 'String'>
-    readonly image: FieldRef<"Place", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Place findUnique
-   */
-  export type PlaceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter, which Place to fetch.
-     */
-    where: PlaceWhereUniqueInput
-  }
-
-  /**
-   * Place findUniqueOrThrow
-   */
-  export type PlaceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter, which Place to fetch.
-     */
-    where: PlaceWhereUniqueInput
-  }
-
-  /**
-   * Place findFirst
-   */
-  export type PlaceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter, which Place to fetch.
-     */
-    where?: PlaceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Places to fetch.
-     */
-    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Places.
-     */
-    cursor?: PlaceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Places from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Places.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Places.
-     */
-    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
-  }
-
-  /**
-   * Place findFirstOrThrow
-   */
-  export type PlaceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter, which Place to fetch.
-     */
-    where?: PlaceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Places to fetch.
-     */
-    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Places.
-     */
-    cursor?: PlaceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Places from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Places.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Places.
-     */
-    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
-  }
-
-  /**
-   * Place findMany
-   */
-  export type PlaceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter, which Places to fetch.
-     */
-    where?: PlaceWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Places to fetch.
-     */
-    orderBy?: PlaceOrderByWithRelationInput | PlaceOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Places.
-     */
-    cursor?: PlaceWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Places from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Places.
-     */
-    skip?: number
-    distinct?: PlaceScalarFieldEnum | PlaceScalarFieldEnum[]
-  }
-
-  /**
-   * Place create
-   */
-  export type PlaceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Place.
-     */
-    data: XOR<PlaceCreateInput, PlaceUncheckedCreateInput>
-  }
-
-  /**
-   * Place createMany
-   */
-  export type PlaceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Places.
-     */
-    data: PlaceCreateManyInput | PlaceCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Place createManyAndReturn
-   */
-  export type PlaceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Places.
-     */
-    data: PlaceCreateManyInput | PlaceCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Place update
-   */
-  export type PlaceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Place.
-     */
-    data: XOR<PlaceUpdateInput, PlaceUncheckedUpdateInput>
-    /**
-     * Choose, which Place to update.
-     */
-    where: PlaceWhereUniqueInput
-  }
-
-  /**
-   * Place updateMany
-   */
-  export type PlaceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Places.
-     */
-    data: XOR<PlaceUpdateManyMutationInput, PlaceUncheckedUpdateManyInput>
-    /**
-     * Filter which Places to update
-     */
-    where?: PlaceWhereInput
-  }
-
-  /**
-   * Place upsert
-   */
-  export type PlaceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Place to update in case it exists.
-     */
-    where: PlaceWhereUniqueInput
-    /**
-     * In case the Place found by the `where` argument doesn't exist, create a new Place with this data.
-     */
-    create: XOR<PlaceCreateInput, PlaceUncheckedCreateInput>
-    /**
-     * In case the Place was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PlaceUpdateInput, PlaceUncheckedUpdateInput>
-  }
-
-  /**
-   * Place delete
-   */
-  export type PlaceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-    /**
-     * Filter which Place to delete.
-     */
-    where: PlaceWhereUniqueInput
-  }
-
-  /**
-   * Place deleteMany
-   */
-  export type PlaceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Places to delete
-     */
-    where?: PlaceWhereInput
-  }
-
-  /**
-   * Place.placeDetail
-   */
-  export type Place$placeDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PlaceDetail
-     */
-    select?: PlaceDetailSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceDetailInclude<ExtArgs> | null
-    where?: PlaceDetailWhereInput
-    orderBy?: PlaceDetailOrderByWithRelationInput | PlaceDetailOrderByWithRelationInput[]
-    cursor?: PlaceDetailWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PlaceDetailScalarFieldEnum | PlaceDetailScalarFieldEnum[]
-  }
-
-  /**
-   * Place.bookings
-   */
-  export type Place$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    where?: BookingWhereInput
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    cursor?: BookingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
-  }
-
-  /**
-   * Place without action
-   */
-  export type PlaceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Place
-     */
-    select?: PlaceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PlaceInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model PlaceDetail
    */
 
@@ -13762,6 +14817,25 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const PlaceScalarFieldEnum: {
+    id: 'id',
+    popularity: 'popularity',
+    createdAt: 'createdAt',
+    addressId: 'addressId',
+    image: 'image'
+  };
+
+  export type PlaceScalarFieldEnum = (typeof PlaceScalarFieldEnum)[keyof typeof PlaceScalarFieldEnum]
+
+
+  export const PlaceOnUserScalarFieldEnum: {
+    userId: 'userId',
+    placeId: 'placeId'
+  };
+
+  export type PlaceOnUserScalarFieldEnum = (typeof PlaceOnUserScalarFieldEnum)[keyof typeof PlaceOnUserScalarFieldEnum]
+
+
   export const SessionScalarFieldEnum: {
     id: 'id',
     sessionToken: 'sessionToken',
@@ -13847,17 +14921,6 @@ export namespace Prisma {
   };
 
   export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof CityScalarFieldEnum]
-
-
-  export const PlaceScalarFieldEnum: {
-    id: 'id',
-    popularity: 'popularity',
-    createdAt: 'createdAt',
-    addressId: 'addressId',
-    image: 'image'
-  };
-
-  export type PlaceScalarFieldEnum = (typeof PlaceScalarFieldEnum)[keyof typeof PlaceScalarFieldEnum]
 
 
   export const PlaceDetailScalarFieldEnum: {
@@ -14003,6 +15066,7 @@ export namespace Prisma {
     userAuthentificationId?: StringNullableFilter<"User"> | string | null
     isUserBlocked?: BoolNullableFilter<"User"> | boolean | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    places?: PlaceOnUserListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     role?: XOR<RoleRelationFilter, RoleWhereInput>
@@ -14019,6 +15083,7 @@ export namespace Prisma {
     userAuthentificationId?: SortOrderInput | SortOrder
     isUserBlocked?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
+    places?: PlaceOnUserOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
     role?: RoleOrderByWithRelationInput
@@ -14038,6 +15103,7 @@ export namespace Prisma {
     userAuthentificationId?: StringNullableFilter<"User"> | string | null
     isUserBlocked?: BoolNullableFilter<"User"> | boolean | null
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    places?: PlaceOnUserListRelationFilter
     accounts?: AccountListRelationFilter
     sessions?: SessionListRelationFilter
     role?: XOR<RoleRelationFilter, RoleWhereInput>
@@ -14073,6 +15139,116 @@ export namespace Prisma {
     userAuthentificationId?: StringNullableWithAggregatesFilter<"User"> | string | null
     isUserBlocked?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type PlaceWhereInput = {
+    AND?: PlaceWhereInput | PlaceWhereInput[]
+    OR?: PlaceWhereInput[]
+    NOT?: PlaceWhereInput | PlaceWhereInput[]
+    id?: StringFilter<"Place"> | string
+    popularity?: IntFilter<"Place"> | number
+    createdAt?: DateTimeFilter<"Place"> | Date | string
+    addressId?: StringFilter<"Place"> | string
+    image?: StringNullableFilter<"Place"> | string | null
+    address?: XOR<AddressRelationFilter, AddressWhereInput>
+    placeDetail?: PlaceDetailListRelationFilter
+    bookings?: BookingListRelationFilter
+    users?: PlaceOnUserListRelationFilter
+  }
+
+  export type PlaceOrderByWithRelationInput = {
+    id?: SortOrder
+    popularity?: SortOrder
+    createdAt?: SortOrder
+    addressId?: SortOrder
+    image?: SortOrderInput | SortOrder
+    address?: AddressOrderByWithRelationInput
+    placeDetail?: PlaceDetailOrderByRelationAggregateInput
+    bookings?: BookingOrderByRelationAggregateInput
+    users?: PlaceOnUserOrderByRelationAggregateInput
+  }
+
+  export type PlaceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PlaceWhereInput | PlaceWhereInput[]
+    OR?: PlaceWhereInput[]
+    NOT?: PlaceWhereInput | PlaceWhereInput[]
+    popularity?: IntFilter<"Place"> | number
+    createdAt?: DateTimeFilter<"Place"> | Date | string
+    addressId?: StringFilter<"Place"> | string
+    image?: StringNullableFilter<"Place"> | string | null
+    address?: XOR<AddressRelationFilter, AddressWhereInput>
+    placeDetail?: PlaceDetailListRelationFilter
+    bookings?: BookingListRelationFilter
+    users?: PlaceOnUserListRelationFilter
+  }, "id">
+
+  export type PlaceOrderByWithAggregationInput = {
+    id?: SortOrder
+    popularity?: SortOrder
+    createdAt?: SortOrder
+    addressId?: SortOrder
+    image?: SortOrderInput | SortOrder
+    _count?: PlaceCountOrderByAggregateInput
+    _avg?: PlaceAvgOrderByAggregateInput
+    _max?: PlaceMaxOrderByAggregateInput
+    _min?: PlaceMinOrderByAggregateInput
+    _sum?: PlaceSumOrderByAggregateInput
+  }
+
+  export type PlaceScalarWhereWithAggregatesInput = {
+    AND?: PlaceScalarWhereWithAggregatesInput | PlaceScalarWhereWithAggregatesInput[]
+    OR?: PlaceScalarWhereWithAggregatesInput[]
+    NOT?: PlaceScalarWhereWithAggregatesInput | PlaceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Place"> | string
+    popularity?: IntWithAggregatesFilter<"Place"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Place"> | Date | string
+    addressId?: StringWithAggregatesFilter<"Place"> | string
+    image?: StringNullableWithAggregatesFilter<"Place"> | string | null
+  }
+
+  export type PlaceOnUserWhereInput = {
+    AND?: PlaceOnUserWhereInput | PlaceOnUserWhereInput[]
+    OR?: PlaceOnUserWhereInput[]
+    NOT?: PlaceOnUserWhereInput | PlaceOnUserWhereInput[]
+    userId?: StringFilter<"PlaceOnUser"> | string
+    placeId?: StringFilter<"PlaceOnUser"> | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    place?: XOR<PlaceRelationFilter, PlaceWhereInput>
+  }
+
+  export type PlaceOnUserOrderByWithRelationInput = {
+    userId?: SortOrder
+    placeId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    place?: PlaceOrderByWithRelationInput
+  }
+
+  export type PlaceOnUserWhereUniqueInput = Prisma.AtLeast<{
+    userId_placeId?: PlaceOnUserUserIdPlaceIdCompoundUniqueInput
+    AND?: PlaceOnUserWhereInput | PlaceOnUserWhereInput[]
+    OR?: PlaceOnUserWhereInput[]
+    NOT?: PlaceOnUserWhereInput | PlaceOnUserWhereInput[]
+    userId?: StringFilter<"PlaceOnUser"> | string
+    placeId?: StringFilter<"PlaceOnUser"> | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    place?: XOR<PlaceRelationFilter, PlaceWhereInput>
+  }, "userId_placeId">
+
+  export type PlaceOnUserOrderByWithAggregationInput = {
+    userId?: SortOrder
+    placeId?: SortOrder
+    _count?: PlaceOnUserCountOrderByAggregateInput
+    _max?: PlaceOnUserMaxOrderByAggregateInput
+    _min?: PlaceOnUserMinOrderByAggregateInput
+  }
+
+  export type PlaceOnUserScalarWhereWithAggregatesInput = {
+    AND?: PlaceOnUserScalarWhereWithAggregatesInput | PlaceOnUserScalarWhereWithAggregatesInput[]
+    OR?: PlaceOnUserScalarWhereWithAggregatesInput[]
+    NOT?: PlaceOnUserScalarWhereWithAggregatesInput | PlaceOnUserScalarWhereWithAggregatesInput[]
+    userId?: StringWithAggregatesFilter<"PlaceOnUser"> | string
+    placeId?: StringWithAggregatesFilter<"PlaceOnUser"> | string
   }
 
   export type SessionWhereInput = {
@@ -14524,69 +15700,6 @@ export namespace Prisma {
     countryId?: IntWithAggregatesFilter<"City"> | number
   }
 
-  export type PlaceWhereInput = {
-    AND?: PlaceWhereInput | PlaceWhereInput[]
-    OR?: PlaceWhereInput[]
-    NOT?: PlaceWhereInput | PlaceWhereInput[]
-    id?: StringFilter<"Place"> | string
-    popularity?: IntFilter<"Place"> | number
-    createdAt?: DateTimeFilter<"Place"> | Date | string
-    addressId?: StringFilter<"Place"> | string
-    image?: StringNullableFilter<"Place"> | string | null
-    address?: XOR<AddressRelationFilter, AddressWhereInput>
-    placeDetail?: PlaceDetailListRelationFilter
-    bookings?: BookingListRelationFilter
-  }
-
-  export type PlaceOrderByWithRelationInput = {
-    id?: SortOrder
-    popularity?: SortOrder
-    createdAt?: SortOrder
-    addressId?: SortOrder
-    image?: SortOrderInput | SortOrder
-    address?: AddressOrderByWithRelationInput
-    placeDetail?: PlaceDetailOrderByRelationAggregateInput
-    bookings?: BookingOrderByRelationAggregateInput
-  }
-
-  export type PlaceWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PlaceWhereInput | PlaceWhereInput[]
-    OR?: PlaceWhereInput[]
-    NOT?: PlaceWhereInput | PlaceWhereInput[]
-    popularity?: IntFilter<"Place"> | number
-    createdAt?: DateTimeFilter<"Place"> | Date | string
-    addressId?: StringFilter<"Place"> | string
-    image?: StringNullableFilter<"Place"> | string | null
-    address?: XOR<AddressRelationFilter, AddressWhereInput>
-    placeDetail?: PlaceDetailListRelationFilter
-    bookings?: BookingListRelationFilter
-  }, "id">
-
-  export type PlaceOrderByWithAggregationInput = {
-    id?: SortOrder
-    popularity?: SortOrder
-    createdAt?: SortOrder
-    addressId?: SortOrder
-    image?: SortOrderInput | SortOrder
-    _count?: PlaceCountOrderByAggregateInput
-    _avg?: PlaceAvgOrderByAggregateInput
-    _max?: PlaceMaxOrderByAggregateInput
-    _min?: PlaceMinOrderByAggregateInput
-    _sum?: PlaceSumOrderByAggregateInput
-  }
-
-  export type PlaceScalarWhereWithAggregatesInput = {
-    AND?: PlaceScalarWhereWithAggregatesInput | PlaceScalarWhereWithAggregatesInput[]
-    OR?: PlaceScalarWhereWithAggregatesInput[]
-    NOT?: PlaceScalarWhereWithAggregatesInput | PlaceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Place"> | string
-    popularity?: IntWithAggregatesFilter<"Place"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Place"> | Date | string
-    addressId?: StringWithAggregatesFilter<"Place"> | string
-    image?: StringNullableWithAggregatesFilter<"Place"> | string | null
-  }
-
   export type PlaceDetailWhereInput = {
     AND?: PlaceDetailWhereInput | PlaceDetailWhereInput[]
     OR?: PlaceDetailWhereInput[]
@@ -14768,6 +15881,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
@@ -14784,6 +15898,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -14798,6 +15913,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
@@ -14814,6 +15930,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -14854,6 +15971,107 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlaceCreateInput = {
+    id?: string
+    popularity?: number
+    createdAt?: Date | string
+    image?: string | null
+    address: AddressCreateNestedOneWithoutPlacesInput
+    placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
+    bookings?: BookingCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceUncheckedCreateInput = {
+    id?: string
+    popularity?: number
+    createdAt?: Date | string
+    addressId: string
+    image?: string | null
+    placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
+    bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
+    placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
+    bookings?: BookingUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type PlaceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
+    bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type PlaceCreateManyInput = {
+    id?: string
+    popularity?: number
+    createdAt?: Date | string
+    addressId: string
+    image?: string | null
+  }
+
+  export type PlaceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlaceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PlaceOnUserCreateInput = {
+    user: UserCreateNestedOneWithoutPlacesInput
+    place: PlaceCreateNestedOneWithoutUsersInput
+  }
+
+  export type PlaceOnUserUncheckedCreateInput = {
+    userId: string
+    placeId: string
+  }
+
+  export type PlaceOnUserUpdateInput = {
+    user?: UserUpdateOneRequiredWithoutPlacesNestedInput
+    place?: PlaceUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type PlaceOnUserUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    placeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PlaceOnUserCreateManyInput = {
+    userId: string
+    placeId: string
+  }
+
+  export type PlaceOnUserUpdateManyMutationInput = {
+
+  }
+
+  export type PlaceOnUserUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    placeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SessionCreateInput = {
@@ -15324,69 +16542,6 @@ export namespace Prisma {
     countryId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type PlaceCreateInput = {
-    id?: string
-    popularity?: number
-    createdAt?: Date | string
-    image?: string | null
-    address: AddressCreateNestedOneWithoutPlacesInput
-    placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
-    bookings?: BookingCreateNestedManyWithoutPlaceInput
-  }
-
-  export type PlaceUncheckedCreateInput = {
-    id?: string
-    popularity?: number
-    createdAt?: Date | string
-    addressId: string
-    image?: string | null
-    placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
-    bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
-  }
-
-  export type PlaceUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    popularity?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
-    placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
-    bookings?: BookingUpdateManyWithoutPlaceNestedInput
-  }
-
-  export type PlaceUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    popularity?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
-    bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
-  }
-
-  export type PlaceCreateManyInput = {
-    id?: string
-    popularity?: number
-    createdAt?: Date | string
-    addressId: string
-    image?: string | null
-  }
-
-  export type PlaceUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    popularity?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PlaceUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    popularity?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addressId?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type PlaceDetailCreateInput = {
     id?: string
     name: string
@@ -15603,6 +16758,12 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type PlaceOnUserListRelationFilter = {
+    every?: PlaceOnUserWhereInput
+    some?: PlaceOnUserWhereInput
+    none?: PlaceOnUserWhereInput
+  }
+
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -15623,6 +16784,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type PlaceOnUserOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AccountOrderByRelationAggregateInput = {
@@ -15730,9 +16895,118 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type AddressRelationFilter = {
+    is?: AddressWhereInput
+    isNot?: AddressWhereInput
+  }
+
+  export type PlaceDetailListRelationFilter = {
+    every?: PlaceDetailWhereInput
+    some?: PlaceDetailWhereInput
+    none?: PlaceDetailWhereInput
+  }
+
+  export type BookingListRelationFilter = {
+    every?: BookingWhereInput
+    some?: BookingWhereInput
+    none?: BookingWhereInput
+  }
+
+  export type PlaceDetailOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BookingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlaceCountOrderByAggregateInput = {
+    id?: SortOrder
+    popularity?: SortOrder
+    createdAt?: SortOrder
+    addressId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type PlaceAvgOrderByAggregateInput = {
+    popularity?: SortOrder
+  }
+
+  export type PlaceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    popularity?: SortOrder
+    createdAt?: SortOrder
+    addressId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type PlaceMinOrderByAggregateInput = {
+    id?: SortOrder
+    popularity?: SortOrder
+    createdAt?: SortOrder
+    addressId?: SortOrder
+    image?: SortOrder
+  }
+
+  export type PlaceSumOrderByAggregateInput = {
+    popularity?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type PlaceRelationFilter = {
+    is?: PlaceWhereInput
+    isNot?: PlaceWhereInput
+  }
+
+  export type PlaceOnUserUserIdPlaceIdCompoundUniqueInput = {
+    userId: string
+    placeId: string
+  }
+
+  export type PlaceOnUserCountOrderByAggregateInput = {
+    userId?: SortOrder
+    placeId?: SortOrder
+  }
+
+  export type PlaceOnUserMaxOrderByAggregateInput = {
+    userId?: SortOrder
+    placeId?: SortOrder
+  }
+
+  export type PlaceOnUserMinOrderByAggregateInput = {
+    userId?: SortOrder
+    placeId?: SortOrder
   }
 
   export type SessionCountOrderByAggregateInput = {
@@ -15851,17 +17125,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -15912,22 +17175,6 @@ export namespace Prisma {
 
   export type UserAuthentificationSumOrderByAggregateInput = {
     attemptAuthentification?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -16112,68 +17359,6 @@ export namespace Prisma {
     countryId?: SortOrder
   }
 
-  export type AddressRelationFilter = {
-    is?: AddressWhereInput
-    isNot?: AddressWhereInput
-  }
-
-  export type PlaceDetailListRelationFilter = {
-    every?: PlaceDetailWhereInput
-    some?: PlaceDetailWhereInput
-    none?: PlaceDetailWhereInput
-  }
-
-  export type BookingListRelationFilter = {
-    every?: BookingWhereInput
-    some?: BookingWhereInput
-    none?: BookingWhereInput
-  }
-
-  export type PlaceDetailOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type BookingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PlaceCountOrderByAggregateInput = {
-    id?: SortOrder
-    popularity?: SortOrder
-    createdAt?: SortOrder
-    addressId?: SortOrder
-    image?: SortOrder
-  }
-
-  export type PlaceAvgOrderByAggregateInput = {
-    popularity?: SortOrder
-  }
-
-  export type PlaceMaxOrderByAggregateInput = {
-    id?: SortOrder
-    popularity?: SortOrder
-    createdAt?: SortOrder
-    addressId?: SortOrder
-    image?: SortOrder
-  }
-
-  export type PlaceMinOrderByAggregateInput = {
-    id?: SortOrder
-    popularity?: SortOrder
-    createdAt?: SortOrder
-    addressId?: SortOrder
-    image?: SortOrder
-  }
-
-  export type PlaceSumOrderByAggregateInput = {
-    popularity?: SortOrder
-  }
-
-  export type PlaceRelationFilter = {
-    is?: PlaceWhereInput
-    isNot?: PlaceWhereInput
-  }
-
   export type PlaceDetailCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -16265,6 +17450,13 @@ export namespace Prisma {
     placeId?: SortOrder
   }
 
+  export type PlaceOnUserCreateNestedManyWithoutUserInput = {
+    create?: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput> | PlaceOnUserCreateWithoutUserInput[] | PlaceOnUserUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutUserInput | PlaceOnUserCreateOrConnectWithoutUserInput[]
+    createMany?: PlaceOnUserCreateManyUserInputEnvelope
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16283,6 +17475,13 @@ export namespace Prisma {
     create?: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
     connectOrCreate?: RoleCreateOrConnectWithoutUsersInput
     connect?: RoleWhereUniqueInput
+  }
+
+  export type PlaceOnUserUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput> | PlaceOnUserCreateWithoutUserInput[] | PlaceOnUserUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutUserInput | PlaceOnUserCreateOrConnectWithoutUserInput[]
+    createMany?: PlaceOnUserCreateManyUserInputEnvelope
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -16313,6 +17512,20 @@ export namespace Prisma {
 
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
+  }
+
+  export type PlaceOnUserUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput> | PlaceOnUserCreateWithoutUserInput[] | PlaceOnUserUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutUserInput | PlaceOnUserCreateOrConnectWithoutUserInput[]
+    upsert?: PlaceOnUserUpsertWithWhereUniqueWithoutUserInput | PlaceOnUserUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PlaceOnUserCreateManyUserInputEnvelope
+    set?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    disconnect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    delete?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    update?: PlaceOnUserUpdateWithWhereUniqueWithoutUserInput | PlaceOnUserUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PlaceOnUserUpdateManyWithWhereWithoutUserInput | PlaceOnUserUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -16351,6 +17564,20 @@ export namespace Prisma {
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUsersInput, RoleUpdateWithoutUsersInput>, RoleUncheckedUpdateWithoutUsersInput>
   }
 
+  export type PlaceOnUserUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput> | PlaceOnUserCreateWithoutUserInput[] | PlaceOnUserUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutUserInput | PlaceOnUserCreateOrConnectWithoutUserInput[]
+    upsert?: PlaceOnUserUpsertWithWhereUniqueWithoutUserInput | PlaceOnUserUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PlaceOnUserCreateManyUserInputEnvelope
+    set?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    disconnect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    delete?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    update?: PlaceOnUserUpdateWithWhereUniqueWithoutUserInput | PlaceOnUserUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PlaceOnUserUpdateManyWithWhereWithoutUserInput | PlaceOnUserUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -16377,6 +17604,182 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type AddressCreateNestedOneWithoutPlacesInput = {
+    create?: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutPlacesInput
+    connect?: AddressWhereUniqueInput
+  }
+
+  export type PlaceDetailCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
+    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
+    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+  }
+
+  export type BookingCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
+    createMany?: BookingCreateManyPlaceInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
+  export type PlaceOnUserCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput> | PlaceOnUserCreateWithoutPlaceInput[] | PlaceOnUserUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutPlaceInput | PlaceOnUserCreateOrConnectWithoutPlaceInput[]
+    createMany?: PlaceOnUserCreateManyPlaceInputEnvelope
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+  }
+
+  export type PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
+    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
+    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+  }
+
+  export type BookingUncheckedCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
+    createMany?: BookingCreateManyPlaceInputEnvelope
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+  }
+
+  export type PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput> | PlaceOnUserCreateWithoutPlaceInput[] | PlaceOnUserUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutPlaceInput | PlaceOnUserCreateOrConnectWithoutPlaceInput[]
+    createMany?: PlaceOnUserCreateManyPlaceInputEnvelope
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type AddressUpdateOneRequiredWithoutPlacesNestedInput = {
+    create?: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutPlacesInput
+    upsert?: AddressUpsertWithoutPlacesInput
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutPlacesInput, AddressUpdateWithoutPlacesInput>, AddressUncheckedUpdateWithoutPlacesInput>
+  }
+
+  export type PlaceDetailUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
+    upsert?: PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput | PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
+    set?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    disconnect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    delete?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    update?: PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput | PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: PlaceDetailUpdateManyWithWhereWithoutPlaceInput | PlaceDetailUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
+  }
+
+  export type BookingUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutPlaceInput | BookingUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: BookingCreateManyPlaceInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutPlaceInput | BookingUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutPlaceInput | BookingUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
+  export type PlaceOnUserUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput> | PlaceOnUserCreateWithoutPlaceInput[] | PlaceOnUserUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutPlaceInput | PlaceOnUserCreateOrConnectWithoutPlaceInput[]
+    upsert?: PlaceOnUserUpsertWithWhereUniqueWithoutPlaceInput | PlaceOnUserUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: PlaceOnUserCreateManyPlaceInputEnvelope
+    set?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    disconnect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    delete?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    update?: PlaceOnUserUpdateWithWhereUniqueWithoutPlaceInput | PlaceOnUserUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: PlaceOnUserUpdateManyWithWhereWithoutPlaceInput | PlaceOnUserUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
+  }
+
+  export type PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
+    upsert?: PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput | PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
+    set?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    disconnect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    delete?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
+    update?: PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput | PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: PlaceDetailUpdateManyWithWhereWithoutPlaceInput | PlaceDetailUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
+  }
+
+  export type BookingUncheckedUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
+    upsert?: BookingUpsertWithWhereUniqueWithoutPlaceInput | BookingUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: BookingCreateManyPlaceInputEnvelope
+    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
+    update?: BookingUpdateWithWhereUniqueWithoutPlaceInput | BookingUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: BookingUpdateManyWithWhereWithoutPlaceInput | BookingUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
+  }
+
+  export type PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput> | PlaceOnUserCreateWithoutPlaceInput[] | PlaceOnUserUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: PlaceOnUserCreateOrConnectWithoutPlaceInput | PlaceOnUserCreateOrConnectWithoutPlaceInput[]
+    upsert?: PlaceOnUserUpsertWithWhereUniqueWithoutPlaceInput | PlaceOnUserUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: PlaceOnUserCreateManyPlaceInputEnvelope
+    set?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    disconnect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    delete?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    connect?: PlaceOnUserWhereUniqueInput | PlaceOnUserWhereUniqueInput[]
+    update?: PlaceOnUserUpdateWithWhereUniqueWithoutPlaceInput | PlaceOnUserUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: PlaceOnUserUpdateManyWithWhereWithoutPlaceInput | PlaceOnUserUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutPlacesInput = {
+    create?: XOR<UserCreateWithoutPlacesInput, UserUncheckedCreateWithoutPlacesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlacesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PlaceCreateNestedOneWithoutUsersInput = {
+    create?: XOR<PlaceCreateWithoutUsersInput, PlaceUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: PlaceCreateOrConnectWithoutUsersInput
+    connect?: PlaceWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutPlacesNestedInput = {
+    create?: XOR<UserCreateWithoutPlacesInput, UserUncheckedCreateWithoutPlacesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlacesInput
+    upsert?: UserUpsertWithoutPlacesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlacesInput, UserUpdateWithoutPlacesInput>, UserUncheckedUpdateWithoutPlacesInput>
+  }
+
+  export type PlaceUpdateOneRequiredWithoutUsersNestedInput = {
+    create?: XOR<PlaceCreateWithoutUsersInput, PlaceUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: PlaceCreateOrConnectWithoutUsersInput
+    upsert?: PlaceUpsertWithoutUsersInput
+    connect?: PlaceWhereUniqueInput
+    update?: XOR<XOR<PlaceUpdateToOneWithWhereWithoutUsersInput, PlaceUpdateWithoutUsersInput>, PlaceUncheckedUpdateWithoutUsersInput>
   }
 
   export type UserCreateNestedOneWithoutSessionsInput = {
@@ -16413,14 +17816,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAccountsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAccountsInput, UserUpdateWithoutAccountsInput>, UserUncheckedUpdateWithoutAccountsInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -16623,104 +18018,6 @@ export namespace Prisma {
     deleteMany?: AddressScalarWhereInput | AddressScalarWhereInput[]
   }
 
-  export type AddressCreateNestedOneWithoutPlacesInput = {
-    create?: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutPlacesInput
-    connect?: AddressWhereUniqueInput
-  }
-
-  export type PlaceDetailCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
-    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
-    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-  }
-
-  export type BookingCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
-    createMany?: BookingCreateManyPlaceInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
-
-  export type PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
-    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
-    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-  }
-
-  export type BookingUncheckedCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
-    createMany?: BookingCreateManyPlaceInputEnvelope
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
-
-  export type AddressUpdateOneRequiredWithoutPlacesNestedInput = {
-    create?: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
-    connectOrCreate?: AddressCreateOrConnectWithoutPlacesInput
-    upsert?: AddressUpsertWithoutPlacesInput
-    connect?: AddressWhereUniqueInput
-    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutPlacesInput, AddressUpdateWithoutPlacesInput>, AddressUncheckedUpdateWithoutPlacesInput>
-  }
-
-  export type PlaceDetailUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
-    upsert?: PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput | PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
-    set?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    disconnect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    delete?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    update?: PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput | PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: PlaceDetailUpdateManyWithWhereWithoutPlaceInput | PlaceDetailUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
-  }
-
-  export type BookingUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutPlaceInput | BookingUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: BookingCreateManyPlaceInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutPlaceInput | BookingUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutPlaceInput | BookingUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
-
-  export type PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput> | PlaceDetailCreateWithoutPlaceInput[] | PlaceDetailUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: PlaceDetailCreateOrConnectWithoutPlaceInput | PlaceDetailCreateOrConnectWithoutPlaceInput[]
-    upsert?: PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput | PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: PlaceDetailCreateManyPlaceInputEnvelope
-    set?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    disconnect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    delete?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    connect?: PlaceDetailWhereUniqueInput | PlaceDetailWhereUniqueInput[]
-    update?: PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput | PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: PlaceDetailUpdateManyWithWhereWithoutPlaceInput | PlaceDetailUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
-  }
-
-  export type BookingUncheckedUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput> | BookingCreateWithoutPlaceInput[] | BookingUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: BookingCreateOrConnectWithoutPlaceInput | BookingCreateOrConnectWithoutPlaceInput[]
-    upsert?: BookingUpsertWithWhereUniqueWithoutPlaceInput | BookingUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: BookingCreateManyPlaceInputEnvelope
-    set?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    disconnect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    delete?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-    update?: BookingUpdateWithWhereUniqueWithoutPlaceInput | BookingUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: BookingUpdateManyWithWhereWithoutPlaceInput | BookingUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: BookingScalarWhereInput | BookingScalarWhereInput[]
-  }
-
   export type PlaceCreateNestedOneWithoutPlaceDetailInput = {
     create?: XOR<PlaceCreateWithoutPlaceDetailInput, PlaceUncheckedCreateWithoutPlaceDetailInput>
     connectOrCreate?: PlaceCreateOrConnectWithoutPlaceDetailInput
@@ -16871,6 +18168,33 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -16909,33 +18233,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -16948,6 +18245,24 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type PlaceOnUserCreateWithoutUserInput = {
+    place: PlaceCreateNestedOneWithoutUsersInput
+  }
+
+  export type PlaceOnUserUncheckedCreateWithoutUserInput = {
+    placeId: string
+  }
+
+  export type PlaceOnUserCreateOrConnectWithoutUserInput = {
+    where: PlaceOnUserWhereUniqueInput
+    create: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput>
+  }
+
+  export type PlaceOnUserCreateManyUserInputEnvelope = {
+    data: PlaceOnUserCreateManyUserInput | PlaceOnUserCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -17033,6 +18348,30 @@ export namespace Prisma {
   export type RoleCreateOrConnectWithoutUsersInput = {
     where: RoleWhereUniqueInput
     create: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
+  }
+
+  export type PlaceOnUserUpsertWithWhereUniqueWithoutUserInput = {
+    where: PlaceOnUserWhereUniqueInput
+    update: XOR<PlaceOnUserUpdateWithoutUserInput, PlaceOnUserUncheckedUpdateWithoutUserInput>
+    create: XOR<PlaceOnUserCreateWithoutUserInput, PlaceOnUserUncheckedCreateWithoutUserInput>
+  }
+
+  export type PlaceOnUserUpdateWithWhereUniqueWithoutUserInput = {
+    where: PlaceOnUserWhereUniqueInput
+    data: XOR<PlaceOnUserUpdateWithoutUserInput, PlaceOnUserUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PlaceOnUserUpdateManyWithWhereWithoutUserInput = {
+    where: PlaceOnUserScalarWhereInput
+    data: XOR<PlaceOnUserUpdateManyMutationInput, PlaceOnUserUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PlaceOnUserScalarWhereInput = {
+    AND?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
+    OR?: PlaceOnUserScalarWhereInput[]
+    NOT?: PlaceOnUserScalarWhereInput | PlaceOnUserScalarWhereInput[]
+    userId?: StringFilter<"PlaceOnUser"> | string
+    placeId?: StringFilter<"PlaceOnUser"> | string
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -17123,6 +18462,339 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AddressCreateWithoutPlacesInput = {
+    id?: string
+    number: number
+    street: string
+    postcode: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    city: CityCreateNestedOneWithoutAddressInput
+  }
+
+  export type AddressUncheckedCreateWithoutPlacesInput = {
+    id?: string
+    number: number
+    street: string
+    postcode: string
+    cityId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AddressCreateOrConnectWithoutPlacesInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
+  }
+
+  export type PlaceDetailCreateWithoutPlaceInput = {
+    id?: string
+    name: string
+    description: string
+    createdAt?: Date | string
+    languageId: number
+  }
+
+  export type PlaceDetailUncheckedCreateWithoutPlaceInput = {
+    id?: string
+    name: string
+    description: string
+    createdAt?: Date | string
+    languageId: number
+  }
+
+  export type PlaceDetailCreateOrConnectWithoutPlaceInput = {
+    where: PlaceDetailWhereUniqueInput
+    create: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type PlaceDetailCreateManyPlaceInputEnvelope = {
+    data: PlaceDetailCreateManyPlaceInput | PlaceDetailCreateManyPlaceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BookingCreateWithoutPlaceInput = {
+    id?: string
+    dateStart: Date | string
+    dateEnd: Date | string
+    createdAt?: Date | string
+    availableFrom: Date | string
+    notAvailableEnd: Date | string
+  }
+
+  export type BookingUncheckedCreateWithoutPlaceInput = {
+    id?: string
+    dateStart: Date | string
+    dateEnd: Date | string
+    createdAt?: Date | string
+    availableFrom: Date | string
+    notAvailableEnd: Date | string
+  }
+
+  export type BookingCreateOrConnectWithoutPlaceInput = {
+    where: BookingWhereUniqueInput
+    create: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type BookingCreateManyPlaceInputEnvelope = {
+    data: BookingCreateManyPlaceInput | BookingCreateManyPlaceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PlaceOnUserCreateWithoutPlaceInput = {
+    user: UserCreateNestedOneWithoutPlacesInput
+  }
+
+  export type PlaceOnUserUncheckedCreateWithoutPlaceInput = {
+    userId: string
+  }
+
+  export type PlaceOnUserCreateOrConnectWithoutPlaceInput = {
+    where: PlaceOnUserWhereUniqueInput
+    create: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type PlaceOnUserCreateManyPlaceInputEnvelope = {
+    data: PlaceOnUserCreateManyPlaceInput | PlaceOnUserCreateManyPlaceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AddressUpsertWithoutPlacesInput = {
+    update: XOR<AddressUpdateWithoutPlacesInput, AddressUncheckedUpdateWithoutPlacesInput>
+    create: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutPlacesInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutPlacesInput, AddressUncheckedUpdateWithoutPlacesInput>
+  }
+
+  export type AddressUpdateWithoutPlacesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    street?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: CityUpdateOneRequiredWithoutAddressNestedInput
+  }
+
+  export type AddressUncheckedUpdateWithoutPlacesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    street?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    cityId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput = {
+    where: PlaceDetailWhereUniqueInput
+    update: XOR<PlaceDetailUpdateWithoutPlaceInput, PlaceDetailUncheckedUpdateWithoutPlaceInput>
+    create: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput = {
+    where: PlaceDetailWhereUniqueInput
+    data: XOR<PlaceDetailUpdateWithoutPlaceInput, PlaceDetailUncheckedUpdateWithoutPlaceInput>
+  }
+
+  export type PlaceDetailUpdateManyWithWhereWithoutPlaceInput = {
+    where: PlaceDetailScalarWhereInput
+    data: XOR<PlaceDetailUpdateManyMutationInput, PlaceDetailUncheckedUpdateManyWithoutPlaceInput>
+  }
+
+  export type PlaceDetailScalarWhereInput = {
+    AND?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
+    OR?: PlaceDetailScalarWhereInput[]
+    NOT?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
+    id?: StringFilter<"PlaceDetail"> | string
+    name?: StringFilter<"PlaceDetail"> | string
+    description?: StringFilter<"PlaceDetail"> | string
+    createdAt?: DateTimeFilter<"PlaceDetail"> | Date | string
+    placeId?: StringFilter<"PlaceDetail"> | string
+    languageId?: IntFilter<"PlaceDetail"> | number
+  }
+
+  export type BookingUpsertWithWhereUniqueWithoutPlaceInput = {
+    where: BookingWhereUniqueInput
+    update: XOR<BookingUpdateWithoutPlaceInput, BookingUncheckedUpdateWithoutPlaceInput>
+    create: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type BookingUpdateWithWhereUniqueWithoutPlaceInput = {
+    where: BookingWhereUniqueInput
+    data: XOR<BookingUpdateWithoutPlaceInput, BookingUncheckedUpdateWithoutPlaceInput>
+  }
+
+  export type BookingUpdateManyWithWhereWithoutPlaceInput = {
+    where: BookingScalarWhereInput
+    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutPlaceInput>
+  }
+
+  export type BookingScalarWhereInput = {
+    AND?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    OR?: BookingScalarWhereInput[]
+    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[]
+    id?: StringFilter<"Booking"> | string
+    dateStart?: DateTimeFilter<"Booking"> | Date | string
+    dateEnd?: DateTimeFilter<"Booking"> | Date | string
+    createdAt?: DateTimeFilter<"Booking"> | Date | string
+    availableFrom?: DateTimeFilter<"Booking"> | Date | string
+    notAvailableEnd?: DateTimeFilter<"Booking"> | Date | string
+    placeId?: StringFilter<"Booking"> | string
+  }
+
+  export type PlaceOnUserUpsertWithWhereUniqueWithoutPlaceInput = {
+    where: PlaceOnUserWhereUniqueInput
+    update: XOR<PlaceOnUserUpdateWithoutPlaceInput, PlaceOnUserUncheckedUpdateWithoutPlaceInput>
+    create: XOR<PlaceOnUserCreateWithoutPlaceInput, PlaceOnUserUncheckedCreateWithoutPlaceInput>
+  }
+
+  export type PlaceOnUserUpdateWithWhereUniqueWithoutPlaceInput = {
+    where: PlaceOnUserWhereUniqueInput
+    data: XOR<PlaceOnUserUpdateWithoutPlaceInput, PlaceOnUserUncheckedUpdateWithoutPlaceInput>
+  }
+
+  export type PlaceOnUserUpdateManyWithWhereWithoutPlaceInput = {
+    where: PlaceOnUserScalarWhereInput
+    data: XOR<PlaceOnUserUpdateManyMutationInput, PlaceOnUserUncheckedUpdateManyWithoutPlaceInput>
+  }
+
+  export type UserCreateWithoutPlacesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    image?: string | null
+    language?: string | null
+    createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    role: RoleCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutPlacesInput = {
+    id?: string
+    name?: string | null
+    email: string
+    image?: string | null
+    roleId: string
+    language?: string | null
+    createdAt?: Date | string
+    userAuthentificationId?: string | null
+    isUserBlocked?: boolean | null
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPlacesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPlacesInput, UserUncheckedCreateWithoutPlacesInput>
+  }
+
+  export type PlaceCreateWithoutUsersInput = {
+    id?: string
+    popularity?: number
+    createdAt?: Date | string
+    image?: string | null
+    address: AddressCreateNestedOneWithoutPlacesInput
+    placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
+    bookings?: BookingCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceUncheckedCreateWithoutUsersInput = {
+    id?: string
+    popularity?: number
+    createdAt?: Date | string
+    addressId: string
+    image?: string | null
+    placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
+    bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceCreateOrConnectWithoutUsersInput = {
+    where: PlaceWhereUniqueInput
+    create: XOR<PlaceCreateWithoutUsersInput, PlaceUncheckedCreateWithoutUsersInput>
+  }
+
+  export type UserUpsertWithoutPlacesInput = {
+    update: XOR<UserUpdateWithoutPlacesInput, UserUncheckedUpdateWithoutPlacesInput>
+    create: XOR<UserCreateWithoutPlacesInput, UserUncheckedCreateWithoutPlacesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPlacesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPlacesInput, UserUncheckedUpdateWithoutPlacesInput>
+  }
+
+  export type UserUpdateWithoutPlacesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPlacesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
+    isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PlaceUpsertWithoutUsersInput = {
+    update: XOR<PlaceUpdateWithoutUsersInput, PlaceUncheckedUpdateWithoutUsersInput>
+    create: XOR<PlaceCreateWithoutUsersInput, PlaceUncheckedCreateWithoutUsersInput>
+    where?: PlaceWhereInput
+  }
+
+  export type PlaceUpdateToOneWithWhereWithoutUsersInput = {
+    where?: PlaceWhereInput
+    data: XOR<PlaceUpdateWithoutUsersInput, PlaceUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type PlaceUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
+    placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
+    bookings?: BookingUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type PlaceUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    popularity?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addressId?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
+    bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
+  }
+
   export type UserCreateWithoutSessionsInput = {
     id?: string
     name?: string | null
@@ -17133,6 +18805,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
   }
@@ -17148,6 +18821,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -17177,6 +18851,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
   }
@@ -17192,6 +18867,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -17205,6 +18881,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     role: RoleCreateNestedOneWithoutUsersInput
   }
@@ -17220,6 +18897,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -17249,6 +18927,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
   }
@@ -17264,6 +18943,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -17277,6 +18957,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
   }
@@ -17291,6 +18972,7 @@ export namespace Prisma {
     userAuthentificationId?: string | null
     isUserBlocked?: boolean | null
     updatedAt?: Date | string
+    places?: PlaceOnUserUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
   }
@@ -17393,6 +19075,7 @@ export namespace Prisma {
     image?: string | null
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceUncheckedCreateWithoutAddressInput = {
@@ -17402,6 +19085,7 @@ export namespace Prisma {
     image?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceCreateOrConnectWithoutAddressInput = {
@@ -17580,173 +19264,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Address"> | Date | string
   }
 
-  export type AddressCreateWithoutPlacesInput = {
-    id?: string
-    number: number
-    street: string
-    postcode: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    city: CityCreateNestedOneWithoutAddressInput
-  }
-
-  export type AddressUncheckedCreateWithoutPlacesInput = {
-    id?: string
-    number: number
-    street: string
-    postcode: string
-    cityId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AddressCreateOrConnectWithoutPlacesInput = {
-    where: AddressWhereUniqueInput
-    create: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
-  }
-
-  export type PlaceDetailCreateWithoutPlaceInput = {
-    id?: string
-    name: string
-    description: string
-    createdAt?: Date | string
-    languageId: number
-  }
-
-  export type PlaceDetailUncheckedCreateWithoutPlaceInput = {
-    id?: string
-    name: string
-    description: string
-    createdAt?: Date | string
-    languageId: number
-  }
-
-  export type PlaceDetailCreateOrConnectWithoutPlaceInput = {
-    where: PlaceDetailWhereUniqueInput
-    create: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput>
-  }
-
-  export type PlaceDetailCreateManyPlaceInputEnvelope = {
-    data: PlaceDetailCreateManyPlaceInput | PlaceDetailCreateManyPlaceInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BookingCreateWithoutPlaceInput = {
-    id?: string
-    dateStart: Date | string
-    dateEnd: Date | string
-    createdAt?: Date | string
-    availableFrom: Date | string
-    notAvailableEnd: Date | string
-  }
-
-  export type BookingUncheckedCreateWithoutPlaceInput = {
-    id?: string
-    dateStart: Date | string
-    dateEnd: Date | string
-    createdAt?: Date | string
-    availableFrom: Date | string
-    notAvailableEnd: Date | string
-  }
-
-  export type BookingCreateOrConnectWithoutPlaceInput = {
-    where: BookingWhereUniqueInput
-    create: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput>
-  }
-
-  export type BookingCreateManyPlaceInputEnvelope = {
-    data: BookingCreateManyPlaceInput | BookingCreateManyPlaceInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AddressUpsertWithoutPlacesInput = {
-    update: XOR<AddressUpdateWithoutPlacesInput, AddressUncheckedUpdateWithoutPlacesInput>
-    create: XOR<AddressCreateWithoutPlacesInput, AddressUncheckedCreateWithoutPlacesInput>
-    where?: AddressWhereInput
-  }
-
-  export type AddressUpdateToOneWithWhereWithoutPlacesInput = {
-    where?: AddressWhereInput
-    data: XOR<AddressUpdateWithoutPlacesInput, AddressUncheckedUpdateWithoutPlacesInput>
-  }
-
-  export type AddressUpdateWithoutPlacesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    street?: StringFieldUpdateOperationsInput | string
-    postcode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    city?: CityUpdateOneRequiredWithoutAddressNestedInput
-  }
-
-  export type AddressUncheckedUpdateWithoutPlacesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    street?: StringFieldUpdateOperationsInput | string
-    postcode?: StringFieldUpdateOperationsInput | string
-    cityId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PlaceDetailUpsertWithWhereUniqueWithoutPlaceInput = {
-    where: PlaceDetailWhereUniqueInput
-    update: XOR<PlaceDetailUpdateWithoutPlaceInput, PlaceDetailUncheckedUpdateWithoutPlaceInput>
-    create: XOR<PlaceDetailCreateWithoutPlaceInput, PlaceDetailUncheckedCreateWithoutPlaceInput>
-  }
-
-  export type PlaceDetailUpdateWithWhereUniqueWithoutPlaceInput = {
-    where: PlaceDetailWhereUniqueInput
-    data: XOR<PlaceDetailUpdateWithoutPlaceInput, PlaceDetailUncheckedUpdateWithoutPlaceInput>
-  }
-
-  export type PlaceDetailUpdateManyWithWhereWithoutPlaceInput = {
-    where: PlaceDetailScalarWhereInput
-    data: XOR<PlaceDetailUpdateManyMutationInput, PlaceDetailUncheckedUpdateManyWithoutPlaceInput>
-  }
-
-  export type PlaceDetailScalarWhereInput = {
-    AND?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
-    OR?: PlaceDetailScalarWhereInput[]
-    NOT?: PlaceDetailScalarWhereInput | PlaceDetailScalarWhereInput[]
-    id?: StringFilter<"PlaceDetail"> | string
-    name?: StringFilter<"PlaceDetail"> | string
-    description?: StringFilter<"PlaceDetail"> | string
-    createdAt?: DateTimeFilter<"PlaceDetail"> | Date | string
-    placeId?: StringFilter<"PlaceDetail"> | string
-    languageId?: IntFilter<"PlaceDetail"> | number
-  }
-
-  export type BookingUpsertWithWhereUniqueWithoutPlaceInput = {
-    where: BookingWhereUniqueInput
-    update: XOR<BookingUpdateWithoutPlaceInput, BookingUncheckedUpdateWithoutPlaceInput>
-    create: XOR<BookingCreateWithoutPlaceInput, BookingUncheckedCreateWithoutPlaceInput>
-  }
-
-  export type BookingUpdateWithWhereUniqueWithoutPlaceInput = {
-    where: BookingWhereUniqueInput
-    data: XOR<BookingUpdateWithoutPlaceInput, BookingUncheckedUpdateWithoutPlaceInput>
-  }
-
-  export type BookingUpdateManyWithWhereWithoutPlaceInput = {
-    where: BookingScalarWhereInput
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyWithoutPlaceInput>
-  }
-
-  export type BookingScalarWhereInput = {
-    AND?: BookingScalarWhereInput | BookingScalarWhereInput[]
-    OR?: BookingScalarWhereInput[]
-    NOT?: BookingScalarWhereInput | BookingScalarWhereInput[]
-    id?: StringFilter<"Booking"> | string
-    dateStart?: DateTimeFilter<"Booking"> | Date | string
-    dateEnd?: DateTimeFilter<"Booking"> | Date | string
-    createdAt?: DateTimeFilter<"Booking"> | Date | string
-    availableFrom?: DateTimeFilter<"Booking"> | Date | string
-    notAvailableEnd?: DateTimeFilter<"Booking"> | Date | string
-    placeId?: StringFilter<"Booking"> | string
-  }
-
   export type PlaceCreateWithoutPlaceDetailInput = {
     id?: string
     popularity?: number
@@ -17754,6 +19271,7 @@ export namespace Prisma {
     image?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceUncheckedCreateWithoutPlaceDetailInput = {
@@ -17763,6 +19281,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceCreateOrConnectWithoutPlaceDetailInput = {
@@ -17788,6 +19307,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceUncheckedUpdateWithoutPlaceDetailInput = {
@@ -17797,6 +19317,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceCreateWithoutBookingsInput = {
@@ -17806,6 +19327,7 @@ export namespace Prisma {
     image?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceUncheckedCreateWithoutBookingsInput = {
@@ -17815,6 +19337,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
+    users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceCreateOrConnectWithoutBookingsInput = {
@@ -17840,6 +19363,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceUncheckedUpdateWithoutBookingsInput = {
@@ -17849,6 +19373,11 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type PlaceOnUserCreateManyUserInput = {
+    placeId: string
   }
 
   export type AccountCreateManyUserInput = {
@@ -17872,6 +19401,18 @@ export namespace Prisma {
     expires: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type PlaceOnUserUpdateWithoutUserInput = {
+    place?: PlaceUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type PlaceOnUserUncheckedUpdateWithoutUserInput = {
+    placeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PlaceOnUserUncheckedUpdateManyWithoutUserInput = {
+    placeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -17943,6 +19484,90 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PlaceDetailCreateManyPlaceInput = {
+    id?: string
+    name: string
+    description: string
+    createdAt?: Date | string
+    languageId: number
+  }
+
+  export type BookingCreateManyPlaceInput = {
+    id?: string
+    dateStart: Date | string
+    dateEnd: Date | string
+    createdAt?: Date | string
+    availableFrom: Date | string
+    notAvailableEnd: Date | string
+  }
+
+  export type PlaceOnUserCreateManyPlaceInput = {
+    userId: string
+  }
+
+  export type PlaceDetailUpdateWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    languageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PlaceDetailUncheckedUpdateWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    languageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type PlaceDetailUncheckedUpdateManyWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    languageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type BookingUpdateWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingUncheckedUpdateWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BookingUncheckedUpdateManyWithoutPlaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlaceOnUserUpdateWithoutPlaceInput = {
+    user?: UserUpdateOneRequiredWithoutPlacesNestedInput
+  }
+
+  export type PlaceOnUserUncheckedUpdateWithoutPlaceInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PlaceOnUserUncheckedUpdateManyWithoutPlaceInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserCreateManyRoleInput = {
     id?: string
     name?: string | null
@@ -17965,6 +19590,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
   }
@@ -17979,6 +19605,7 @@ export namespace Prisma {
     userAuthentificationId?: NullableStringFieldUpdateOperationsInput | string | null
     isUserBlocked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    places?: PlaceOnUserUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -18034,6 +19661,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceUncheckedUpdateWithoutAddressInput = {
@@ -18043,6 +19671,7 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
+    users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceUncheckedUpdateManyWithoutAddressInput = {
@@ -18090,74 +19719,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PlaceDetailCreateManyPlaceInput = {
-    id?: string
-    name: string
-    description: string
-    createdAt?: Date | string
-    languageId: number
-  }
-
-  export type BookingCreateManyPlaceInput = {
-    id?: string
-    dateStart: Date | string
-    dateEnd: Date | string
-    createdAt?: Date | string
-    availableFrom: Date | string
-    notAvailableEnd: Date | string
-  }
-
-  export type PlaceDetailUpdateWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    languageId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PlaceDetailUncheckedUpdateWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    languageId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PlaceDetailUncheckedUpdateManyWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    languageId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type BookingUpdateWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
-    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BookingUncheckedUpdateWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
-    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BookingUncheckedUpdateManyWithoutPlaceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    dateStart?: DateTimeFieldUpdateOperationsInput | Date | string
-    dateEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    availableFrom?: DateTimeFieldUpdateOperationsInput | Date | string
-    notAvailableEnd?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
 
 
   /**
@@ -18167,6 +19728,10 @@ export namespace Prisma {
      * @deprecated Use UserCountOutputTypeDefaultArgs instead
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlaceCountOutputTypeDefaultArgs instead
+     */
+    export type PlaceCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlaceCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use RoleCountOutputTypeDefaultArgs instead
      */
@@ -18184,13 +19749,17 @@ export namespace Prisma {
      */
     export type CityCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CityCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use PlaceCountOutputTypeDefaultArgs instead
-     */
-    export type PlaceCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlaceCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlaceDefaultArgs instead
+     */
+    export type PlaceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlaceDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PlaceOnUserDefaultArgs instead
+     */
+    export type PlaceOnUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlaceOnUserDefaultArgs<ExtArgs>
     /**
      * @deprecated Use SessionDefaultArgs instead
      */
@@ -18219,10 +19788,6 @@ export namespace Prisma {
      * @deprecated Use CityDefaultArgs instead
      */
     export type CityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CityDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use PlaceDefaultArgs instead
-     */
-    export type PlaceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PlaceDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PlaceDetailDefaultArgs instead
      */

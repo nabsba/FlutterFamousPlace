@@ -19,9 +19,32 @@ model User {
   userAuthentificationId   String?
   isUserBlocked            Boolean?
   updatedAt DateTime @updatedAt
+  places   PlaceOnUser[]
   accounts                 Account[]
   sessions                 Session[]
   role                     Role      @relation(fields: [roleId], references: [id])
+}
+
+model Place {
+  id          String       @id @default(cuid())
+  popularity  Int          @default(0)
+  createdAt   DateTime     @default(now())
+  addressId   String
+  image String?
+  address     Address      @relation(fields: [addressId], references: [id])
+  placeDetail PlaceDetail[] // One-to-many relation to PlaceDetail
+  bookings    Booking[]
+  users    PlaceOnUser[]
+
+}
+
+model PlaceOnUser {
+  userId   String
+  placeId  String
+  user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place    Place       @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, placeId]) // Composite primary key to ensure a user-place pair is unique
 }
 model Session {
   id           String   @id @default(cuid())
@@ -94,16 +117,7 @@ model City {
   country   Country   @relation(fields: [countryId], references: [id], onDelete: Cascade)
   address Address[]
 }
-model Place {
-  id          String       @id @default(cuid())
-  popularity  Int          @default(0)
-  createdAt   DateTime     @default(now())
-  addressId   String
-  image String?
-  address     Address      @relation(fields: [addressId], references: [id])
-  placeDetail PlaceDetail[] // One-to-many relation to PlaceDetail
-  bookings    Booking[]
-}
+
 
 model PlaceDetail {
   id          String   @id @default(cuid())

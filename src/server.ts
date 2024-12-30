@@ -2,8 +2,6 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { resolvers, typeDefs } from './graphql';
 import cors from 'cors';
-import { bucket } from './firebase/services/config';
-import { listFilesInFolder } from './firebase/services/firebase';
 require('dotenv').config();
 const app = express() as any;
 app.get('/', (_: any, res: { send: (arg0: string) => void }) => {
@@ -36,7 +34,7 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: async ({ req }) => {},
+    context: async () => {},
   });
   await server.start();
 
