@@ -3,7 +3,6 @@ import 'package:flutter_famous_places/features/styles/services/size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../styles/services/typography.dart';
 import '../services/clientProvider.dart';
 
@@ -14,13 +13,13 @@ class TitleNameAvatarRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final place = ref.watch(placeProvider);
+    final userInfos = ref.watch(userInfosProvider);
     return Row(
       children: [
         // Add space between the avatar and text
 
         Text(
-          AppLocalizations.of(context)!.greetingMessage(place?.name ?? ""),
+          AppLocalizations.of(context)!.greetingMessage(userInfos?.name ?? ""),
           style: TypographyStyles.montserrat,
         ),
         const SizedBox(width: AppStylesSpace.smallSpacing),
@@ -32,8 +31,8 @@ class TitleNameAvatarRow extends ConsumerWidget {
         const Spacer(),
         CircleAvatar(
           radius: 20, // Adjust the size of the avatar
-          backgroundImage: place?.photoURL.isNotEmpty == true
-              ? NetworkImage(place!.photoURL)
+          backgroundImage: userInfos?.photoURL.isNotEmpty == true
+              ? NetworkImage(userInfos!.photoURL)
               : AssetImage("assets/images/userDefault.jpg") as ImageProvider,
           backgroundColor: Colors.grey[200], // Fallback background
         ),

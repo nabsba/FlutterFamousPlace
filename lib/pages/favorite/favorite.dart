@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_famous_places/features/famousPlaces/components/places.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -9,7 +8,6 @@ class FavoritePage extends StatelessWidget {
     return Column(
       children: const [
         Text('Your favorite places will appear here'),
-        Places(),
       ],
     );
   }

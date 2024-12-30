@@ -14,9 +14,11 @@ class AuthorizationWrapper extends ConsumerWidget {
     super.key,
     required this.signedInWidget,
   });
-  void updatePlaceProvider(WidgetRef ref, String name, String photoURL) {
-    ref.read(placeProvider.notifier).state =
-        Place(name: name, photoURL: photoURL);
+
+  void updateUserInfos(
+      WidgetRef ref, String name, String photoURL, String userId) {
+    ref.read(userInfosProvider.notifier).state =
+        UserInfos(name: name, photoURL: photoURL, userId: userId);
   }
 
   @override
@@ -29,7 +31,6 @@ class AuthorizationWrapper extends ConsumerWidget {
         }
         if (snapshot.hasData && snapshot.data != null) {
           final user = snapshot.data!;
-
           AuthenticationClass authenticationClass = AuthenticationClass();
           return FutureBuilder<ResponseGraphql<String>>(
             future: authenticationClass.handleAuthentification(
@@ -48,11 +49,8 @@ class AuthorizationWrapper extends ConsumerWidget {
                 final result = tokenSnapshot.data!;
                 if (result.status == successStatus['OK'] && !result.isError) {
                   Future(() {
-                    updatePlaceProvider(
-                      ref,
-                      user.displayName!,
-                      user.photoURL!,
-                    );
+                    updateUserInfos(ref, user.displayName!, user.photoURL!,
+                        user.providerData[0].uid!);
                   });
                   return signedInWidget;
                 } else {

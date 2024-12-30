@@ -4,42 +4,53 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class PlaceRepository {
   final GraphQLClient client;
   PlaceRepository(this.client);
-  Future<ResponseGraphql<String>> fetchPlaces() async {
+  Future<dynamic> fetchPlaces({
+    required String language,
+    required String type,
+    required String userId,
+  }) async {
     try {
       final QueryOptions options = QueryOptions(
         document: gql("""
-  query {
-  places(language: "1", type: "someType") {
-    status
-    isError
-    messageKey
-    data {
-      places {
-        id
-        popularity
-        address {
-          number
-          street
-          postcode
-          city {
-            name
-            country {
-              name
+        query FetchPlaces(\$language: String!, \$type: String!, \$userId: String!) {
+          places(language: \$language, type: \$type, userId: \$userId) {
+            status
+            isError
+            messageKey
+            data {
+              places {
+                id
+                popularity
+                address {
+                  number
+                  street
+                  postcode
+                  city {
+                    name
+                    country {
+                      name
+                    }
+                  }
+                }
+                placeDetail {
+                  name
+                  description
+                }
+                images
+                isFavoritePlace
+              }
             }
           }
         }
-        placeDetail {
-          name
-          description
-        }
-        images
-      }
-    }
-  }
-}
-"""),
+      """),
+        variables: {
+          "language": language,
+          "type": type,
+          "userId": userId,
+        },
         fetchPolicy: FetchPolicy.noCache,
       );
+
       final QueryResult result = await client.query(options);
 
       if (result.hasException) {
@@ -53,8 +64,91 @@ class PlaceRepository {
       throw (response);
       // Mapping the GraphQL response data to Place instances
     } catch (error) {
+      print(error);
+      rethrow;
+    }
+  }
+
+  Future<ResponseGraphql<String>> toggleFavoritePlace(
+      String placeId, String userId) async {
+    try {
+      final MutationOptions options = MutationOptions(
+        document: gql("""
+    mutation ToggleFavoritePlace(\$placeId: String!, \$userId: String!) {
+      toggleFavoritePlace(placeId: \$placeId, userId: \$userId) {
+        status
+        isError
+        messageKey
+        data {
+          placeId
+        }
+      }
+    }
+  """),
+        variables: {
+          "placeId": placeId,
+          "userId": userId,
+        },
+        fetchPolicy: FetchPolicy.noCache,
+      );
+      final QueryResult result = await client.mutate(options);
+      if (result.hasException) {
+        throw result.exception!;
+      }
+      final response =
+          ResponseGraphql<String>.fromMap(result.data?['toggleFavoritePlace']);
+      if (response.isError == false) {
+        return response;
+      }
+
+      throw (response);
+      // Mapping the GraphQL response data to Place instances
+    } catch (error) {
       // print(error);
       rethrow;
     }
   }
 }
+
+
+
+      // final QueryOptions options = QueryOptions(
+      //   document: gql("""
+      //   query FetchPlaces(\$language: String!, \$type: String!, \$userId: String!) {
+      //     places(language: \$language, type: \$type, userId: \$userId) {
+      //       status
+      //       isError
+      //       messageKey
+      //       data {
+      //         places {
+      //           id
+      //           popularity
+      //           address {
+      //             number
+      //             street
+      //             postcode
+      //             city {
+      //               name
+      //               country {
+      //                 name
+      //               }
+      //             }
+      //           }
+      //           placeDetail {
+      //             name
+      //             description
+      //           }
+      //           images
+      //           isFavoritePlace
+      //         }
+      //       }
+      //     }
+      //   }
+      // """),
+      //   variables: {
+      //     "language": language,
+      //     "type": type,
+      //     "userId": userId,
+      //   },
+      //   fetchPolicy: FetchPolicy.noCache,
+      // );

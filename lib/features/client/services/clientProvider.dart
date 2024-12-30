@@ -1,15 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Place {
+class UserInfos {
   final String name;
   final String photoURL;
+  final String userId;
 
-  Place({required this.name, required this.photoURL});
+  UserInfos({required this.name, required this.photoURL, required this.userId});
 
   @override
   String toString() {
-    return 'Place(name: $name, photoURL: $photoURL)';
+    return 'UserInfos(name: $name, photoURL: $photoURL,userId: $userId )';
   }
 }
 
-final placeProvider = StateProvider<Place?>((ref) => null);
+final userInfosProvider = StateProvider<UserInfos?>((ref) => null);
