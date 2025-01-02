@@ -4,14 +4,15 @@ class Place {
   final Address address;
   final PlaceDetail placeDetail;
   final List<String?> images;
+  final bool isFavoritePlace;
 
-  Place({
-    required this.id,
-    required this.popularity,
-    required this.address,
-    required this.placeDetail,
-    required this.images,
-  });
+  Place(
+      {required this.id,
+      required this.popularity,
+      required this.address,
+      required this.placeDetail,
+      required this.images,
+      required this.isFavoritePlace});
 
   // Convert a Place instance into a Map.
   Map<String, Object?> toMap() {
@@ -21,24 +22,25 @@ class Place {
       'address': address.toMap(),
       'placeDetail': placeDetail.toMap(),
       'images': images,
+      'isFavoritePlace': isFavoritePlace
     };
   }
 
   // Convert a Map to a Place instance.
   factory Place.fromMap(Map<String, dynamic> map) {
     return Place(
-      id: map['id'],
-      popularity: map['popularity'],
-      address: Address.fromMap(map['address']),
-      placeDetail: PlaceDetail.fromMap(map['placeDetail']),
-      images: List<String>.from(map['images']),
-    );
+        id: map['id'],
+        popularity: map['popularity'],
+        address: Address.fromMap(map['address']),
+        placeDetail: PlaceDetail.fromMap(map['placeDetail']),
+        images: List<String>.from(map['images']),
+        isFavoritePlace: map['isFavoritePlace']);
   }
 
   // Override toString to make it easier to print information about a Place.
   @override
   String toString() {
-    return '{id: $id, popularity: $popularity, address: $address, placeDetail: $placeDetail, images: $images}';
+    return '{id: $id, popularity: $popularity, address: $address, placeDetail: $placeDetail, images: $images, isFavoritePlace: $isFavoritePlace}';
   }
 }
 

@@ -4,20 +4,23 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class PlaceRepository {
   final GraphQLClient client;
   PlaceRepository(this.client);
-  Future<dynamic> fetchPlaces({
-    required String language,
-    required String type,
-    required String userId,
-  }) async {
+  Future<dynamic> fetchPlaces(
+      {required String language,
+      required String type,
+      required String userId,
+      required String page}) async {
     try {
       final QueryOptions options = QueryOptions(
         document: gql("""
-        query FetchPlaces(\$language: String!, \$type: String!, \$userId: String!) {
-          places(language: \$language, type: \$type, userId: \$userId) {
+        query FetchPlaces(\$language: String!, \$type: String!, \$userId: String!, \$page: String!) {
+          places(language: \$language, type: \$type, userId: \$userId, page: \$page) {
             status
             isError
             messageKey
             data {
+              page
+              rowPerPage
+              totalRows
               places {
                 id
                 popularity
@@ -47,6 +50,7 @@ class PlaceRepository {
           "language": language,
           "type": type,
           "userId": userId,
+          "page": page
         },
         fetchPolicy: FetchPolicy.noCache,
       );
@@ -109,46 +113,3 @@ class PlaceRepository {
     }
   }
 }
-
-
-
-      // final QueryOptions options = QueryOptions(
-      //   document: gql("""
-      //   query FetchPlaces(\$language: String!, \$type: String!, \$userId: String!) {
-      //     places(language: \$language, type: \$type, userId: \$userId) {
-      //       status
-      //       isError
-      //       messageKey
-      //       data {
-      //         places {
-      //           id
-      //           popularity
-      //           address {
-      //             number
-      //             street
-      //             postcode
-      //             city {
-      //               name
-      //               country {
-      //                 name
-      //               }
-      //             }
-      //           }
-      //           placeDetail {
-      //             name
-      //             description
-      //           }
-      //           images
-      //           isFavoritePlace
-      //         }
-      //       }
-      //     }
-      //   }
-      // """),
-      //   variables: {
-      //     "language": language,
-      //     "type": type,
-      //     "userId": userId,
-      //   },
-      //   fetchPolicy: FetchPolicy.noCache,
-      // );

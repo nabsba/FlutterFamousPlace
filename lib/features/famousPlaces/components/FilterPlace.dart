@@ -7,6 +7,8 @@ import '../../styles/services/typography.dart';
 final selectedButtonProvider = StateProvider<int>((ref) => 0);
 
 class FilterButtons extends ConsumerWidget {
+  const FilterButtons({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedButtonProvider);
