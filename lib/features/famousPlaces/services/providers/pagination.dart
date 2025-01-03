@@ -6,13 +6,15 @@ class PaginationState {
   final int rowPerPage;
   final int totalRows;
   final bool isLoading;
+  final String messageKey;
 
   PaginationState({
     required this.actualPage,
     required this.totalPage,
     required this.rowPerPage,
     required this.totalRows,
-    this.isLoading = false,
+    required this.isLoading,
+    required this.messageKey,
   });
 
   PaginationState copyWith({
@@ -21,6 +23,7 @@ class PaginationState {
     int? rowPerPage,
     int? totalRows,
     bool? isLoading,
+    String? messageKey,
   }) {
     return PaginationState(
       actualPage: actualPage ?? this.actualPage,
@@ -28,6 +31,7 @@ class PaginationState {
       rowPerPage: rowPerPage ?? this.rowPerPage,
       totalRows: totalRows ?? this.totalRows,
       isLoading: isLoading ?? this.isLoading,
+      messageKey: messageKey ?? this.messageKey,
     );
   }
 }
@@ -39,6 +43,8 @@ class PaginationNotifier extends StateNotifier<PaginationState> {
           totalPage: 0,
           rowPerPage: 0,
           totalRows: 0,
+          isLoading: false,
+          messageKey: '',
         ));
 
   void updateActualPage(int page) {
@@ -64,15 +70,20 @@ class PaginationNotifier extends StateNotifier<PaginationState> {
 
   void reset() {
     state = PaginationState(
-      actualPage: 0,
-      totalPage: 0,
-      rowPerPage: state.rowPerPage, // Retain the default rowPerPage
-      totalRows: 0,
-    );
+        actualPage: 0,
+        totalPage: 0,
+        rowPerPage: state.rowPerPage, // Retain the default rowPerPage
+        totalRows: 0,
+        messageKey: '',
+        isLoading: false);
   }
 
   void setLoading(bool loading) {
     state = state.copyWith(isLoading: loading);
+  }
+
+  void setIsError(String messageKey) {
+    state = state.copyWith(messageKey: messageKey);
   }
 
   void calculateTotalPages() {

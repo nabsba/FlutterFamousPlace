@@ -5,6 +5,8 @@ const Map<String, String> errorMessagesKeys = {
   'REGISTER_USER_WITH_COOKIE': 'registerUserWithCookie',
   'REFRESH_TOKEN': 'refreshToken',
   'TOKEN': 'token',
+  'CANNOT_LOAD_MORE_DATA': 'cannotLoadMoreData',
+  'DEFAULT_ERROR': 'defaultError'
 };
 
 // Status server codes

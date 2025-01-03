@@ -26,5 +26,10 @@
   "defaultError": "An error has happened. Please try again. If the problem persists, contact us",
   "@defaultError": {
     "description": "Error message for unknown error"
+  },
+  "cannotLoadMoreData": "Cannot load more data. Please try again later.",
+  "@cannotLoadMoreData": {
+    "description": "Error message displayed when additional data cannot be loaded."
   }
+
 }

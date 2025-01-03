@@ -26,5 +26,9 @@
    "defaultError": "Une erreur s'est produite. Veuillez réessayer. Si le problème persiste, contactez-nous",
   "@defaultError": {
     "description": "Message d'erreur pour une erreur inconnue"
+  },
+   "cannotLoadMoreData": "Impossible de charger plus de données. Veuillez réessayer plus tard.",
+  "@cannotLoadMoreData": {
+    "description": "Message d'erreur affiché lorsque des données supplémentaires ne peuvent pas être chargées (version française)."
   }
 }
