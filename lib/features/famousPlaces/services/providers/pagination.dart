@@ -36,70 +36,131 @@ class PaginationState {
   }
 }
 
-class PaginationNotifier extends StateNotifier<PaginationState> {
+class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
   PaginationNotifier()
-      : super(PaginationState(
-          actualPage: 0,
-          totalPage: 0,
-          rowPerPage: 0,
-          totalRows: 0,
-          isLoading: false,
-          messageKey: '',
-        ));
+      : super({
+          '0': PaginationState(
+            actualPage: 0,
+            totalPage: 0,
+            rowPerPage: 10, // Default rows per page
+            totalRows: 0,
+            isLoading: false,
+            messageKey: '',
+          ),
+          '1': PaginationState(
+            actualPage: 0,
+            totalPage: 0,
+            rowPerPage: 10,
+            totalRows: 0,
+            isLoading: false,
+            messageKey: '',
+          ),
+          '2': PaginationState(
+            actualPage: 0,
+            totalPage: 0,
+            rowPerPage: 10,
+            totalRows: 0,
+            isLoading: false,
+            messageKey: '',
+          ),
+          '3': PaginationState(
+            actualPage: 0,
+            totalPage: 0,
+            rowPerPage: 10,
+            totalRows: 0,
+            isLoading: false,
+            messageKey: '',
+          ),
+        });
 
-  void updateActualPage(int page) {
-    if (page >= 0) {
-      state = state.copyWith(actualPage: page);
-    } else {
-      print('Invalid page number');
+  void updateState(String key, PaginationState newState) {
+    state = {
+      ...state,
+      key: newState,
+    };
+  }
+
+  void updateActualPage(String key, int page) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      if (page >= 0) {
+        updateState(key, currentState.copyWith(actualPage: page));
+      } else {
+        print('Invalid page number');
+      }
     }
   }
 
-  void updateTotalPage(int total) {
-    state = state.copyWith(totalPage: total);
+  void updateTotalPage(String key, int total) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      updateState(key, currentState.copyWith(totalPage: total));
+    }
   }
 
-  void updateRowPerPage(int rows) {
-    state = state.copyWith(rowPerPage: rows);
+  void updateRowPerPage(String key, int rows) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      updateState(key, currentState.copyWith(rowPerPage: rows));
+    }
   }
 
-  void updateTotalRows(int rows) {
-    state = state.copyWith(totalRows: rows);
-    calculateTotalPages();
+  void updateTotalRows(String key, int rows) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      final updatedState = currentState.copyWith(totalRows: rows);
+      updateState(key, updatedState);
+      calculateTotalPages(key);
+    }
   }
 
-  void reset() {
-    state = PaginationState(
-        actualPage: 0,
-        totalPage: 0,
-        rowPerPage: state.rowPerPage, // Retain the default rowPerPage
-        totalRows: 0,
-        messageKey: '',
-        isLoading: false);
+  void reset(String key) {
+    if (state.containsKey(key)) {
+      updateState(
+        key,
+        PaginationState(
+          actualPage: 0,
+          totalPage: 0,
+          rowPerPage: state[key]!.rowPerPage, // Retain the default rowPerPage
+          totalRows: 0,
+          isLoading: false,
+          messageKey: '',
+        ),
+      );
+    }
   }
 
-  void setLoading(bool loading) {
-    state = state.copyWith(isLoading: loading);
+  void setLoading(String key, bool loading) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      updateState(key, currentState.copyWith(isLoading: loading));
+    }
   }
 
-  void setIsError(String messageKey) {
-    state = state.copyWith(messageKey: messageKey);
+  void setIsError(String key, String messageKey) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      updateState(key, currentState.copyWith(messageKey: messageKey));
+    }
   }
 
-  void calculateTotalPages() {
-    final totalRows = state.totalRows;
-    final rowPerPage = state.rowPerPage;
+  void calculateTotalPages(String key) {
+    if (state.containsKey(key)) {
+      final currentState = state[key]!;
+      final totalRows = currentState.totalRows;
+      final rowPerPage = currentState.rowPerPage;
 
-    if (rowPerPage > 0) {
-      final totalPages = (totalRows / rowPerPage).ceil();
-      state = state.copyWith(totalPage: totalPages);
-    } else {
-      print('Invalid pagination data');
+      if (rowPerPage > 0) {
+        final totalPages = (totalRows / rowPerPage).ceil();
+        updateState(key, currentState.copyWith(totalPage: totalPages));
+      } else {
+        print('Invalid pagination data for key $key');
+      }
     }
   }
 }
 
 final paginationProvider =
-    StateNotifierProvider<PaginationNotifier, PaginationState>(
+    StateNotifierProvider<PaginationNotifier, Map<String, PaginationState>>(
   (ref) => PaginationNotifier(),
 );

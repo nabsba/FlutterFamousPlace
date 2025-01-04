@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../client/services/clientProvider.dart';
-import '../../common/services/functions.dart';
 import '../../error/components/error.dart';
 import '../../error/services/errors.dart';
-import '../../graphql/client.dart';
 import '../../loaders/components/timeLoadingWidget.dart';
 import '../../loaders/services/constant.dart';
 import '../services/function.dart';
-import '../services/graphql/graphQlQuery.dart';
+import '../services/providers/fetchPlaces.dart';
+import '../services/providers/indexMenu.dart';
 import '../services/providers/pagination.dart';
 import '../services/providers/places.dart';
-import 'FilterPlace.dart';
 import 'cardPlace/CardPlace.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Places extends ConsumerStatefulWidget {
   const Places({super.key});
@@ -34,7 +32,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
       if (userInfos?.userId != null &&
           _scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 200) {
-        _fetchMoreData();
+        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
       }
     });
 
@@ -42,74 +40,25 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final userInfos = ref.read(userInfosProvider);
       if (userInfos?.userId != null) {
-        _fetchMoreData();
+        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
       }
     });
-  }
-
-  Future<void> _fetchMoreData() async {
-    final userInfos = ref.watch(userInfosProvider);
-    final paginationState = ref.watch(paginationProvider);
-    if (userInfos == null ||
-        userInfos.userId.isEmpty ||
-        paginationState.isLoading ||
-        (paginationState.totalPage == paginationState.actualPage &&
-            paginationState.totalRows != 0)) {
-      return;
-    }
-
-    final locale = Localizations.localeOf(context);
-    final index = getIndexOfLanguage(locale.toString());
-    ref.read(paginationProvider.notifier).setLoading(true);
-
-    try {
-      final filterProvider = ref.read(selectedButtonProvider);
-      final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
-      final result = await placeRepository.fetchPlaces(
-        language: index.toString(),
-        type: filterProvider.toString(),
-        userId: userInfos.userId,
-        page: paginationState.actualPage.toString(),
-      );
-
-      final List<dynamic> placesReceivedFromServer =
-          result.data?['places'] ?? [];
-
-      if (result.isError) {
-        ref.read(paginationProvider.notifier).setIsError(result.messageKey);
-      } else if (placesReceivedFromServer.isNotEmpty) {
-        ref.read(placesProvider.notifier).addPlaces(placesReceivedFromServer);
-        ref
-            .read(paginationProvider.notifier)
-            .updateRowPerPage(result.data['rowPerPage']);
-        ref
-            .read(paginationProvider.notifier)
-            .updateTotalRows(result.data['totalRows']);
-        ref
-            .read(paginationProvider.notifier)
-            .updateActualPage(paginationState.actualPage + 1);
-      }
-    } catch (error) {
-      debugPrint('Error fetching data: $error');
-    } finally {
-      // Reset loading state
-      ref.read(paginationProvider.notifier).setLoading(false);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final places = ref.watch(placesProvider);
     final paginationState = ref.watch(paginationProvider);
     final userInfos = ref.watch(userInfosProvider);
+    final menuSelectedd = ref.watch(menuSelected).newIndex;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (userInfos != null && userInfos.userId.isNotEmpty) {
-        _fetchMoreData();
+        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
       }
     });
 
-    if (places.isEmpty) {
-      if (paginationState.isLoading) {
+    final places = ref.watch(placesProvider)[menuSelectedd.toString()];
+    if (places!.isEmpty) {
+      if (paginationState[menuSelectedd.toString()]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);
       }
       return Padding(
@@ -123,15 +72,22 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     return Flexible(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.43,
-        child: paginationState.messageKey.isNotEmpty && places.isEmpty
+        child: paginationState[menuSelectedd.toString()]!
+                    .messageKey
+                    .isNotEmpty &&
+                places.isEmpty
             ? Center(
                 child: ErrorComponent(
-                  errorKey: paginationState.messageKey,
+                  errorKey:
+                      paginationState[menuSelectedd.toString()]!.messageKey,
                 ),
               )
             : ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: places.length + (paginationState.isLoading ? 1 : 0),
+                itemCount: places.length +
+                    (paginationState[menuSelectedd.toString()]!.isLoading
+                        ? 1
+                        : 0),
                 controller: _scrollController,
                 itemBuilder: (context, index) {
                   if (index == places.length) {
@@ -139,7 +95,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
-
                   final place = places[index];
                   if (place['isFavoritePlace']) {
                     Future.microtask(() {
