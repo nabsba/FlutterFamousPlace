@@ -14,7 +14,8 @@ async function main() {
   });
   const hotelData = await prismaClientDB.place.create({
     data: {
-      popularity: 10, // A high value assuming it's a popular place
+      popularity: 10,
+      image: "hotel_de_paris_monte-Carlo", // A high value assuming it's a popular place
       address: {
         create: {
           number: 1, // Assuming number is "1" for simplicity
@@ -50,7 +51,8 @@ async function main() {
   });
   const colosseumData = await prismaClientDB.place.create({
     data: {
-      popularity: 10, // A high value assuming it's a popular place
+      popularity: 10,
+      image: "colosseum", // A high value assuming it's a popular place
       address: {
         create: {
           number: 1, // Assuming number is "1" for simplicity
@@ -87,6 +89,7 @@ async function main() {
   const leaningTowerData = await prismaClientDB.place.create({
     data: {
       popularity: 9, // Another popular place, but slightly less than the Colosseum
+      image: "piazza_del_duomo",
       address: {
         create: {
           number: 1, // Assuming number is "1" for simplicity
@@ -120,6 +123,7 @@ async function main() {
   const bigBenData = await prismaClientDB.place.create({
     data: {
       popularity: 10, // A popular landmark in England
+      image: "big_ben",
       address: {
         create: {
           number: 1, // Assuming "1" as a placeholder
@@ -156,6 +160,7 @@ async function main() {
   const stonehengeData = await prismaClientDB.place.create({
     data: {
       popularity: 9, // A highly popular historical site
+      image: "stonehenge",
       address: {
         create: {
           number: 1, // Placeholder number
@@ -188,6 +193,7 @@ async function main() {
   const towerBridgeData = await prismaClientDB.place.create({
     data: {
       popularity: 9, // A major landmark in London
+      image: "tower_bridge",
       address: {
         create: {
           number: 1, // Placeholder number
@@ -215,6 +221,7 @@ async function main() {
   const buckinghamPalaceData = await prismaClientDB.place.create({
     data: {
       popularity: 10, // A major landmark in London
+      image: "buckingham_palace",
       address: {
         create: {
           number: 1, // Placeholder number

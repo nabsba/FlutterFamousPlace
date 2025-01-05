@@ -35,7 +35,6 @@ model Place {
   placeDetail PlaceDetail[] // One-to-many relation to PlaceDetail
   bookings    Booking[]
   users    PlaceOnUser[]
-
 }
 
 model PlaceOnUser {
@@ -43,8 +42,16 @@ model PlaceOnUser {
   placeId  String
   user     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   place    Place       @relation(fields: [placeId], references: [id], onDelete: Cascade)
-
   @@id([userId, placeId]) // Composite primary key to ensure a user-place pair is unique
+}
+model PlaceDetail {
+  id          String   @id @default(cuid())
+  name        String
+  description  String   @unique
+  createdAt    DateTime @default(now())
+  placeId      String   // Remove @unique to allow multiple PlaceDetails for one Place
+  languageId   Int      // Keeps the unique constraint if you need unique PlaceDetail per language
+  place        Place    @relation(fields: [placeId], references: [id]) // Many PlaceDetails can belong to one Place
 }
 model Session {
   id           String   @id @default(cuid())
@@ -119,15 +126,7 @@ model City {
 }
 
 
-model PlaceDetail {
-  id          String   @id @default(cuid())
-  name        String
-  description  String   @unique
-  createdAt    DateTime @default(now())
-  placeId      String   // Remove @unique to allow multiple PlaceDetails for one Place
-  languageId   Int      // Keeps the unique constraint if you need unique PlaceDetail per language
-  place        Place    @relation(fields: [placeId], references: [id]) // Many PlaceDetails can belong to one Place
-}
+
 model Language {
   id        Int      @id @default(autoincrement())
   type      String   @unique

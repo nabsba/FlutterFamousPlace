@@ -8,21 +8,19 @@ import {
   SUCCESS_STATUS,
 } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
-import { handleAddPlaceToPreference, handleGetPlaces } from '../services/functions';
-import { CreatePlace, FavoritePlaceBody } from '../type';
+import { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName } from '../services/functions';
+import { CreatePlace, FavoritePlaceBody, PlacesBody, PreSelectionBody } from '../type';
 
 export const resolversPlace = {
   Query: {
-    places: async (_parent: any, args: any, _context: any) => {
+    places: async (_parent: any, args: PlacesBody, _context: any) => {
       try {
         const result = await handleGetPlaces(args);
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,
           messageKey: SUCCESS_MESSAGES_KEYS.GET_PLACES,
-          data: {
-            places: result,
-          },
+          data: result
         };
       } catch (error) {
         logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PLACES}:`)},
@@ -31,6 +29,28 @@ export const resolversPlace = {
           status: STATUS_SERVER.SERVER_ERROR,
           isError: true,
           messageKey: ERROR_MESSAGES_KEYS.GET_PLACES,
+        };
+      }
+    },
+    preselectionName: async (_parent: any, args: PreSelectionBody, _context: any) => {
+      try {
+        const result = await handleGetPreSelectionName(args);
+        console.log(result);
+        return {
+          status: SUCCESS_STATUS.OK,
+          isError: false,
+          messageKey: SUCCESS_MESSAGES_KEYS.GET_PRESELECTION_NAMES,
+          data: {
+            selections:result
+          }
+        };
+      } catch (error) {
+        logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PRESELECTION_NAMES}:`)},
+         ${error}`);
+        return {
+          status: STATUS_SERVER.SERVER_ERROR,
+          isError: true,
+          messageKey: ERROR_MESSAGES_KEYS.GET_PRESELECTION_NAMES,
         };
       }
     },

@@ -40,4 +40,5 @@ export type FavoritePlaceBody = {
   placeId: string;
   userId: string;
 };
-export type PlacesBody = { language: string; type: string; userId: string };
+export type PlacesBody = { language: string; type: string; userId: string, page: string };
+export type PreSelectionBody = { language: string; type: string; userId: string, text: string };

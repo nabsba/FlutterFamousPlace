@@ -26,6 +26,7 @@ export const resolversAuth = {
     registerUser: async (_: any, data: registerUser) => {
       try {
         const result = await handleRegisterUser(data);
+
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,
