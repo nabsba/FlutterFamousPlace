@@ -2,6 +2,8 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { resolvers, typeDefs } from './graphql';
 import cors from 'cors';
+import { handleVerifyToken, verifyToken } from './jwt/services/function';
+import { ERROR_MESSAGES, ERROR_MESSAGES_KEYS, STATUS_SERVER } from './common';
 require('dotenv').config();
 const app = express() as any;
 app.get('/', (_: any, res: { send: (arg0: string) => void }) => {
@@ -15,19 +17,17 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // app.use(cookieParser());
 app.use((req: any, res: any, next: () => void) => {
-  //     let user = null;
-  //      if (req.headers && req.headers.authorization) {
-  //       const token = req.headers.authorization.replace('Bearer ', '');
-  //       try {
-  //         user = verifyToken(token); // Assuming this verifies the token and returns user info
-  //       } catch (err) {
-  //         console.error('Token verification failed', err);
-  //       }
-  //     }
-  // // console.log(req);
-
-  // // }
-  next();
+    
+        try {
+          handleVerifyToken(req); 
+          next();
+        } catch (err) {
+          res.status(STATUS_SERVER.FORBIDDEN).json(
+            {  status: STATUS_SERVER.FORBIDDEN,
+              isError: true,
+              messageKey: ERROR_MESSAGES_KEYS.NOT_ALLOWED,}
+          )
+      }
 });
 
 async function startServer() {

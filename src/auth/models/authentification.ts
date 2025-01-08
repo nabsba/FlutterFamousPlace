@@ -42,7 +42,6 @@ const handleRegisterUser = async (data: registerUser) => {
       if (!clientRole) {
         throw new Error('Default role "client" not found');
       }
-
       const token = returnToken(data.data);
       await tx.user.create({
         data: {
