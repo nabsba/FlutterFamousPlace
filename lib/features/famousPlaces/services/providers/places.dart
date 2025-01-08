@@ -7,7 +7,7 @@ final placesProvider =
 );
 
 class PlacesNotifier extends StateNotifier<Map<String, List<dynamic>>> {
-  PlacesNotifier() : super({"0": [], "1": [], "2": []});
+  PlacesNotifier() : super({"0": [], "1": [], "2": [], "3": []});
 
   // Add a place to the specified array
   void addPlace(Place place, String type) {
@@ -41,10 +41,6 @@ class PlacesNotifier extends StateNotifier<Map<String, List<dynamic>>> {
 
   // Clear all arrays
   void clearAllPlaces() {
-    state = {
-      "0": [],
-      "1": [],
-      "2": [],
-    };
+    state = {"0": [], "1": [], "2": [], "3": []};
   }
 }

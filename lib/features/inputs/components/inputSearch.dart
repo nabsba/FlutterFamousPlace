@@ -1,9 +1,76 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
-class InputSearch extends StatelessWidget {
+import '../../client/services/clientProvider.dart';
+import '../../common/services/functions.dart';
+import '../../famousPlaces/services/PreselectonName.dart';
+import '../../famousPlaces/services/graphql/graphQlQuery.dart';
+import '../../famousPlaces/services/providers/fetchPlaces.dart';
+import '../../famousPlaces/services/providers/indexMenu.dart';
+import '../../famousPlaces/services/providers/places.dart';
+import '../../graphql/client.dart';
+
+class InputSearch extends ConsumerStatefulWidget {
+  const InputSearch({Key? key}) : super(key: key);
+
+  @override
+  _InputSearchState createState() => _InputSearchState();
+}
+
+class _InputSearchState extends ConsumerState<InputSearch> {
   final TextEditingController _controller = TextEditingController();
+  final List<Selection> _suggestions = [];
+  Timer? _debounce;
+  String? _selectedId;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_onSearchChanged);
+    _controller.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 300), () async {
+      final query = _controller.text.trim();
+      if (query.isNotEmpty) {
+        final placeRepository =
+            PlaceRepository(GraphQLClientSingleton().client);
+        final userInfos = ref.watch(userInfosProvider);
+        final locale = Localizations.localeOf(context);
+        final languageIndex = getIndexOfLanguage(locale.toString());
+        final menuSelectedd = ref.read(menuSelected).newIndex;
+        final results = await placeRepository.preselectionNames(
+          query,
+          languageIndex.toString(),
+          menuSelectedd.toString(),
+          userInfos!.userId,
+        );
+        final nanb = PreselectionNameData.fromMap(results.data!);
+
+        setState(() {
+          _suggestions
+            ..clear()
+            ..addAll(nanb.selections);
+        });
+      } else {
+        setState(() {
+          _suggestions.clear();
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +80,8 @@ class InputSearch extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color.fromARGB(255, 218, 218, 218), // Border color
-              width: 2, // Border width
+              color: const Color.fromARGB(255, 218, 218, 218),
+              width: 2,
             ),
           ),
           child: Row(
@@ -25,23 +92,32 @@ class InputSearch extends StatelessWidget {
                   cursorColor: const Color.fromARGB(255, 146, 146, 146),
                   decoration: InputDecoration(
                     hintText: AppLocalizations.of(context)!.searchPlaces,
-                    border: InputBorder.none, // Removes default border
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 10), // Padding for content
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
                 ),
               ),
               Container(
-                height: 30, // Height of the separator
-                width: 2, // Width of the separator
-                color: const Color.fromARGB(
-                    255, 211, 211, 211), // Color of the separator
+                height: 30,
+                width: 2,
+                color: const Color.fromARGB(255, 211, 211, 211),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35.0),
                 child: GestureDetector(
                   onTap: () {
-                    print('User input: ${_controller.text}');
+                    if (_selectedId!.isNotEmpty) {
+                      ref.read(menuSelected.notifier).updateIndex(3);
+                      final place = ref.watch(placesProvider)['3'];
+                      if (place!.isNotEmpty &&
+                          _selectedId == place[0]['placeDetail']['id']) {
+                        return;
+                      }
+
+                      ref
+                          .read(placesNotifierProvider.notifier)
+                          .fetchPlace(ref, context, _selectedId!);
+                    }
                   },
                   child: SvgPicture.asset(
                     'assets/icons/divers/search.svg',
@@ -51,6 +127,41 @@ class InputSearch extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ),
+        Visibility(
+          visible: _suggestions.isNotEmpty,
+          child: Container(
+            constraints: const BoxConstraints(maxHeight: 200),
+            margin: const EdgeInsets.only(top: 8), // Spacing below the input
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 5,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: _suggestions.length,
+              itemBuilder: (context, index) {
+                final suggestion = _suggestions[index];
+                return ListTile(
+                  title: Text(suggestion.name),
+                  onTap: () {
+                    _controller.text = suggestion.name;
+                    _selectedId = suggestion.id;
+                    setState(() {
+                      _suggestions.clear();
+                    });
+                  },
+                );
+              },
+            ),
           ),
         ),
       ],

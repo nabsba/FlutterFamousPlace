@@ -117,4 +117,41 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
           .setLoading(menuSelectedd.toString(), false);
     }
   }
+
+  Future<void> fetchPlace(WidgetRef ref, context, String placeId) async {
+    final menuSelectedd = ref.read(menuSelected).newIndex;
+    try {
+      ref
+          .read(paginationProvider.notifier)
+          .setLoading(menuSelectedd.toString(), true);
+      final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
+
+      final result = await placeRepository.fetchPlace(
+        placeId: placeId,
+      );
+
+      final dynamic placesReceivedFromServer = result.data?['place'] ?? [];
+      if (result.isError) {
+        ref
+            .read(paginationProvider.notifier)
+            .setIsError(menuSelectedd.toString(), result.messageKey);
+      } else if (placesReceivedFromServer.isNotEmpty) {
+        final place = ref.watch(placesProvider)['3'];
+        if (place!.isNotEmpty) {
+          ref.read(placesProvider.notifier).clearPlaces('3');
+        }
+
+        ref
+            .read(placesProvider.notifier)
+            .addPlaces([placesReceivedFromServer], '3');
+      }
+    } catch (error) {
+      print(error);
+    } finally {
+      // Reset loading state
+      ref
+          .read(paginationProvider.notifier)
+          .setLoading(menuSelectedd.toString(), false);
+    }
+  }
 }

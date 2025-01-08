@@ -57,6 +57,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     });
 
     final places = ref.watch(placesProvider)[menuSelectedd.toString()];
+
     if (places!.isEmpty) {
       if (paginationState[menuSelectedd.toString()]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);
@@ -96,6 +97,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
                   final place = places[index];
+
                   if (place['isFavoritePlace']) {
                     Future.microtask(() {
                       ref
