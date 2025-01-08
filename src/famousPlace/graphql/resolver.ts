@@ -8,11 +8,31 @@ import {
   SUCCESS_STATUS,
 } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
-import { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName } from '../services/functions';
-import { CreatePlace, FavoritePlaceBody, PlacesBody, PreSelectionBody } from '../type';
+import { handleAddPlaceToPreference, handleGetPlace, handleGetPlaces, handleGetPreSelectionName } from '../services/functions';
+import { CreatePlace, FavoritePlaceBody, PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 
 export const resolversPlace = {
   Query: {
+    place: async (_parent: any, args: PlaceBody, _context: any) => {
+      try {
+        const result = await handleGetPlace(args);
+
+        return {
+          status: SUCCESS_STATUS.OK,
+          isError: false,
+          messageKey: SUCCESS_MESSAGES_KEYS.GET_PLACE,
+          data: result
+        };
+      } catch (error) {
+        logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PLACE}:`)},
+         ${error}`);
+        return {
+          status: STATUS_SERVER.SERVER_ERROR,
+          isError: true,
+          messageKey: ERROR_MESSAGES_KEYS.GET_PLACES,
+        };
+      }
+    },
     places: async (_parent: any, args: PlacesBody, _context: any) => {
       try {
         const result = await handleGetPlaces(args);

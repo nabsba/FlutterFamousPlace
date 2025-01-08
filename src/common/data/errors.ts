@@ -5,6 +5,7 @@ const ERROR_MESSAGES = {
   REFRESH_TOKEN: 'Refresh token failed.',
   ADD_PLACE_TO_PREFERENCE: 'Adding the location as a preference has failed.',
   GET_PLACES: 'Failed to retrieve the place. Please try again.',
+  GET_PLACE: 'Failed to retrieve the places. Please try again.',
   GET_PRESELECTION_NAMES: 'The preselection names were not retrieved successfully',
 };
 
@@ -15,6 +16,7 @@ const ERROR_MESSAGES_KEYS = {
   REFRESH_TOKEN: 'refreshToken',
   ADD_PLACE_TO_PREFERENCE: 'addPlaceToPreference',
   GET_PLACES: 'getPlaces',
+  GET_PLACE: 'getPlace',
   GET_PRESELECTION_NAMES: 'getPreselectionNames',
 };
 

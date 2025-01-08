@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage, STATUS_SERVER } from '../../common';
 import { listFilesInFolder } from '../../firebase';
 import prismaClientDB from '../../lib/prismadb';
-import { PlacesBody, PreSelectionBody } from '../type';
+import { PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 import { ROW_PER_PAGE } from './constant';
 
 const handleAddPlaceToPreference = async (placeId: string, userId: string) => {
@@ -69,7 +69,7 @@ const returnTotalRow = (args: PlacesBody) => {
       });
   }
 }
-const returnQueryFilterPlace = (args: PlacesBody, fromRow: number) => {
+const returnQueryFilterPlace = (args: PlacesBody , fromRow: number) => {
 
   switch (args.type) {
     // all poopular places
@@ -192,8 +192,7 @@ users: {
             },
           },
         });
-        
-  
+
     default:
       return  prismaClientDB.place.findMany({
         orderBy: {
@@ -259,12 +258,67 @@ const handleGetPlaces = async (args: PlacesBody) => {
 
     return data;
   } catch (error) {
-    logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPlaces', `${ERROR_MESSAGES.REGISTER_USER}:`)},
+    logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPlaces', `${ERROR_MESSAGES.GET_PLACES}:`)},
     ${error}`);
     throw error;
   }
 };
+const handleGetPlace = async (args: PlaceBody) => {
+  try {
+  const result = await prismaClientDB.place.findFirst({
+    where: {
+      placeDetail: {
+        some: {
+          id: args.placeId, // Filter to match PlaceDetail with id = 4
+        },
+      },
+    },
+    include: {
+      address: {
+        include: {
+          city: {
+            include: {
+              country: true,
+            },
+          },
+        },
+      },
+      placeDetail: {
+        where: {
+          id: args.placeId, // Filter the specific PlaceDetail
+        },
+      }, // Include related PlaceDetail data
+      _count: {
+        select: {
+          users: true, // Count the number of related users
+        },
+      },
+    },
+  });
 
+ 
+const isPlaceOnUser = result!._count.users > 0;
+  const resultFinal = {
+    ...result,
+    isFavoritePlace: isPlaceOnUser,
+    images: [],
+    // images:  await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
+  }
+
+    const data = {
+      place: resultFinal,
+      page: 1,
+      rowPerPage: ROW_PER_PAGE,
+      totalRows: 0
+    }
+
+    return data;
+  } catch (error) {
+    logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPlace', `${ERROR_MESSAGES.GET_PLACE}:`)},
+    ${error}`);
+    throw error;
+  }
+};
 const returnQueryPreselectionName = (args: PreSelectionBody) => {
   switch (args.type) {
     case '0': 
@@ -274,7 +328,7 @@ const returnQueryPreselectionName = (args: PreSelectionBody) => {
           startsWith: args.text, // Matches names starting with the query
           mode: "insensitive", // Case-insensitive search
         },
-        languageId: parseInt(args.language), // Filter by language
+        languageId: parseInt(args.language) + 1, // Filter by language
       },
       select: {
         name: true,
@@ -288,7 +342,7 @@ const returnQueryPreselectionName = (args: PreSelectionBody) => {
     case '2': 
     return  prismaClientDB.placeDetail.findMany({
       where: {
-        languageId: parseInt(args.language), // Filter by languageId
+        languageId: parseInt(args.language) + 1, // Filter by languageId
         place: {
           users: {
             some: {
@@ -309,7 +363,7 @@ const returnQueryPreselectionName = (args: PreSelectionBody) => {
             startsWith: args.text, // Matches names starting with the query
             mode: "insensitive", // Case-insensitive search
           },
-          languageId: parseInt(args.language), // Filter by language
+          languageId: parseInt(args.language) + 1, // Filter by language
         },
         select: {
           name: true,
@@ -331,7 +385,7 @@ const result = await returnQueryPreselectionName(args);
 return result
 
   } catch (error) {
-    logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPreSelectionName', `${ERROR_MESSAGES.GET_PRESELECTION_NAMES}:`)},
+    logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPreSelectionName', `${ERROR_MESSAGES.GET_PLACE}:`)},
     ${error}`);
     throw error;
   }
@@ -339,4 +393,4 @@ return result
 
 
 
-export { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName };
+export { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName, handleGetPlace };

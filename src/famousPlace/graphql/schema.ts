@@ -10,8 +10,16 @@ const typeDefsPlaces = gql`
     images: [String!]!
     isFavoritePlace: Boolean!
   }
+
+  type placeData {
+    place: Place # Nullable array of nullable Place objects
+    rowPerPage: Int!
+    page: String!
+    totalRows: Int!
+  }
+
   type placesData {
-    places: [Place!]! # Non-nullable array of non-nullable Place objects,
+    places: [Place] # Non-nullable array of non-nullable Place objects,
     rowPerPage: Int!
     page: String!
     totalRows: Int!
@@ -22,6 +30,12 @@ const typeDefsPlaces = gql`
     isError: Boolean! # Indicates if an error occurred
     messageKey: String! # Message that provides additional information
     data: placesData
+  }
+  type placeResponse {
+    status: Int! # Status code, e.g., 200 for success, 400 for failure
+    isError: Boolean! # Indicates if an error occurred
+    messageKey: String! # Message that provides additional information
+    data: placeData
   }
 
   type preselectionNameData {
@@ -75,6 +89,7 @@ const typeDefsPlaces = gql`
 
   # Queries for fetching places
   type Query {
+    place(placeId: String): placeResponse
     places(language: String, type: String, userId: String, page: String): placesResponse
     preselectionName(text: String, language: String, type: String, userId: String): preselectionNameResponse
   }

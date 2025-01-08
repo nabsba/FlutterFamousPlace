@@ -5,6 +5,7 @@ const SUCCESS_MESSAGES = {
   REFRESH_TOKEN: 'The token has been refreshed',
   ADD_PLACE_TO_PREFERENCE: 'The location was successfully added as a preference.',
   GET_PLACES: 'The places were retrieved successfully.',
+  GET_PLACE: 'The place was retrieved successfully.',
   GET_PRESELECTION_NAMES: 'The preselection names were retrieved successfully',
 };
 
@@ -15,6 +16,7 @@ const SUCCESS_MESSAGES_KEYS = {
   REFRESH_TOKEN: 'refreshToken',
   ADD_PLACE_TO_PREFERENCE: 'addPlaceToPreference',
   GET_PLACES: 'getPlaces',
+  GET_PLACE: 'getPlace',
   GET_PRESELECTION_NAMES: 'getPreselectionNames',
 };
 
