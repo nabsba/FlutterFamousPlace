@@ -55,7 +55,7 @@ export const resolversPlace = {
     preselectionName: async (_parent: any, args: PreSelectionBody, _context: any) => {
       try {
         const result = await handleGetPreSelectionName(args);
-        console.log(result);
+  
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,
