@@ -30,5 +30,21 @@
    "cannotLoadMoreData": "Impossible de charger plus de données. Veuillez réessayer plus tard.",
   "@cannotLoadMoreData": {
     "description": "Message d'erreur affiché lorsque des données supplémentaires ne peuvent pas être chargées (version française)."
+  },
+  "getPlaces": "Impossible d'afficher les places. Veuillez réessayer plus tard.",
+  "@getPlaces": {
+    "description": "Message d'erreur affiché lorsque des places ne peuvent pas s'afficher (version française)."
+  },
+    "getPlace": "Impossible d'afficher les place. Veuillez réessayer plus tard.",
+  "@getPlace": {
+    "description": "Message d'erreur affiché lorsque la place ne peut pas s'afficher (version française)."
+  },
+  "getPreselectionNames": "Les noms de présélection n'ont pas été récupérés avec succès.",
+  "@getPreselectionNames": {
+    "description": "Message d'erreur affiché lorsque les noms de présélection ne peuvent pas être chargés."
+  },
+  "notAllowed": "L'utilisateur n'est pas authorisé à acceder aux doonées.",
+  "@notAllowed": {
+    "description": "Message d'erreur lorsqu'un utilisateur n'est pas authorisé à accéder a une page."
   }
 }

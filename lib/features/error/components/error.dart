@@ -13,7 +13,10 @@ extension LocalizedString on ErrorsLocalizations {
       'refreshToken': refreshToken,
       'token': token,
       'defaultError': defaultError,
-      'cannotLoadMoreData': cannotLoadMoreData
+      'cannotLoadMoreData': cannotLoadMoreData,
+      'getPlaces': getPlaces,
+      'getPlace': getPlace,
+      'notAllowed': notAllowed
     };
 
     return map[key] ?? map['defaultError']!; // Default message if key not found

@@ -6,7 +6,11 @@ const Map<String, String> errorMessagesKeys = {
   'REFRESH_TOKEN': 'refreshToken',
   'TOKEN': 'token',
   'CANNOT_LOAD_MORE_DATA': 'cannotLoadMoreData',
-  'DEFAULT_ERROR': 'defaultError'
+  'DEFAULT_ERROR': 'defaultError',
+  'GET_PLACES': 'getPlaces',
+  'GET_PLACE': 'getPlace',
+  'GET_PRESELECTION_NAMES': 'getPreselectionNames',
+  'NOT_ALLOWED': 'Access\'s user is not allowed. '
 };
 
 // Status server codes

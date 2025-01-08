@@ -30,6 +30,24 @@
   "cannotLoadMoreData": "Cannot load more data. Please try again later.",
   "@cannotLoadMoreData": {
     "description": "Error message displayed when additional data cannot be loaded."
+  },
+    "getPlaces": "Cannot load places. Please try again later.",
+  "@getPlaces": {
+    "description": "Error message displayed when places cannot be loaded."
+  },
+  "getPlace": "Cannot load place. Please try again later.",
+  "@getPlace": {
+    "description": "Error message displayed when place cannot be loaded."
+  },
+  "getPreselectionNames": "The preselection names were not retrieved successfully.",
+   "@getPreselectionNames": {
+    "description": "Error message displayed when preselection names cannot be loaded."
+  },
+  
+  "notAllowed": "The user is not authorised to access the data.",
+  "@notAllowed": {
+    "description": "Error message when a user is not authorised to access a page."
   }
+
 
 }
