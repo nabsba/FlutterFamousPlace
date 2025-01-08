@@ -16,7 +16,6 @@ export const resolversPlace = {
     place: async (_parent: any, args: PlaceBody, _context: any) => {
       try {
         const result = await handleGetPlace(args);
-
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,

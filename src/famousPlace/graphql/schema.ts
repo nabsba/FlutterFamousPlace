@@ -85,6 +85,7 @@ const typeDefsPlaces = gql`
   type PlaceDetail {
     name: String
     description: String
+    id: String
   }
 
   # Queries for fetching places

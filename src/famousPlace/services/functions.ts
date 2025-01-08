@@ -296,12 +296,13 @@ const handleGetPlace = async (args: PlaceBody) => {
     },
   });
 
- 
+
 const isPlaceOnUser = result!._count.users > 0;
   const resultFinal = {
     ...result,
     isFavoritePlace: isPlaceOnUser,
     images: [],
+    placeDetail: result?.placeDetail[0]
     // images:  await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
   }
 
