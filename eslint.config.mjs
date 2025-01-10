@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 
 export default [...compat.extends("plugin:@typescript-eslint/recommended"),{ ignores: [ "*.js",            // Ignore all `.js` files
 "dist/**",         // Ignore everything inside the `dist` directory
-"node_modules/**",  ]}, {
+"node_modules/**", "src/prisma/"  ]}, {
     languageOptions: {
         parser: tsParser,
         ecmaVersion: 2018,
