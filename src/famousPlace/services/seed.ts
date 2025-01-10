@@ -2,17 +2,17 @@ import prismaClientDB from '../../lib/prismadb';
 
 async function main() {
   // France
-  const clientRole = await prismaClientDB.role.create({
+ await prismaClientDB.role.create({
     data: {
       // Generate a unique ID for the role
       roleName: 'client',
     },
   });
-  const languages = await prismaClientDB.language.createMany({
+await prismaClientDB.language.createMany({
     data: [{ type: 'eng' }, { type: 'fr' }],
     skipDuplicates: true, // Optional: skips rows if they already exist
   });
-  const hotelData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 10,
       image: 'hotel_de_paris_monte-Carlo', // A high value assuming it's a popular place
@@ -49,7 +49,7 @@ async function main() {
       },
     },
   });
-  const colosseumData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 10,
       image: 'colosseum', // A high value assuming it's a popular place
@@ -86,7 +86,7 @@ async function main() {
       },
     },
   });
-  const leaningTowerData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 9, // Another popular place, but slightly less than the Colosseum
       image: 'piazza_del_duomo',
@@ -120,7 +120,7 @@ async function main() {
       },
     },
   });
-  const bigBenData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 10, // A popular landmark in England
       image: 'big_ben',
@@ -157,7 +157,7 @@ async function main() {
       },
     },
   });
-  const stonehengeData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 9, // A highly popular historical site
       image: 'stonehenge',
@@ -190,7 +190,7 @@ async function main() {
       },
     },
   });
-  const towerBridgeData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 9, // A major landmark in London
       image: 'tower_bridge',
@@ -218,7 +218,7 @@ async function main() {
       },
     },
   });
-  const buckinghamPalaceData = await prismaClientDB.place.create({
+ await prismaClientDB.place.create({
     data: {
       popularity: 10, // A major landmark in London
       image: 'buckingham_palace',

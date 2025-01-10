@@ -12,9 +12,9 @@ import { LoginArgs, registerUser } from '../types/types';
 
 export const resolversAuth = {
   Query: {
-    login: async (_: any, { userName, password }: LoginArgs) => {
+    login: async (_: undefined, { userName, password }: LoginArgs) => {
       const data = { userName, password };
-      const result = await handleLogin(data);
+     await handleLogin(data);
       return {
         status: 200,
         isError: false,
@@ -23,7 +23,7 @@ export const resolversAuth = {
     },
   },
   Mutation: {
-    registerUser: async (_: any, data: registerUser) => {
+    registerUser: async (_: undefined, data: registerUser) => {
       try {
         const result = await handleRegisterUser(data);
 
@@ -45,9 +45,9 @@ export const resolversAuth = {
         };
       }
     },
-    registerUserWithCookie: async (_: any, data: registerUser) => {
+    registerUserWithCookie: async (_: undefined, data: registerUser) => {
       try {
-        const result = await handleRegisterUserWithCookie(data);
+        await handleRegisterUserWithCookie(data);
         return {
           status: STATUS_SERVER.OK,
           isError: false,
@@ -65,14 +65,14 @@ export const resolversAuth = {
       }
     },
   },
-  //   updateAuthentification: async (_: any, { id, name, owner }: { id: number; name: string; owner: string }) => {
+  //   updateAuthentification: async (_: undefined, { id, name, owner }: { id: number; name: string; owner: string }) => {
   //     console.log(`Updating dog with ID: ${id}, name: ${name}, owner: ${owner}`);
   //     return prismaClientDB.dog.update({
   //       where: { id },
   //       data: { name, owner },
   //     });
   //   },
-  //   deleteUser: async (_: any, { id }: { id: number }) => {
+  //   deleteUser: async (_: undefined, { id }: { id: number }) => {
   //     console.log(`Deleting dog with ID: ${id}`);
   //     return prismaClientDB.dog.delete({ where: { id } });
   //   },

@@ -1,5 +1,4 @@
-import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage, STATUS_SERVER } from '../../common';
-import { listFilesInFolder } from '../../firebase';
+import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
 import { PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 import { ROW_PER_PAGE } from './constant';

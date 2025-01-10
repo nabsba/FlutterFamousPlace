@@ -1,12 +1,17 @@
 import { ApolloServer } from 'apollo-server-express';
-import express from 'express';
-import { resolvers, typeDefs } from './graphql';
 import cors from 'cors';
-import { handleVerifyToken, verifyToken } from './jwt/services/function';
-import { ERROR_MESSAGES, ERROR_MESSAGES_KEYS, STATUS_SERVER } from './common';
-require('dotenv').config();
-const app = express() as any;
-app.get('/', (_: any, res: { send: (arg0: string) => void }) => {
+import express, { Request, Response } from 'express';
+import { ERROR_MESSAGES_KEYS, logErrorAsyncMessage, logMessage, STATUS_SERVER } from './common';
+import { resolvers, typeDefs } from './graphql';
+import { handleVerifyToken } from './jwt/services/function';
+
+import dotenv from "dotenv";
+
+
+// Load environment variables from .env file
+dotenv.config()
+const app = express();
+app.get('/', (_: object, res: { send: (arg0: string) => void }) => {
   res.send('Example Server');
 });
 
@@ -16,11 +21,16 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 // app.use(cookieParser());
-app.use((req: any, res: any, next: () => void) => {
+app.use((req: Request, res: Response, next: () => void) => {
   try {
     handleVerifyToken(req);
     next();
-  } catch (err) {
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      logMessage(`${logErrorAsyncMessage('src/server', `Error handleVerifyToken: ${err.message}`)}`);
+    } else {
+      logMessage(`${logErrorAsyncMessage('src/server', `Error handleVerifyToken: unknown error occured`)}`);
+    }
     res
       .status(STATUS_SERVER.FORBIDDEN)
       .json({ status: STATUS_SERVER.FORBIDDEN, isError: true, messageKey: ERROR_MESSAGES_KEYS.NOT_ALLOWED });
@@ -36,6 +46,7 @@ async function startServer() {
   await server.start();
 
   server.applyMiddleware({
+// @ts-expect-error as app is not type of express
     app,
     path: '/',
     cors: false, // disables the apollo-server-express cors to allow the cors middleware use

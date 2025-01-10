@@ -12,7 +12,7 @@ import { handleRefreshToken } from '../models/jwt';
 
 export const resolversJWT = {
   Mutation: {
-    refreshToken: async (_: any, data: registerUser) => {
+    refreshToken: async (_: undefined, data: registerUser) => {
       try {
         const token = await handleRefreshToken(data.data);
         return {

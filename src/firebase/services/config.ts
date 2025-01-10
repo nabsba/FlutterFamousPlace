@@ -1,9 +1,8 @@
-const admin = require('firebase-admin');
-
-const serviceAccount = require('./serviceAccountKey.json');
-
+import * as admin from 'firebase-admin';
+import  serviceAccount from './serviceAccountKey.json';
+const serviceAccountCreds = serviceAccount as admin.ServiceAccount;
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(serviceAccountCreds),
   storageBucket: 'gs://famousplacessba.firebasestorage.app',
 });
 

@@ -18,7 +18,7 @@ import { CreatePlace, FavoritePlaceBody, PlaceBody, PlacesBody, PreSelectionBody
 
 export const resolversPlace = {
   Query: {
-    place: async (_parent: any, args: PlaceBody, _context: any) => {
+    place: async (_parent: undefined, args: PlaceBody) => {
       try {
         const result = await handleGetPlace(args);
         return {
@@ -37,7 +37,7 @@ export const resolversPlace = {
         };
       }
     },
-    places: async (_parent: any, args: PlacesBody, _context: any) => {
+    places: async (_parent:undefined, args: PlacesBody) => {
       try {
         const result = await handleGetPlaces(args);
         return {
@@ -56,7 +56,7 @@ export const resolversPlace = {
         };
       }
     },
-    preselectionName: async (_parent: any, args: PreSelectionBody, _context: any) => {
+    preselectionName: async (_parent: undefined, args: PreSelectionBody) => {
       try {
         const result = await handleGetPreSelectionName(args);
 
@@ -81,12 +81,13 @@ export const resolversPlace = {
   },
   Mutation: {
     createPlace: async (input: CreatePlace) => {
+      console.error(input);
       return true;
     },
-    deletePlace: async (_: any, { id }: { id: string }) => {
+    deletePlace: async (_: undefined, { id }: { id: string }) => {
       return prismaClientDB.place.delete({ where: { id } });
     },
-    toggleFavoritePlace: async (_: any, { placeId, userId }: FavoritePlaceBody) => {
+    toggleFavoritePlace: async (_: undefined, { placeId, userId }: FavoritePlaceBody) => {
       try {
         const result = await handleAddPlaceToPreference(placeId, userId);
 
@@ -99,6 +100,7 @@ export const resolversPlace = {
           },
         };
       } catch (error) {
+        logMessage(error as string);
         return {
           status: STATUS_SERVER.SERVER_ERROR,
           isError: true,

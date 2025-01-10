@@ -7,7 +7,7 @@ import { LoginArgs, registerUser } from '../types/types';
 const handleLogin = async (data: LoginArgs) => {
   try {
     const { userName, password } = data;
-    const result = await prismaClientDB.userAuthentification.findFirst({
+     await prismaClientDB.userAuthentification.findFirst({
       where: {
         userName,
         password,
@@ -70,7 +70,7 @@ const handleRegisterUser = async (data: registerUser) => {
 
 const handleRegisterUserWithCookie = async (data: registerUser) => {
   try {
-    const result = await prismaClientDB.userAuthentification.findFirst({
+ await prismaClientDB.userAuthentification.findFirst({
       where: {
         userName: data.data.userName,
       },
