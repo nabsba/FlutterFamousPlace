@@ -23,7 +23,6 @@ const typeDefsPlaces = gql`
     rowPerPage: Int!
     page: String!
     totalRows: Int!
-
   }
   type placesResponse {
     status: Int! # Status code, e.g., 200 for success, 400 for failure

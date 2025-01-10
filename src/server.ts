@@ -17,17 +17,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // app.use(cookieParser());
 app.use((req: any, res: any, next: () => void) => {
-    
-        try {
-          handleVerifyToken(req); 
-          next();
-        } catch (err) {
-          res.status(STATUS_SERVER.FORBIDDEN).json(
-            {  status: STATUS_SERVER.FORBIDDEN,
-              isError: true,
-              messageKey: ERROR_MESSAGES_KEYS.NOT_ALLOWED,}
-          )
-      }
+  try {
+    handleVerifyToken(req);
+    next();
+  } catch (err) {
+    res
+      .status(STATUS_SERVER.FORBIDDEN)
+      .json({ status: STATUS_SERVER.FORBIDDEN, isError: true, messageKey: ERROR_MESSAGES_KEYS.NOT_ALLOWED });
+  }
 });
 
 async function startServer() {

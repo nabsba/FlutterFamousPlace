@@ -7,7 +7,7 @@ const ERROR_MESSAGES = {
   GET_PLACES: 'Failed to retrieve the place. Please try again.',
   GET_PLACE: 'Failed to retrieve the places. Please try again.',
   GET_PRESELECTION_NAMES: 'The preselection names were not retrieved successfully',
-  NOT_ALLOWED: 'Access\'s user is not allowed. '
+  NOT_ALLOWED: "Access's user is not allowed. ",
 };
 
 const ERROR_MESSAGES_KEYS = {
@@ -19,7 +19,7 @@ const ERROR_MESSAGES_KEYS = {
   GET_PLACES: 'getPlaces',
   GET_PLACE: 'getPlace',
   GET_PRESELECTION_NAMES: 'getPreselectionNames',
-  NOT_ALLOWED: 'notAllowed'
+  NOT_ALLOWED: 'notAllowed',
 };
 
 const STATUS_SERVER = {

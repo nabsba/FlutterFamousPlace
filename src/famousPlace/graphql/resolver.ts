@@ -8,7 +8,12 @@ import {
   SUCCESS_STATUS,
 } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
-import { handleAddPlaceToPreference, handleGetPlace, handleGetPlaces, handleGetPreSelectionName } from '../services/functions';
+import {
+  handleAddPlaceToPreference,
+  handleGetPlace,
+  handleGetPlaces,
+  handleGetPreSelectionName,
+} from '../services/functions';
 import { CreatePlace, FavoritePlaceBody, PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 
 export const resolversPlace = {
@@ -20,7 +25,7 @@ export const resolversPlace = {
           status: SUCCESS_STATUS.OK,
           isError: false,
           messageKey: SUCCESS_MESSAGES_KEYS.GET_PLACE,
-          data: result
+          data: result,
         };
       } catch (error) {
         logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PLACE}:`)},
@@ -39,7 +44,7 @@ export const resolversPlace = {
           status: SUCCESS_STATUS.OK,
           isError: false,
           messageKey: SUCCESS_MESSAGES_KEYS.GET_PLACES,
-          data: result
+          data: result,
         };
       } catch (error) {
         logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PLACES}:`)},
@@ -54,14 +59,14 @@ export const resolversPlace = {
     preselectionName: async (_parent: any, args: PreSelectionBody, _context: any) => {
       try {
         const result = await handleGetPreSelectionName(args);
-  
+
         return {
           status: SUCCESS_STATUS.OK,
           isError: false,
           messageKey: SUCCESS_MESSAGES_KEYS.GET_PRESELECTION_NAMES,
           data: {
-            selections:result
-          }
+            selections: result,
+          },
         };
       } catch (error) {
         logMessage(`${logErrorAsyncMessage('famousPlace/graphql/resolversPlace', `${ERROR_MESSAGES.GET_PRESELECTION_NAMES}:`)},

@@ -1,6 +1,6 @@
 const AUTHORIZATION_HEADER_TYPE = {
-    MOBILE: 'mobile',
-    WEB: 'web'
-}
+  MOBILE: 'mobile',
+  WEB: 'web',
+};
 
-export {AUTHORIZATION_HEADER_TYPE}
+export { AUTHORIZATION_HEADER_TYPE };

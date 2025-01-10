@@ -42,10 +42,6 @@ const verifyToken = (token: string): jwt.JwtPayload | null => {
   }
 };
 
-
-
-
-
 const mobileAuthorization = (req: any) => {
   try {
     const token = req.headers.authorization.replace('Bearer ', '');
@@ -55,35 +51,34 @@ const mobileAuthorization = (req: any) => {
     ${error.message}`);
     throw new Error(`Error verifying token:', ${error.message}`);
   }
-}
+};
 const webAuthorization = (req: any) => {
   try {
     // not yet developed
-    return true
+    return true;
   } catch (error: any) {
     logMessage(`${logErrorAsyncMessage('jwt/services/function/webAuthorization', `Error verifying token:`)},
     ${error.message}`);
     throw new Error(`Error verifying token:', ${error.message}`);
   }
-}
+};
 const handleVerifyToken = (req: any) => {
   try {
     if (req.headers && req.headers.authorization) {
-   switch (req.headers.authorizationsource) {
-
-  case AUTHORIZATION_HEADER_TYPE.MOBILE:
-    return mobileAuthorization(req);
-    case AUTHORIZATION_HEADER_TYPE.WEB:
-      return webAuthorization(req);
-  default:
-    throw new Error('No authorization passed')
-}
- }
-    throw new Error('No authorization passed')
-  } catch (error:any) {
+      switch (req.headers.authorizationsource) {
+        case AUTHORIZATION_HEADER_TYPE.MOBILE:
+          return mobileAuthorization(req);
+        case AUTHORIZATION_HEADER_TYPE.WEB:
+          return webAuthorization(req);
+        default:
+          throw new Error('No authorization passed');
+      }
+    }
+    throw new Error('No authorization passed');
+  } catch (error: any) {
     logMessage(`${logErrorAsyncMessage('jwt/services/function/handleVerifyToken', `Error verifying token:`)},
     ${error.message}`);
     throw new Error(`Error verifying token:', ${error.message}`);
   }
-}
+};
 export { returnToken, verifyToken, handleVerifyToken };
