@@ -1,5 +1,6 @@
 import { resolversJWT } from './graphQl/resolver';
 import typeDefsJWT from './graphQl/schema';
-import { handleVerifyToken, returnToken } from './services/function';
+import { handleRefreshToken, handleVerifyToken } from './models/jwt';
+import { returnToken } from './services/function';
 
-export { returnToken, resolversJWT, typeDefsJWT, handleVerifyToken };
+export { returnToken, resolversJWT, typeDefsJWT, handleVerifyToken, handleRefreshToken };

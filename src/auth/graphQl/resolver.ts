@@ -14,7 +14,7 @@ export const resolversAuth = {
   Query: {
     login: async (_: undefined, { userName, password }: LoginArgs) => {
       const data = { userName, password };
-     await handleLogin(data);
+      await handleLogin(data);
       return {
         status: 200,
         isError: false,

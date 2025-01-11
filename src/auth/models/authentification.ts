@@ -1,13 +1,14 @@
 import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
 import { returnToken } from '../../jwt';
-import { handleRefreshToken } from '../../jwt/models/jwt';
+import { handleRefreshToken } from '../../jwt';
+
 import prismaClientDB from '../../lib/prismadb';
 import { LoginArgs, registerUser } from '../types/types';
 
 const handleLogin = async (data: LoginArgs) => {
   try {
     const { userName, password } = data;
-     await prismaClientDB.userAuthentification.findFirst({
+    await prismaClientDB.userAuthentification.findFirst({
       where: {
         userName,
         password,
@@ -70,7 +71,7 @@ const handleRegisterUser = async (data: registerUser) => {
 
 const handleRegisterUserWithCookie = async (data: registerUser) => {
   try {
- await prismaClientDB.userAuthentification.findFirst({
+    await prismaClientDB.userAuthentification.findFirst({
       where: {
         userName: data.data.userName,
       },

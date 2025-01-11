@@ -9,9 +9,8 @@ const register = async (): Promise<void> => {
       throw new Error(`Error webAuthorization', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('auth/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  unknown error`);
+      throw new Error(`auth/services/authentifications',  unknown error`);
     }
- 
   }
 };
 
@@ -24,7 +23,7 @@ const login = async (): Promise<void> => {
       throw new Error(`Error webAuthorization', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('auth/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  unknown error`);
+      throw new Error(`auth/services/authentifications',  unknown error`);
     }
   }
 };
@@ -38,9 +37,8 @@ const logout = async (): Promise<void> => {
       throw new Error(`Error logout', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('autlogout/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  unknown error`);
+      throw new Error(`auth/services/authentifications',  unknown error`);
     }
- 
   }
 };
 
@@ -53,9 +51,8 @@ const isAuthenticated = async (): Promise<void> => {
       throw new Error(`Error logout', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('autlogout/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  isAuthenticated unknown error`);
+      throw new Error(`auth/services/authentifications',  isAuthenticated unknown error`);
     }
- 
   }
 };
 
@@ -68,9 +65,8 @@ const resetPassword = async (): Promise<void> => {
       throw new Error(`Error logout', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('autlogout/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  resetPassword unknown error`);
+      throw new Error(`auth/services/authentifications',  resetPassword unknown error`);
     }
- 
   }
 };
 
@@ -83,9 +79,8 @@ const updatePassword = async (): Promise<void> => {
       throw new Error(`Error logout', ${error.message}`);
     } else {
       logMessage(`${logErrorAsyncMessage('autlogout/services/authentifications', `Unknown error`)}`);
-     throw new Error(`auth/services/authentifications',  updatePassword unknown error`);
+      throw new Error(`auth/services/authentifications',  updatePassword unknown error`);
     }
- 
   }
 };
 

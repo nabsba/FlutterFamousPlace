@@ -13,7 +13,7 @@ import {
   handleGetPlace,
   handleGetPlaces,
   handleGetPreSelectionName,
-} from '../services/functions';
+} from '../models/functions';
 import { CreatePlace, FavoritePlaceBody, PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 
 export const resolversPlace = {
@@ -37,7 +37,7 @@ export const resolversPlace = {
         };
       }
     },
-    places: async (_parent:undefined, args: PlacesBody) => {
+    places: async (_parent: undefined, args: PlacesBody) => {
       try {
         const result = await handleGetPlaces(args);
         return {

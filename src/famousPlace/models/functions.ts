@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
 import { PlaceBody, PlacesBody, PreSelectionBody } from '../type';
-import { ROW_PER_PAGE } from './constant';
+import { ROW_PER_PAGE } from '../services/constant';
 
 const handleAddPlaceToPreference = async (placeId: string, userId: string) => {
   try {
@@ -37,7 +37,6 @@ const handleAddPlaceToPreference = async (placeId: string, userId: string) => {
     throw error;
   }
 };
-
 const returnTotalRow = (args: PlacesBody) => {
   switch (args.type) {
     case '0':

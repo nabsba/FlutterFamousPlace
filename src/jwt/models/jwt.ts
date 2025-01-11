@@ -1,8 +1,8 @@
-import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
+import { AUTHORIZATION_HEADER_TYPE, ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
-import { returnToken } from '../services/function';
+import { mobileAuthorization, returnToken, webAuthorization } from '../services/function';
 import { ReturnTokenArgs } from '../types/types';
-
+import { Request } from 'express';
 const handleRefreshToken = async (data: ReturnTokenArgs) => {
   try {
     const token = returnToken(data);
@@ -25,5 +25,28 @@ const handleRefreshToken = async (data: ReturnTokenArgs) => {
     throw new Error(ERROR_MESSAGES.REFRESH_TOKEN);
   }
 };
-
-export { handleRefreshToken };
+const handleVerifyToken = (req: Request) => {
+  try {
+    if (req.headers && req.headers.authorization) {
+      switch (req.headers.authorizationsource) {
+        case AUTHORIZATION_HEADER_TYPE.MOBILE:
+          return mobileAuthorization(req);
+        case AUTHORIZATION_HEADER_TYPE.WEB:
+          return webAuthorization(req);
+        default:
+          throw new Error('No authorization passed');
+      }
+    }
+    throw new Error('No authorization passed');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      logMessage(`${logErrorAsyncMessage('jwt/services/function/handleVerifyToken', `handleVerifyToken`)},
+      ${error.message}`);
+      throw new Error(`Error verifying token:', ${error.message}`);
+    } else {
+      logMessage(`${logErrorAsyncMessage('jwt/services/function/handleVerifyToken', `Unknown error`)}`);
+      throw new Error(`Error verifying token:', unknown error`);
+    }
+  }
+};
+export { handleRefreshToken, handleVerifyToken };

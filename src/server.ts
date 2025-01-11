@@ -5,11 +5,10 @@ import { ERROR_MESSAGES_KEYS, logErrorAsyncMessage, logMessage, STATUS_SERVER } 
 import { resolvers, typeDefs } from './graphql';
 import { handleVerifyToken } from './jwt/services/function';
 
-import dotenv from "dotenv";
-
+import dotenv from 'dotenv';
 
 // Load environment variables from .env file
-dotenv.config()
+dotenv.config();
 const app = express();
 app.get('/', (_: object, res: { send: (arg0: string) => void }) => {
   res.send('Example Server');
@@ -46,7 +45,7 @@ async function startServer() {
   await server.start();
 
   server.applyMiddleware({
-// @ts-expect-error as app is not type of express
+    // @ts-expect-error as app is not type of express
     app,
     path: '/',
     cors: false, // disables the apollo-server-express cors to allow the cors middleware use
