@@ -57,6 +57,7 @@ const verifyToken = (token: string): jwt.JwtPayload | null => {
 
 const mobileAuthorization = (req: Request) => {
   try {
+    if(!req.headers.authorization) throw new Error("No authorization");
     const token = req.headers.authorization!.replace('Bearer ', '');
     verifyToken(token);
   } catch (error: unknown) {
@@ -71,10 +72,10 @@ const mobileAuthorization = (req: Request) => {
     }
   }
 };
+
 const webAuthorization = (req: Request) => {
   try {
     // not yet developed
-    console.log(req);
     return true;
   } catch (error: unknown) {
     if (error instanceof Error) {

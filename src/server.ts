@@ -3,9 +3,10 @@ import cors from 'cors';
 import express, { Request, Response } from 'express';
 import { ERROR_MESSAGES_KEYS, logErrorAsyncMessage, logMessage, STATUS_SERVER } from './common';
 import { resolvers, typeDefs } from './graphql';
-import { handleVerifyToken } from './jwt/services/function';
+
 
 import dotenv from 'dotenv';
+import { handleVerifyToken } from './jwt';
 
 // Load environment variables from .env file
 dotenv.config();
