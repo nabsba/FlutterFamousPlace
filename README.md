@@ -35,6 +35,8 @@
      - **Prisma ORM** for interacting with PostgreSQL.
    - **Database:**
      - **PostgreSQL** for storing information about places, including location, descriptions, images, and more.
+   - **Storage:**
+     - **firebase** to store buckets and database.
    - **Tools:**
      - **TypeScript** for type safety and maintaining clean code.
      - **Linter** for ensuring code quality and enforcing consistent code style.

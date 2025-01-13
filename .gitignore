@@ -42,4 +42,4 @@ dist/
         modified:   src/prisma/generated/schema.prisma
         modified:   src/prisma/generated/wasm.js
 
-src/firebase/services/serviceAccountKey.json
+/src/firebase/services/serviceAccountKey.json
