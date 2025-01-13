@@ -227,14 +227,18 @@ const returnQueryFilterPlace = (args: PlacesBody, fromRow: number) => {
       });
   }
 };
-const handleGetPlaces = async (args: PlacesBody) => {
+const   handleGetPlaces = async (args: PlacesBody) => {
   try {
+  
     const totalRows = await returnTotalRow(args);
     const fromRow =
       parseInt(args.page) > 1 ? (parseInt(args.page) - 1) * ROW_PER_PAGE : parseInt(args.page) == 1 ? 5 : 0;
     const result = await returnQueryFilterPlace(args, fromRow);
 
     const finalResult = [];
+
+    if(result && result.length > 0) {
+
     for (let i = 0; i < result.length; i++) {
       const isPlaceOnUser = result[i]._count.users > 0;
       finalResult.push({
@@ -245,13 +249,14 @@ const handleGetPlaces = async (args: PlacesBody) => {
         isFavoritePlace: isPlaceOnUser,
       });
     }
+
+  }
     const data = {
       places: finalResult,
       page: args.page,
       rowPerPage: ROW_PER_PAGE,
       totalRows: totalRows,
     };
-
     return data;
   } catch (error) {
     logMessage(`${logErrorAsyncMessage('src/famousPlace/services/function/handleGetPlaces', `${ERROR_MESSAGES.GET_PLACES}:`)},
@@ -384,4 +389,4 @@ const handleGetPreSelectionName = async (args: PreSelectionBody) => {
   }
 };
 
-export { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName, handleGetPlace };
+export { handleAddPlaceToPreference, handleGetPlaces, handleGetPreSelectionName, handleGetPlace, returnTotalRow, returnQueryFilterPlace };
