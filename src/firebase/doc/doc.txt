@@ -1,0 +1,1 @@
+-- add the serviceAccountKey.json at firebase/services/serviceAccountKey.json
