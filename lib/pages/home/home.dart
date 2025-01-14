@@ -48,7 +48,32 @@ class HomePage extends ConsumerWidget {
               const SizedBox(height: 20), // Add space between widgets
               InputSearch(),
               const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.popularPlaces,
+                    style: TypographyStyles.poppins.copyWith(
+                      color: Color.fromARGB(
+                          255, 47, 47, 47), // Merges the color from bodyText1
+                      fontSize: TypographyStyles.roboto500_16
+                          .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
+                    ),
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.viewAll,
+                    style: TypographyStyles.inter20.copyWith(
+                      color: Color.fromARGB(255, 136, 136,
+                          136), // Merges the color from bodyText1
+                      fontSize: TypographyStyles.inter20
+                          .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 20),
               SelectMenuType(),
+
               Places()
             ],
           ),

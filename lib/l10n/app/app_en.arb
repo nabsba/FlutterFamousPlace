@@ -11,6 +11,10 @@
   "@mostViewed": {
     "description": "Label for the 'Most viewed' filter button"
   },
+  "viewAll": "View all",
+  "@viewAll": {
+    "description": "Label for the View all button"
+  },
   "nearby": "Nearby",
   "@nearby": {
     "description": "Label for the 'Nearby' filter button"

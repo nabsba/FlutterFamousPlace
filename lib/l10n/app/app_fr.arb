@@ -20,6 +20,10 @@
   "@popularPlaces": {
     "description": "Invitation pour afficher les places populaires"
   },
+   "viewAll": "Voir tous",
+  "@viewAll": {
+    "description": "Label pour le voir tous boutton"
+  },
   "mostViewed": "Les plus vus",
   "@mostViewed": {
     "description": "Label for the 'Most viewed' filter button"
