@@ -12,7 +12,7 @@ class SelectMenuType extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(menuSelected).newIndex;
     final List<String> buttons = [
-      AppLocalizations.of(context)!.popularPlaces,
+      AppLocalizations.of(context)!.mostViewed,
       AppLocalizations.of(context)!.nearby,
       AppLocalizations.of(context)!.latest,
       'onSelection'
