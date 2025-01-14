@@ -5,23 +5,17 @@ import '../authentification/services/authentication.dart';
 import '../jwt/services/token.dart';
 import '../security/securedStorage.dart';
 
-class GraphQLClientSingleton {
-  static final GraphQLClientSingleton _instance =
-      GraphQLClientSingleton._internal();
-
+class GraphQLClientManager {
   late final GraphQLClient client;
 
-  factory GraphQLClientSingleton() {
-    return _instance;
-  }
-
-  GraphQLClientSingleton._internal() {
+  GraphQLClientManager({
+    bool isAuthorizationNeeded = true,
+  }) {
     // AuthLink to dynamically add the token to the headers
     final AuthLink authLink = AuthLink(
       getToken: () async {
         final TokenService tokenService =
             TokenService(SecuredStorageService(), AuthenticationClass());
-        // Replace with your logic to fetch the token dynamically
         final token = await tokenService.getToken();
         return 'Bearer $token';
       },
@@ -32,7 +26,9 @@ class GraphQLClientSingleton {
     final HttpLink httpLink = HttpLink(
       'http://localhost:4000/graphql',
       defaultHeaders: {
-        'AuthorizationSource': 'mobile',
+        'AuthorizationSource': 'mobile', // Pass the authorization source here
+        'isAuthorizationNeeded':
+            isAuthorizationNeeded.toString(), // Convert bool to string
       },
     );
 

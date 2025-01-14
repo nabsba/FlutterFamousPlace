@@ -23,7 +23,7 @@
 //     final type = decodedData['type'];
 //     final userInfos = ref.watch(userInfosProvider);
 
-//     final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
+//     final placeRepository = PlaceRepository(GraphQLClientManager().client);
 //     final result = await placeRepository.fetchPlaces(
 //         language: language,
 //         type: type,
@@ -81,7 +81,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
 
     try {
       final filterProvider = ref.watch(menuSelected).newIndex;
-      final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
+      final placeRepository = PlaceRepository(GraphQLClientManager().client);
       final result = await placeRepository.fetchPlaces(
         language: index.toString(),
         type: filterProvider.toString(),
@@ -124,7 +124,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
       ref
           .read(paginationProvider.notifier)
           .setLoading(menuSelectedd.toString(), true);
-      final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
+      final placeRepository = PlaceRepository(GraphQLClientManager().client);
 
       final result = await placeRepository.fetchPlace(
         placeId: placeId,

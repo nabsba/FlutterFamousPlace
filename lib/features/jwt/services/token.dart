@@ -60,7 +60,9 @@ class TokenService {
         variables: {'data': data},
       );
 
-      final result = await GraphQLClientSingleton().client.mutate(options);
+      final result = await GraphQLClientManager(isAuthorizationNeeded: false)
+          .client
+          .mutate(options);
       if (result.hasException) {
         throw Exception('Failed to refresh token: ${result.exception}');
       }

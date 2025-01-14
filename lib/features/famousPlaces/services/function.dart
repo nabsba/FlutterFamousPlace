@@ -9,7 +9,7 @@ final placeIdLocaleProvider = StateProvider<List<String>>((ref) => []);
 Future<ResponseGraphql<String>> toggleFavoritePlace(
     String placeId, String userId) async {
   try {
-    final placeRepository = PlaceRepository(GraphQLClientSingleton().client);
+    final placeRepository = PlaceRepository(GraphQLClientManager().client);
     return await placeRepository.toggleFavoritePlace(placeId, userId);
   } catch (error) {
     rethrow;

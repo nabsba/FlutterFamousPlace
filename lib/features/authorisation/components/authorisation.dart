@@ -5,6 +5,7 @@ import 'package:flutter_famous_places/pages/signIn/sign_in.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../authentification/services/authentication.dart';
 import '../../client/services/clientProvider.dart';
+import '../../common/services/variables.dart';
 import '../../graphql/services/response.dart';
 import '../../success/services/success.dart';
 
@@ -49,8 +50,8 @@ class AuthorizationWrapper extends ConsumerWidget {
                 final result = tokenSnapshot.data!;
                 if (result.status == successStatus['OK'] && !result.isError) {
                   Future(() {
-                    updateUserInfos(ref, user.displayName!, user.photoURL!,
-                        user.providerData[0].uid!);
+                    updateUserInfos(ref, user.displayName ?? defaultName,
+                        user.photoURL!, user.providerData[0].uid!);
                   });
                   return signedInWidget;
                 } else {

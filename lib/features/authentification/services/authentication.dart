@@ -1,6 +1,7 @@
 import 'package:flutter_famous_places/features/jwt/services/token.dart';
 import 'package:flutter_famous_places/features/security/securedStorage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import '../../common/services/variables.dart';
 import '../../graphql/client.dart';
 import '../../graphql/services/response.dart';
 import '../../success/services/success.dart';
@@ -29,8 +30,9 @@ class AuthenticationClass {
       );
 
       final QueryResult result =
-          await GraphQLClientSingleton().client.mutate(options);
-
+          await GraphQLClientManager(isAuthorizationNeeded: false)
+              .client
+              .mutate(options);
       // Check for exceptions first, before attempting to parse the result
       if (result.hasException) {
         throw result.exception!;
@@ -71,6 +73,9 @@ class AuthenticationClass {
       }
       if (token != null) {
         return await tokenService.refreshToken(data);
+      }
+      if (data["userName"] == null) {
+        data["userName"] = defaultName; // Assign "name" if "userName" is null
       }
       final result = await registerUser(data);
       if (result.isError == false) {

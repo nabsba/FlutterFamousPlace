@@ -45,8 +45,7 @@ class _InputSearchState extends ConsumerState<InputSearch> {
     _debounce = Timer(const Duration(milliseconds: 300), () async {
       final query = _controller.text.trim();
       if (query.isNotEmpty) {
-        final placeRepository =
-            PlaceRepository(GraphQLClientSingleton().client);
+        final placeRepository = PlaceRepository(GraphQLClientManager().client);
         final userInfos = ref.watch(userInfosProvider);
         final locale = Localizations.localeOf(context);
         final languageIndex = getIndexOfLanguage(locale.toString());
