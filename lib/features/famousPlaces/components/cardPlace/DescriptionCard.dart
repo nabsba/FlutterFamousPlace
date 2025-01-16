@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../common/services/functions.dart';
 import '../../../styles/services/size.dart';
 import '../../../styles/services/typography.dart';
 
@@ -17,140 +19,139 @@ class DescriptionCard extends StatelessWidget {
     required this.rating,
   });
 
+  // Function to simplify text styling and truncation
+
   @override
   Widget build(BuildContext context) {
+    int maxLength = 17;
+    Map<String, String> resultCityCountry = calculateAuthorizedLength(
+        valueToTruncat: location,
+        valueToNotTouch: country,
+        authorizedLength: maxLength);
+    // Access the name and location from the map
+    String displayedCity = resultCityCountry['valueToTruncat'] ?? '';
+    String displayedCountry = resultCityCountry['valueToNotTouch'] ?? '';
+
+    Map<String, String> resultNameLocation = calculateAuthorizedLength(
+        valueToTruncat: name,
+        valueToNotTouch: location,
+        authorizedLength: maxLength);
+    // Access the name and location from the map
+    String displayedName = resultNameLocation['valueToTruncat'] ?? '';
+    String displayedLocation = resultNameLocation['valueToNotTouch'] ?? '';
+
     return Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Name
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final availableWidth = constraints.maxWidth;
-                final textPainter = TextPainter(
-                  text: TextSpan(
-                    text: "$name, $location",
+      padding: EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Name and Location with dynamic truncation
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return Row(
+                children: [
+                  // Name with white and bold
+                  Text(
+                    displayedName,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    maxLines: 1,
                     style: TypographyStyles.roboto500_16.copyWith(
+                      color: Colors.white, // White for name
+                      fontWeight: FontWeight.bold, // Bold for name
                       fontSize: TypographyStyles.roboto500_16.fontSize,
                     ),
                   ),
-                  maxLines: 1,
-                  textDirection: TextDirection.ltr,
-                )..layout(maxWidth: availableWidth);
-
-                // Check if text fits in the available width
-                final needsColumn = textPainter.didExceedMaxLines;
-
-                return needsColumn
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "$name,",
-                            style: TypographyStyles.roboto500_16.copyWith(
-                              color: Colors.white,
-                              fontSize: TypographyStyles.roboto500_16.fontSize,
-                            ),
-                          ),
-                          Text(
-                            location,
-                            style: TypographyStyles.roboto500_16.copyWith(
-                              color: const Color.fromRGBO(202, 200, 200, 1),
-                              fontSize: TypographyStyles.roboto500_16.fontSize,
-                            ),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "$name, ",
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: false,
-                            style: TypographyStyles.roboto500_16.copyWith(
-                              color: Colors.white,
-                              fontSize: TypographyStyles.roboto500_16.fontSize,
-                            ),
-                          ),
-                          Text(
-                            location,
-                            style: TypographyStyles.roboto500_16.copyWith(
-                              color: const Color.fromRGBO(202, 200, 200, 1),
-                              fontSize: TypographyStyles.roboto500_16.fontSize,
-                            ),
-                          ),
-                        ],
-                      );
-              },
-            ),
-            SizedBox(height: 5),
-            // Location and Country
-            SizedBox(
-                width: double.infinity,
-                child: Container(
-                    decoration: BoxDecoration(
-                      // border: Border.all(
-                      //   color: Colors.grey, // Border color
-                      //   width: 1.0, // Border width
-                      // ),
-                      borderRadius:
-                          BorderRadius.circular(8), // Optional: Rounded corners
+                  // Location with default style
+                  Text(
+                    ', $displayedLocation',
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    maxLines: 1,
+                    style: TypographyStyles.roboto500_16.copyWith(
+                      color: const Color.fromRGBO(
+                          202, 200, 200, 1), // Grey for location
+                      fontSize: TypographyStyles.roboto500_16.fontSize,
                     ),
-                    child: Wrap(
-                      // Space between rows when wrapped
-                      alignment: WrapAlignment
-                          .spaceBetween, // Align items to the start
-                      children: [
-                        // Location Row
-                        Row(
-                          mainAxisSize:
-                              MainAxisSize.min, // Ensures Row wraps its content
-                          children: [
-                            Transform.translate(
-                              offset: Offset(
-                                  -5, 0), // Move the icon 1 pixel to the left
-                              child: Icon(
-                                Icons.location_on,
-                                color: const Color.fromRGBO(202, 200, 200, 1),
-                              ),
-                            ),
-                            Flexible(
-                              child: Text(
-                                '$location, $country',
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: false,
-                                maxLines: 1,
-                                style: TypographyStyles.roboto500_14.copyWith(
-                                  color: const Color.fromRGBO(202, 200, 200, 1),
-                                  fontSize:
-                                      TypographyStyles.roboto500_14.fontSize,
-                                ),
-                              ),
-                            ),
-                          ],
+                  ),
+                ],
+              );
+            },
+          ),
+          SizedBox(height: 5),
+          // Location and Country
+          SizedBox(
+            width: double.infinity,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                children: [
+                  // Location and Country Row
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Transform.translate(
+                        offset: Offset(-5, 0),
+                        child: SvgPicture.asset(
+                          'assets/icons/divers/location.svg',
+                          width: 15,
+                          height: 15,
                         ),
-                        // Rating Row
-                        Row(
-                          mainAxisSize:
-                              MainAxisSize.min, // Ensures Row wraps its content
-                          children: [
-                            Icon(Icons.star,
-                                color: const Color.fromRGBO(202, 200, 200, 1)),
-                            SizedBox(width: AppStylesSpace.extraSmall),
-                            Text(
-                              rating.toString(),
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: const Color.fromRGBO(202, 200, 200, 1),
-                              ),
-                            ),
-                          ],
+                      ),
+                      Flexible(
+                        child: Text(
+                          '$displayedLocation ',
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                          maxLines: 1,
+                          style: TypographyStyles.roboto500_14.copyWith(
+                            color: const Color.fromRGBO(202, 200, 200, 1),
+                            fontSize: TypographyStyles.roboto500_14.fontSize,
+                          ),
                         ),
-                      ],
-                    )))
-          ],
-        ));
+                      ),
+                      Flexible(
+                        child: Text(
+                          displayedCountry,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                          maxLines: 1,
+                          style: TypographyStyles.roboto500_14.copyWith(
+                            color: const Color.fromRGBO(202, 200, 200, 1),
+                            fontSize: TypographyStyles.roboto500_14.fontSize,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Rating Row
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/divers/stars.svg',
+                        width: 10,
+                        height: 10,
+                      ),
+                      SizedBox(width: AppStylesSpace.extraSmall),
+                      Text(
+                        rating.toString(),
+                        style: TypographyStyles.roboto500_16.copyWith(
+                          fontSize: TypographyStyles.roboto500_16.fontSize,
+                          color: const Color.fromRGBO(202, 200, 200, 1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

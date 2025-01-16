@@ -15,7 +15,9 @@ class GlobalThemData {
         displayLarge: TextStyle(color: Colors.black), // Main heading color
         displayMedium: TextStyle(color: Colors.black), // Sub-heading color
         bodyLarge: TextStyle(color: Colors.black), // Body text color
-        bodyMedium: TextStyle(color: Colors.black), // Another body text color
+        bodyMedium: TextStyle(
+            color:
+                Color.fromARGB(255, 136, 136, 136)), // Another body text color
         bodySmall:
             TextStyle(color: const Color(0x00797979)), // Caption text color
         labelLarge: TextStyle(color: Colors.white), // Button text color

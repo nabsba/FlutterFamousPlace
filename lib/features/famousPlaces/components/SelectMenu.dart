@@ -32,9 +32,9 @@ class SelectMenuType extends ConsumerWidget {
               }
             },
             child: Container(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 10), // Add spacing between items
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              margin: EdgeInsets.only(
+                  left: index > 0 ? 15.0 : 0.0), // Add spacing between items
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               decoration: BoxDecoration(
                 color: isSelected
                     ? const Color(0xFF2F2F2F)
@@ -47,7 +47,7 @@ class SelectMenuType extends ConsumerWidget {
                   color: isSelected
                       ? Colors.white
                       : const Color.fromARGB(197, 197, 197, 197),
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
             ),

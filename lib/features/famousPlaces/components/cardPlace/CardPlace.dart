@@ -39,8 +39,7 @@ class CardPlace extends ConsumerWidget {
     bool isIn = favorites.contains(id);
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      width: MediaQuery.of(context).size.width * 0.65,
+      width: MediaQuery.of(context).size.width * 0.60,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: backgroundImage is String
@@ -49,7 +48,7 @@ class CardPlace extends ConsumerWidget {
                   as ImageProvider,
           fit: BoxFit.cover,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
             color: Color.fromARGB(102, 29, 29, 29),

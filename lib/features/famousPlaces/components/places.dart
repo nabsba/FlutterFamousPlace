@@ -72,7 +72,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
 
     return Flexible(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.43,
+        height: MediaQuery.of(context).size.height * 0.83,
         child: paginationState[menuSelectedd.toString()]!
                     .messageKey
                     .isNotEmpty &&
@@ -107,7 +107,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                   }
                   return Container(
                     margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
+                        vertical: 10, horizontal: 15),
                     child: CardPlace(
                       id: place['id'],
                       backgroundImage: place['images'].isNotEmpty

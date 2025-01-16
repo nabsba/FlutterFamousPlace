@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_famous_places/features/styles/services/size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,28 +17,25 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment
-                .start, // Aligns title and subtitle to the start
-            children: [
-              TitleNameAvatarRow(), // Main title
-              Text(
-                AppLocalizations.of(context)!.exploreTheWorld,
-                style: TypographyStyles.inter20.copyWith(
-                  color: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.color, // Merges the color from bodyText1
-                  fontSize: TypographyStyles.inter20
-                      .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
-                ),
+        toolbarHeight: 60,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment
+              .start, // Aligns title and subtitle to the start
+          children: [
+            TitleNameAvatarRow(), // Main title
+            Text(
+              AppLocalizations.of(context)!.exploreTheWorld,
+              style: TypographyStyles.inter20.copyWith(
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.color, // Merges the color from bodyText1
+                fontSize: TypographyStyles.inter20
+                    .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
               ),
-            ],
-          ),
-        ), // Optional AppBar for a header
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -45,9 +43,11 @@ class HomePage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20), // Add space between widgets
+              const SizedBox(
+                  height: AppStylesSpace
+                      .mediumSpacing), // Add space between widgets
               InputSearch(),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppStylesSpace.largeSpacing),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,17 +63,19 @@ class HomePage extends ConsumerWidget {
                   Text(
                     AppLocalizations.of(context)!.viewAll,
                     style: TypographyStyles.inter20.copyWith(
-                      color: Color.fromARGB(255, 136, 136,
-                          136), // Merges the color from bodyText1
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.color, // Merges the color from bodyText1
                       fontSize: TypographyStyles.inter20
                           .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
                     ),
                   )
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppStylesSpace.largeSpacing),
               SelectMenuType(),
-
+              const SizedBox(height: AppStylesSpace.largeSpacing),
               Places()
             ],
           ),
