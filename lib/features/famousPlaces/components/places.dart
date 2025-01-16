@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../pages/placeDetail/placeDetail.dart';
 import '../../client/services/clientProvider.dart';
 import '../../error/components/error.dart';
 import '../../error/services/errors.dart';
@@ -12,6 +13,7 @@ import '../services/providers/indexMenu.dart';
 import '../services/providers/pagination.dart';
 import '../services/providers/places.dart';
 import 'cardPlace/CardPlace.dart';
+import 'package:go_router/go_router.dart';
 
 class Places extends ConsumerStatefulWidget {
   const Places({super.key});
@@ -106,20 +108,26 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                     });
                   }
                   return Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    child: CardPlace(
-                      id: place['id'],
-                      backgroundImage: place['images'].isNotEmpty
-                          ? place['images'][0]
-                          : null,
-                      name: place['placeDetail']['name'],
-                      location: place['address']?['city']?['name'],
-                      country: place['address']?['city']?['country']?['name'],
-                      rating: place['popularity'],
-                      isFavoritePlace: place['isFavoritePlace'],
-                    ),
-                  );
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 15),
+                      child: GestureDetector(
+                        onTap: () => context.go(
+                          PlaceDetailPage.routeName,
+                          extra: place, // Pass the place object as an argument
+                        ),
+                        child: CardPlace(
+                          id: place['id'],
+                          backgroundImage: place['images'].isNotEmpty
+                              ? place['images'][0]
+                              : null,
+                          name: place['placeDetail']['name'],
+                          location: place['address']?['city']?['name'],
+                          country: place['address']?['city']?['country']
+                              ?['name'],
+                          rating: place['popularity'],
+                          isFavoritePlace: place['isFavoritePlace'],
+                        ),
+                      ));
                 },
               ),
       ),
