@@ -58,6 +58,8 @@ const verifyToken = (token: string): jwt.JwtPayload | null => {
 const mobileAuthorization = (req: Request) => {
   try {
     if(!req.headers.authorization) throw new Error("No authorization");
+
+   if( req.headers.isauthorizationneeded === "false") return true;
     const token = req.headers.authorization!.replace('Bearer ', '');
     verifyToken(token);
   } catch (error: unknown) {

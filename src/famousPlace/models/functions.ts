@@ -234,7 +234,6 @@ const   handleGetPlaces = async (args: PlacesBody) => {
     const fromRow =
       parseInt(args.page) > 1 ? (parseInt(args.page) - 1) * ROW_PER_PAGE : parseInt(args.page) == 1 ? 5 : 0;
     const result = await returnQueryFilterPlace(args, fromRow);
-
     const finalResult = [];
 
     if(result && result.length > 0) {

@@ -25,6 +25,7 @@ export type Place = {
   popularity: number;
   address: Address;
   placeDetail: PlaceDetail[];
+  price: number
 };
 
 export type Query = {

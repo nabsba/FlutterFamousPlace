@@ -31,6 +31,7 @@ model Place {
   createdAt   DateTime     @default(now())
   addressId   String
   image String?
+  price String
   address     Address      @relation(fields: [addressId], references: [id])
   placeDetail PlaceDetail[] // One-to-many relation to PlaceDetail
   bookings    Booking[]
