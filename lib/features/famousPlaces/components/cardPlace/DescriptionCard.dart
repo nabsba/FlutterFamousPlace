@@ -103,7 +103,7 @@ class DescriptionCard extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          '$displayedLocation ',
+                          '$displayedCity ',
                           overflow: TextOverflow.ellipsis,
                           softWrap: false,
                           maxLines: 1,
