@@ -28,6 +28,7 @@ class PlaceRepository {
               places {
                 id
                 popularity
+                price
                 address {
                   number
                   street
@@ -182,6 +183,7 @@ class PlaceRepository {
               place {
                 id
                 popularity
+                price
                 address {
                   number
                   street

@@ -1,37 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
+import '../../features/placeDetail/components/imageAndDetail.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final Map<String, dynamic> place;
   static const routeName = "/placeDetail";
-  const PlaceDetailPage({required this.place, Key? key}) : super(key: key);
+  const PlaceDetailPage({required this.place, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(place['placeDetail']['name']),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Welcome to ${place['placeDetail']['name']}!'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (context.canPop()) {
-                  context.pop(); // Go back to the previous route
-                } else {
-                  context.go(
-                      '/'); // Navigate to the main route or another fallback
-                }
-              },
-              child: const Text('Go Back'),
+      body: Column(
+        children: [
+          // Top Widget: ImageAndDetail
+          Expanded(
+            flex: 3,
+            child: ImageAndDetail(
+              imageUrl: place['images'].isNotEmpty ? place['images'][0] : null,
+              iconLeft: Icons.arrow_back,
+              iconRight: Icons.menu,
+              menuItems: ['Home', 'Profile', 'Settings'],
             ),
-          ],
-        ),
+          ),
+          // Bottom Widgets
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              color: Colors.grey[100],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Additional Content',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
