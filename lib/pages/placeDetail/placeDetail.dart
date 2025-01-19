@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../features/placeDetail/components/imageAndDetail.dart';
+import '../../features/placeDetail/services/DescriptionCard.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final Map<String, dynamic> place;
@@ -16,9 +18,13 @@ class PlaceDetailPage extends StatelessWidget {
             flex: 3,
             child: ImageAndDetail(
               imageUrl: place['images'].isNotEmpty ? place['images'][0] : null,
-              iconLeft: Icons.arrow_back,
-              iconRight: Icons.menu,
-              menuItems: ['Home', 'Profile', 'Settings'],
+              descriptionDetailArgument: DescriptionDetailArgument(
+                name: place['placeDetail']['name'],
+                priceLabel: AppLocalizations.of(context)!.price,
+                city: place['address']?['city']?['name'],
+                country: place['address']?['city']?['country']?['name'],
+                priceValue: place['price'],
+              ),
             ),
           ),
           // Bottom Widgets

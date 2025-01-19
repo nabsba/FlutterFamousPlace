@@ -19,6 +19,14 @@
   "@nearby": {
     "description": "Label for the 'Nearby' filter button"
   },
+    "price": "Price",
+  "@price": {
+    "description": "Label for the price label"
+  },
+   "devise": "$",
+  "@devise": {
+    "description": "Label pour le prix"
+  },
   "latest": "Latest",
   "@latest": {
     "description": "Label for the 'Latest' filter button"

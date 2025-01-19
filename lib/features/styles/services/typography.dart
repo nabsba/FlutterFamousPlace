@@ -45,4 +45,8 @@ class TypographyStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle roboto500_26 = GoogleFonts.roboto(
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+  );
 }

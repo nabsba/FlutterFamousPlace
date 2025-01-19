@@ -20,6 +20,14 @@
   "@popularPlaces": {
     "description": "Invitation pour afficher les places populaires"
   },
+  "price": "Prix",
+  "@price": {
+    "description": "Label pour le prix"
+  },
+   "devise": "€",
+  "@devise": {
+    "description": "Label pour le prix"
+  },
    "viewAll": "Voir tous",
   "@viewAll": {
     "description": "Label pour le voir tous boutton"
