@@ -6,3 +6,5 @@
 - **Authorization Token Handling** for mobile.
 - **Fetch Famous Places**: Added functionality to fetch and display famous places.
 
+### Added
+- price to table data

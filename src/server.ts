@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 // app.use(cookieParser());
 app.use((req: Request, res: Response, next: () => void) => {
   try {
-    handleVerifyToken(req);
+    // handleVerifyToken(req);
     next();
   } catch (err: unknown) {
     if (err instanceof Error) {

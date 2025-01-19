@@ -3190,6 +3190,7 @@ export namespace Prisma {
     addressId: string | null
     image: string | null
     price: string | null
+    hoursTravel: string | null
   }
 
   export type PlaceMaxAggregateOutputType = {
@@ -3199,6 +3200,7 @@ export namespace Prisma {
     addressId: string | null
     image: string | null
     price: string | null
+    hoursTravel: string | null
   }
 
   export type PlaceCountAggregateOutputType = {
@@ -3208,6 +3210,7 @@ export namespace Prisma {
     addressId: number
     image: number
     price: number
+    hoursTravel: number
     _all: number
   }
 
@@ -3227,6 +3230,7 @@ export namespace Prisma {
     addressId?: true
     image?: true
     price?: true
+    hoursTravel?: true
   }
 
   export type PlaceMaxAggregateInputType = {
@@ -3236,6 +3240,7 @@ export namespace Prisma {
     addressId?: true
     image?: true
     price?: true
+    hoursTravel?: true
   }
 
   export type PlaceCountAggregateInputType = {
@@ -3245,6 +3250,7 @@ export namespace Prisma {
     addressId?: true
     image?: true
     price?: true
+    hoursTravel?: true
     _all?: true
   }
 
@@ -3341,6 +3347,7 @@ export namespace Prisma {
     addressId: string
     image: string | null
     price: string | null
+    hoursTravel: string | null
     _count: PlaceCountAggregateOutputType | null
     _avg: PlaceAvgAggregateOutputType | null
     _sum: PlaceSumAggregateOutputType | null
@@ -3369,6 +3376,7 @@ export namespace Prisma {
     addressId?: boolean
     image?: boolean
     price?: boolean
+    hoursTravel?: boolean
     address?: boolean | AddressDefaultArgs<ExtArgs>
     placeDetail?: boolean | Place$placeDetailArgs<ExtArgs>
     bookings?: boolean | Place$bookingsArgs<ExtArgs>
@@ -3383,6 +3391,7 @@ export namespace Prisma {
     addressId?: boolean
     image?: boolean
     price?: boolean
+    hoursTravel?: boolean
     address?: boolean | AddressDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["place"]>
 
@@ -3393,6 +3402,7 @@ export namespace Prisma {
     addressId?: boolean
     image?: boolean
     price?: boolean
+    hoursTravel?: boolean
   }
 
   export type PlaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3421,6 +3431,7 @@ export namespace Prisma {
       addressId: string
       image: string | null
       price: string | null
+      hoursTravel: string | null
     }, ExtArgs["result"]["place"]>
     composites: {}
   }
@@ -3824,6 +3835,7 @@ export namespace Prisma {
     readonly addressId: FieldRef<"Place", 'String'>
     readonly image: FieldRef<"Place", 'String'>
     readonly price: FieldRef<"Place", 'String'>
+    readonly hoursTravel: FieldRef<"Place", 'String'>
   }
     
 
@@ -14835,7 +14847,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     addressId: 'addressId',
     image: 'image',
-    price: 'price'
+    price: 'price',
+    hoursTravel: 'hoursTravel'
   };
 
   export type PlaceScalarFieldEnum = (typeof PlaceScalarFieldEnum)[keyof typeof PlaceScalarFieldEnum]
@@ -15164,6 +15177,7 @@ export namespace Prisma {
     addressId?: StringFilter<"Place"> | string
     image?: StringNullableFilter<"Place"> | string | null
     price?: StringNullableFilter<"Place"> | string | null
+    hoursTravel?: StringNullableFilter<"Place"> | string | null
     address?: XOR<AddressRelationFilter, AddressWhereInput>
     placeDetail?: PlaceDetailListRelationFilter
     bookings?: BookingListRelationFilter
@@ -15177,6 +15191,7 @@ export namespace Prisma {
     addressId?: SortOrder
     image?: SortOrderInput | SortOrder
     price?: SortOrderInput | SortOrder
+    hoursTravel?: SortOrderInput | SortOrder
     address?: AddressOrderByWithRelationInput
     placeDetail?: PlaceDetailOrderByRelationAggregateInput
     bookings?: BookingOrderByRelationAggregateInput
@@ -15193,6 +15208,7 @@ export namespace Prisma {
     addressId?: StringFilter<"Place"> | string
     image?: StringNullableFilter<"Place"> | string | null
     price?: StringNullableFilter<"Place"> | string | null
+    hoursTravel?: StringNullableFilter<"Place"> | string | null
     address?: XOR<AddressRelationFilter, AddressWhereInput>
     placeDetail?: PlaceDetailListRelationFilter
     bookings?: BookingListRelationFilter
@@ -15206,6 +15222,7 @@ export namespace Prisma {
     addressId?: SortOrder
     image?: SortOrderInput | SortOrder
     price?: SortOrderInput | SortOrder
+    hoursTravel?: SortOrderInput | SortOrder
     _count?: PlaceCountOrderByAggregateInput
     _avg?: PlaceAvgOrderByAggregateInput
     _max?: PlaceMaxOrderByAggregateInput
@@ -15223,6 +15240,7 @@ export namespace Prisma {
     addressId?: StringWithAggregatesFilter<"Place"> | string
     image?: StringNullableWithAggregatesFilter<"Place"> | string | null
     price?: StringNullableWithAggregatesFilter<"Place"> | string | null
+    hoursTravel?: StringNullableWithAggregatesFilter<"Place"> | string | null
   }
 
   export type PlaceOnUserWhereInput = {
@@ -15997,6 +16015,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
@@ -16010,6 +16029,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
@@ -16021,6 +16041,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
@@ -16034,6 +16055,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
@@ -16046,6 +16068,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
   }
 
   export type PlaceUpdateManyMutationInput = {
@@ -16054,6 +16077,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PlaceUncheckedUpdateManyInput = {
@@ -16063,6 +16087,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PlaceOnUserCreateInput = {
@@ -16963,6 +16988,7 @@ export namespace Prisma {
     addressId?: SortOrder
     image?: SortOrder
     price?: SortOrder
+    hoursTravel?: SortOrder
   }
 
   export type PlaceAvgOrderByAggregateInput = {
@@ -16976,6 +17002,7 @@ export namespace Prisma {
     addressId?: SortOrder
     image?: SortOrder
     price?: SortOrder
+    hoursTravel?: SortOrder
   }
 
   export type PlaceMinOrderByAggregateInput = {
@@ -16985,6 +17012,7 @@ export namespace Prisma {
     addressId?: SortOrder
     image?: SortOrder
     price?: SortOrder
+    hoursTravel?: SortOrder
   }
 
   export type PlaceSumOrderByAggregateInput = {
@@ -18732,6 +18760,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
@@ -18744,6 +18773,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
   }
@@ -18811,6 +18841,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
@@ -18823,6 +18854,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
   }
@@ -18833,6 +18865,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
@@ -18845,6 +18878,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
   }
@@ -18871,6 +18905,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
@@ -18883,6 +18918,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
   }
@@ -19166,6 +19202,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
     bookings?: BookingCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
@@ -19177,6 +19214,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
     bookings?: BookingUncheckedCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
@@ -19236,6 +19274,7 @@ export namespace Prisma {
     addressId?: StringFilter<"Place"> | string
     image?: StringNullableFilter<"Place"> | string | null
     price?: StringNullableFilter<"Place"> | string | null
+    hoursTravel?: StringNullableFilter<"Place"> | string | null
   }
 
   export type CityUpsertWithoutAddressInput = {
@@ -19365,6 +19404,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     address: AddressCreateNestedOneWithoutPlacesInput
     placeDetail?: PlaceDetailCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserCreateNestedManyWithoutPlaceInput
@@ -19377,6 +19417,7 @@ export namespace Prisma {
     addressId: string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
     placeDetail?: PlaceDetailUncheckedCreateNestedManyWithoutPlaceInput
     users?: PlaceOnUserUncheckedCreateNestedManyWithoutPlaceInput
   }
@@ -19403,6 +19444,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     address?: AddressUpdateOneRequiredWithoutPlacesNestedInput
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
@@ -19415,6 +19457,7 @@ export namespace Prisma {
     addressId?: StringFieldUpdateOperationsInput | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
   }
@@ -19696,6 +19739,7 @@ export namespace Prisma {
     createdAt?: Date | string
     image?: string | null
     price?: string | null
+    hoursTravel?: string | null
   }
 
   export type PlaceUpdateWithoutAddressInput = {
@@ -19704,6 +19748,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUpdateManyWithoutPlaceNestedInput
@@ -19715,6 +19760,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
     placeDetail?: PlaceDetailUncheckedUpdateManyWithoutPlaceNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutPlaceNestedInput
     users?: PlaceOnUserUncheckedUpdateManyWithoutPlaceNestedInput
@@ -19726,6 +19772,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: NullableStringFieldUpdateOperationsInput | string | null
     price?: NullableStringFieldUpdateOperationsInput | string | null
+    hoursTravel?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AddressCreateManyCityInput = {
