@@ -11,11 +11,18 @@ class TypographyStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle inter16 = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
   static TextStyle inter20 = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
-
+  static TextStyle inter22 = GoogleFonts.inter(
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle roboto500_16 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -45,6 +52,12 @@ class TypographyStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle roboto500_22 = GoogleFonts.roboto(
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+  );
+
   static TextStyle roboto500_26 = GoogleFonts.roboto(
     fontSize: 26,
     fontWeight: FontWeight.w500,

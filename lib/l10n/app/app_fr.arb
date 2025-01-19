@@ -59,5 +59,13 @@
   "noPlaceFound": "Voyage",
   "@noPlaceFound": {
     "description": "Aucun endroit trouvé"
+  },
+  "overview": "Aperçu",
+  "@overview": {
+    "description": "un mot unique pour representer aperçu"
+  },
+  "details": "Détails",
+  "@details": {
+    "description": "un mot unique pour representer détails"
   }
 }

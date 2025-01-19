@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../features/placeDetail/components/Menu.dart';
 import '../../features/placeDetail/components/imageAndDetail.dart';
 import '../../features/placeDetail/services/DescriptionCard.dart';
 
@@ -11,11 +12,13 @@ class PlaceDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: Center(
+      child: Column(
         children: [
           // Top Widget: ImageAndDetail
-          Expanded(
-            flex: 3,
+          SizedBox(
+            height: MediaQuery.of(context).size.height *
+                0.53, // Set the height you want
             child: ImageAndDetail(
               imageUrl: place['images'].isNotEmpty ? place['images'][0] : null,
               descriptionDetailArgument: DescriptionDetailArgument(
@@ -28,27 +31,9 @@ class PlaceDetailPage extends StatelessWidget {
             ),
           ),
           // Bottom Widgets
-          Expanded(
-            flex: 2,
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              color: Colors.grey[100],
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Additional Content',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          MenusPlaceDetail()
         ],
       ),
-    );
+    ));
   }
 }

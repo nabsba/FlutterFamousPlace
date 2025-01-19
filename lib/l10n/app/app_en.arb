@@ -59,5 +59,13 @@
  "noPlaceFound": "No places found",
   "@noPlaceFound": {
     "description": "No places found"
+  },
+  "overview": "Overview",
+  "@overview": {
+    "description": "Overview"
+  },
+  "details": "Details",
+  "@details": {
+    "description": "un mot unique pour representer détails"
   }
 }
