@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../features/placeDetail/components/IconsValues.dart';
 import '../../features/placeDetail/components/Menu.dart';
+import '../../features/placeDetail/components/elements/Description.dart';
 import '../../features/placeDetail/components/imageAndDetail.dart';
 import '../../features/placeDetail/types/DescriptionCardArguments.dart';
 import '../../features/placeDetail/types/IconsValuesArguments.dart';
@@ -38,7 +39,10 @@ class PlaceDetailPage extends StatelessWidget {
               iconsValuesArguments: IconValueArguments(
                   city: place['address']?['city']?['name'],
                   popularity: place['popularity'],
-                  hoursTravel: place['hoursTravel']))
+                  hoursTravel: place['hoursTravel'])),
+          BlurredTextWidget(
+            text: place['placeDetail']['description'],
+          )
         ],
       ),
     ));

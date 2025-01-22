@@ -25,8 +25,7 @@ class MenusPlaceDetail extends ConsumerWidget {
               child: Container(
                 margin: EdgeInsets.only(
                     left: index > 0 ? 15.0 : 0.0), // Add spacing between items
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+
                 child: Text(
                   buttons[index],
                   style: index == 0
