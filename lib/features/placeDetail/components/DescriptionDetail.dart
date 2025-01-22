@@ -4,7 +4,7 @@ import 'package:flutter_famous_places/features/styles/services/typography.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../services/DescriptionCard.dart';
+import '../types/DescriptionCardArguments.dart';
 
 class DescriptionDetail extends StatelessWidget {
   final DescriptionDetailArgument descriptionDetailArgument;

@@ -67,5 +67,9 @@
   "details": "Details",
   "@details": {
     "description": "un mot unique pour representer détails"
+  },
+ "hours": "Hours",
+  "@hours": {
+    "description": "A word for hours label"
   }
 }

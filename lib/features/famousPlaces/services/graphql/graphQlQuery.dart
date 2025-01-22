@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_famous_places/features/graphql/services/response.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -29,6 +27,7 @@ class PlaceRepository {
                 id
                 popularity
                 price
+                hoursTravel
                 address {
                   number
                   street

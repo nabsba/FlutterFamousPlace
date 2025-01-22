@@ -67,5 +67,9 @@
   "details": "Détails",
   "@details": {
     "description": "un mot unique pour representer détails"
+  },
+   "hours": "Heures",
+  "@hours": {
+    "description": "A mot pour le mot heures"
   }
 }

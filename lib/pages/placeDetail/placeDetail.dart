@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../features/placeDetail/components/IconsValues.dart';
 import '../../features/placeDetail/components/Menu.dart';
 import '../../features/placeDetail/components/imageAndDetail.dart';
-import '../../features/placeDetail/services/DescriptionCard.dart';
+import '../../features/placeDetail/types/DescriptionCardArguments.dart';
+import '../../features/placeDetail/types/IconsValuesArguments.dart';
 
 class PlaceDetailPage extends StatelessWidget {
   final Map<String, dynamic> place;
@@ -31,7 +33,12 @@ class PlaceDetailPage extends StatelessWidget {
             ),
           ),
           // Bottom Widgets
-          MenusPlaceDetail()
+          MenusPlaceDetail(),
+          IconsValuesWidget(
+              iconsValuesArguments: IconValueArguments(
+                  city: place['address']?['city']?['name'],
+                  popularity: place['popularity'],
+                  hoursTravel: place['hoursTravel']))
         ],
       ),
     ));

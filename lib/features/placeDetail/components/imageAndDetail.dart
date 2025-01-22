@@ -3,7 +3,7 @@ import 'package:flutter_famous_places/features/placeDetail/components/Descriptio
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../../pages/home/home.dart';
-import '../services/DescriptionCard.dart';
+import '../types/DescriptionCardArguments.dart';
 
 class ImageAndDetail extends StatelessWidget {
   final String? imageUrl;
