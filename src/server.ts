@@ -4,7 +4,6 @@ import express, { Request, Response } from 'express';
 import { ERROR_MESSAGES_KEYS, logErrorAsyncMessage, logMessage, STATUS_SERVER } from './common';
 import { resolvers, typeDefs } from './graphql';
 
-
 import dotenv from 'dotenv';
 import { handleVerifyToken } from './jwt';
 
@@ -23,7 +22,7 @@ app.use(cors(corsOptions));
 // app.use(cookieParser());
 app.use((req: Request, res: Response, next: () => void) => {
   try {
-    // handleVerifyToken(req);
+    handleVerifyToken(req);
     next();
   } catch (err: unknown) {
     if (err instanceof Error) {
