@@ -2,6 +2,7 @@ import { ERROR_MESSAGES, logErrorAsyncMessage, logMessage } from '../../common';
 import prismaClientDB from '../../lib/prismadb';
 import { PlaceBody, PlacesBody, PreSelectionBody } from '../type';
 import { ROW_PER_PAGE } from '../services/constant';
+import { listFilesInFolder } from '../../firebase';
 
 const handleAddPlaceToPreference = async (placeId: string, userId: string) => {
   try {
@@ -243,8 +244,7 @@ const   handleGetPlaces = async (args: PlacesBody) => {
       finalResult.push({
         ...result[i],
         placeDetail: result[i].placeDetail[0],
-        images: [],
-        // images:  await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
+        images:  await listFilesInFolder(`${result[i].address.city.name.toLocaleLowerCase()}/${result[i].image}`),
         isFavoritePlace: isPlaceOnUser,
       });
     }
