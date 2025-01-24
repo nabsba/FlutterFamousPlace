@@ -32,7 +32,7 @@ const handleVerifyToken = (req: Request) => {
         case AUTHORIZATION_HEADER_TYPE.MOBILE:
           return mobileAuthorization(req);
         case AUTHORIZATION_HEADER_TYPE.WEB:
-          return webAuthorization(req);
+          return webAuthorization();
         default:
           throw new Error('No authorization passed');
       }
