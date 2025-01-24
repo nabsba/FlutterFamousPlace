@@ -23,7 +23,6 @@ class ImageAndDetail extends StatelessWidget {
           children: [
             // Background Image
             Container(
-              width: MediaQuery.of(context).size.width * 0.860,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: imageUrl is String
@@ -48,9 +47,9 @@ class ImageAndDetail extends StatelessWidget {
               top: MediaQuery.of(context).size.height *
                   0.02, // 2% of the screen height
               left: MediaQuery.of(context).size.width *
-                  0.1, // 10% of the screen width
+                  0.05, // 10% of the screen width
               right: MediaQuery.of(context).size.width *
-                  0.1, // 10% of the screen width
+                  0.05, // 10% of the screen width
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
