@@ -6,7 +6,7 @@ const typeDefsPlaces = gql`
     id: String # ID field of type String (from TypeScript definition)
     popularity: Int # Popularity field of type Int
     price: Int # price field of type Int
-    hoursTraval: String!
+    hoursTravel: String!
     address: Address # Address field related to Address type
     placeDetail: PlaceDetail # Place detail related to the Place
     images: [String!]!
