@@ -5,7 +5,6 @@ import { getFakeWeather } from '../services/functions';
 const handleGetWeather = async (data: WeatherBody) => {
 try {
     const result = getFakeWeather(data);
-    console.log(result);
     return result;
 } catch (error) {
     logMessage(`${logErrorAsyncMessage('famousPlace/graphql/handleGetWeather', `${ERROR_MESSAGES.GET_WEATHER}:`)},

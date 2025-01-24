@@ -7,7 +7,6 @@ export const resolverWeather = {
        weather: async (_parent: undefined, args: WeatherBody) => {
             try {
               const result = await handleGetWeather(args);
-              console.log(result);
               return {
                 status: SUCCESS_STATUS.OK,
                 isError: false,
@@ -24,8 +23,6 @@ export const resolverWeather = {
               };
             }
           },
-
-
     }
 
 }
