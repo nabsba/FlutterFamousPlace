@@ -16,7 +16,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: HomePage.routeName,
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => HomePage(),
     ),
     GoRoute(
         path: BookingPage.routeName,
