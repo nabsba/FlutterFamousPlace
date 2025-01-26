@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../client/services/clientProvider.dart';
+import '../../client/providers/clientProvider.dart';
 import '../../common/services/functions.dart';
 import '../../famousPlaces/services/PreselectonName.dart';
 import '../../famousPlaces/services/graphql/graphQlQuery.dart';

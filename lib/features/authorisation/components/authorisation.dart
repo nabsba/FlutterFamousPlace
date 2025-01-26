@@ -4,7 +4,8 @@ import 'package:flutter_famous_places/features/error/components/error.dart';
 import 'package:flutter_famous_places/pages/signIn/sign_in.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../authentification/services/authentication.dart';
-import '../../client/services/clientProvider.dart';
+
+import '../../client/providers/clientProvider.dart';
 import '../../common/services/variables.dart';
 import '../../graphql/services/response.dart';
 import '../../success/services/success.dart';

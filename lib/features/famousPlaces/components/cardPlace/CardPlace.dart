@@ -3,7 +3,7 @@ import 'package:flutter_famous_places/features/famousPlaces/components/cardPlace
 import 'package:flutter_famous_places/features/graphql/services/response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../client/services/clientProvider.dart';
+import '../../../client/providers/clientProvider.dart';
 import '../../services/function.dart';
 
 final favoritePlaceProvider = StateProvider.family<bool, String>((ref, id) {

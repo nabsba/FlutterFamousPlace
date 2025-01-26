@@ -1,51 +1,8 @@
-// import 'dart:convert';
-// import 'package:flutter_famous_places/features/famousPlaces/services/providers/indexMenu.dart';
-// import 'package:flutter_famous_places/features/famousPlaces/services/providers/places.dart';
-// import 'package:riverpod/riverpod.dart';
-// import '../../../client/services/clientProvider.dart';
-// import '../../../graphql/client.dart';
-// import '../../../graphql/services/response.dart';
-// import '../graphql/graphQlQuery.dart';
-// import 'pagination.dart';
-
-// final placesProviderGraphQL =
-//     FutureProvider.family<ResponseGraphql<String>, String>(
-//   (ref, input) async {
-//     final menuIndexSelected = ref.read(menuSelected).newIndex;
-//     print('menuIndexSelected');
-//     print(menuIndexSelected);
-
-//     final decodedData = jsonDecode(input) as Map<String, dynamic>;
-//     final paginationState = ref.watch(paginationProvider);
-//     print('paginationState');
-//     print(paginationState);
-//     final language = decodedData['language'];
-//     final type = decodedData['type'];
-//     final userInfos = ref.watch(userInfosProvider);
-
-//     final placeRepository = PlaceRepository(GraphQLClientManager().client);
-//     final result = await placeRepository.fetchPlaces(
-//         language: language,
-//         type: type,
-//         userId: userInfos!.userId,
-//         page: paginationState.actualPage.toString());
-//     final List<dynamic> placesReceivedFromServer = result.data?['places'];
-//     if (placesReceivedFromServer.isNotEmpty) {
-//       Future.microtask(() {
-//         ref
-//             .read(placesProvider.notifier)
-//             .addPlaces(placesReceivedFromServer, menuIndexSelected.toString());
-//       });
-//     }
-//     return result;
-//   },
-// );
-
 import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providers/indexMenu.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providers/places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../client/services/clientProvider.dart';
+import '../../../client/providers/clientProvider.dart';
 import '../../../common/services/functions.dart';
 import '../../../graphql/client.dart';
 import '../graphql/graphQlQuery.dart';

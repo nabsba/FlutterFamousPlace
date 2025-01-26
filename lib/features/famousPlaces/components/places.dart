@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../pages/placeDetail/placeDetail.dart';
-import '../../client/services/clientProvider.dart';
+import '../../client/providers/clientProvider.dart';
 import '../../error/components/error.dart';
 import '../../error/services/errors.dart';
 import '../../loaders/components/timeLoadingWidget.dart';
@@ -19,6 +19,7 @@ class Places extends ConsumerStatefulWidget {
   const Places({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InfiniteScrollingPageState createState() => _InfiniteScrollingPageState();
 }
 
@@ -59,7 +60,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     });
 
     final places = ref.watch(placesProvider)[menuSelectedd.toString()];
-
     if (places!.isEmpty) {
       if (paginationState[menuSelectedd.toString()]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);

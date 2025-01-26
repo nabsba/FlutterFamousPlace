@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../styles/services/typography.dart';
-import '../services/clientProvider.dart';
+import '../providers/clientProvider.dart';
 
 class TitleNameAvatarRow extends ConsumerWidget {
   const TitleNameAvatarRow({
