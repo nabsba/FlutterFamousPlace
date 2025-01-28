@@ -1,0 +1,4 @@
+!toImprove
+!toRefactor
+!toFix
+!toImplementForTheNextVersionOfTheApp
