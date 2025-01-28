@@ -1,4 +1,8 @@
 {
+  "connectionError": "Connection error",
+  "@connectionError": {
+    "description": "Error message for login failure"
+  },
   "login": "Login failed. Please check your credentials and try again.",
   "@login": {
     "description": "Error message for login failure"

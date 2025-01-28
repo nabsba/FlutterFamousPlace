@@ -1,4 +1,12 @@
 {
+  "notConnected": "Non connecté",
+"@notConnected": {
+  "description": "A message indiquant l'état hors ligne"
+},
+  "notConnectedNotSign": "Vous devez être connecté(e) et identifié(e) pour utiliser l'application",
+"@notConnectedNotSign": {
+  "description": "Un message affiché lorsque l'utilisateur n'est pas connecté et non identifié"
+},
   "helloWorld": "Bonjour le monde!",
   "@helloWorld": {
     "description": "Le message conventionnel des nouveaux programmeurs"

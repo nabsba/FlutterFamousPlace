@@ -1,4 +1,12 @@
 {
+"notConnectedNotSign": "You need to be online and signed in to use the application",
+"@notConnectedNotSign": {
+  "description": "A message displayed when the user is offline and not signed in"
+},
+"notConnected": "Not connected",
+"@notConnected": {
+  "description": "A message indicating not connected"
+},
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
