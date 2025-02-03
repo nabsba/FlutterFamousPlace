@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../pages/placeDetail/placeDetail.dart';
 import '../../client/providers/clientProvider.dart';
+import '../../connectivityState/providers/connectivityHelper.dart';
 import '../../error/components/error.dart';
 import '../../error/services/errors.dart';
 import '../../loaders/components/timeLoadingWidget.dart';
 import '../../loaders/services/constant.dart';
+import '../../placeDetail/services/Place.dart';
 import '../services/function.dart';
 import '../services/providers/fetchPlaces.dart';
 import '../services/providers/indexMenu.dart';
 import '../services/providers/pagination.dart';
 import '../services/providers/places.dart';
 import 'cardPlace/CardPlace.dart';
-import 'package:go_router/go_router.dart';
 
 class Places extends ConsumerStatefulWidget {
   const Places({super.key});
@@ -35,15 +38,19 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
       if (userInfos?.userId != null &&
           _scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 200) {
-        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
+        ref.read(placesNotifierProvider.notifier).fetchPlaces(ref, context);
       }
     });
 
     // Fetch initial data after the widget is fully mounted
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final userInfos = ref.read(userInfosProvider);
-      if (userInfos?.userId != null) {
-        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
+      final connectivityState = ref.watch(connectivityProvider);
+
+      if (userInfos?.userId != null &&
+          connectivityState.value != null &&
+          connectivityState.value == true) {
+        ref.read(placesNotifierProvider.notifier).fetchPlaces(ref, context);
       }
     });
   }
@@ -53,13 +60,14 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     final paginationState = ref.watch(paginationProvider);
     final userInfos = ref.watch(userInfosProvider);
     final menuSelectedd = ref.watch(menuSelected).newIndex;
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (userInfos != null && userInfos.userId.isNotEmpty) {
-        ref.read(placesNotifierProvider.notifier).fetchMoreData(ref, context);
+        ref.read(placesNotifierProvider.notifier).fetchPlaces(ref, context);
       }
     });
-
     final places = ref.watch(placesProvider)[menuSelectedd.toString()];
+
     if (places!.isEmpty) {
       if (paginationState[menuSelectedd.toString()]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);
@@ -71,7 +79,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
         ),
       );
     }
-
     return Flexible(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.83,
@@ -98,13 +105,46 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
-                  final place = places[index];
+                  final Place place = places[index] is Place
+                      ? places[index]
+                      : Place(
+                          id: places[index]['id'],
+                          popularity: places[index]['popularity'],
+                          price: places[index]['price'],
+                          hoursTravel: places[index]['hoursTravel'],
+                          images: [],
+                          isFavoritePlace: false,
+                          address: Address(
+                            id: places[index]['address']['id'],
+                            number: places[index]['address']['number'],
+                            street: places[index]['address']['street'],
+                            postcode: places[index]['address']['postcode'],
+                            city: City(
+                              id: places[index]['address']['city']['id'],
+                              name: places[index]['address']['city']['name'],
+                              country: Country(
+                                id: places[index]['address']['city']['country']
+                                    ['id'],
+                                name: places[index]['address']['city']
+                                    ['country']['name'],
+                              ),
+                            ),
+                          ),
+                          placeDetail: PlaceDetail(
+                            id: places[index]['placeDetail']['id'],
+                            name: places[index]['placeDetail']['name'],
+                            description: places[index]['placeDetail']
+                                ['description'],
+                            languageId: places[index]['placeDetail']
+                                ['languageId'],
+                          ),
+                        );
 
-                  if (place['isFavoritePlace']) {
+                  if (place.isFavoritePlace) {
                     Future.microtask(() {
                       ref
                           .read(favoritePlacesProvider.notifier)
-                          .addFavorite(place['id']);
+                          .addFavorite(place.id);
                     });
                   }
                   return Container(
@@ -116,16 +156,14 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                           extra: place, // Pass the place object as an argument
                         ),
                         child: CardPlace(
-                          id: place['id'],
-                          backgroundImage: place['images'].isNotEmpty
-                              ? place['images'][0]
-                              : null,
-                          name: place['placeDetail']['name'],
-                          location: place['address']?['city']?['name'],
-                          country: place['address']?['city']?['country']
-                              ?['name'],
-                          rating: place['popularity'],
-                          isFavoritePlace: place['isFavoritePlace'],
+                          id: place.id,
+                          backgroundImage:
+                              place.images.isNotEmpty ? place.images[0] : null,
+                          name: place.placeDetail.name,
+                          location: place.address.city.name,
+                          country: place.address.city.country.name,
+                          rating: place.popularity,
+                          isFavoritePlace: place.isFavoritePlace,
                         ),
                       ));
                 },

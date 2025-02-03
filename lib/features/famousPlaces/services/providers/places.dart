@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../Place.dart';
+
+import '../../../placeDetail/services/Place.dart';
 
 final placesProvider =
     StateNotifierProvider<PlacesNotifier, Map<String, List<dynamic>>>(

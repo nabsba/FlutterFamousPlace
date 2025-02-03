@@ -28,7 +28,7 @@ class SelectMenuType extends ConsumerWidget {
                 ref.read(menuSelected.notifier).updateIndex(index);
                 ref
                     .read(placesNotifierProvider.notifier)
-                    .fetchMoreData(ref, context);
+                    .fetchPlaces(ref, context);
               }
             },
             child: Container(

@@ -1,3 +1,4 @@
+import 'package:flutter_famous_places/features/placeDetail/services/Place.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../pages/booking/booking.dart';
@@ -36,7 +37,7 @@ final _router = GoRouter(
       path: PlaceDetailPage.routeName,
       builder: (context, state) {
         // Extract the 'place' object from the state
-        final place = state.extra as Map<String, dynamic>;
+        final place = state.extra as Place;
         return PlaceDetailPage(place: place); // Pass the place to the page
       },
     ),

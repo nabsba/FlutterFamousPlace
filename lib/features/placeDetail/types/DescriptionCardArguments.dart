@@ -3,7 +3,7 @@ class DescriptionDetailArgument {
   final String priceLabel;
   final String country;
   final String city;
-  final int? priceValue;
+  final String? priceValue;
 
   const DescriptionDetailArgument({
     required this.name,

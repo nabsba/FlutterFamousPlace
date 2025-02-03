@@ -111,9 +111,8 @@ class AuthorizationWrapper extends ConsumerWidget {
                       userInfo[0].photoURL,
                       userInfo[0].userId);
                 });
-                return Text(
-                    "You are connected but you need to handle fetch places as it still all the api online");
-                // return signedInWidget;
+
+                return signedInWidget;
               } else {
                 return NotConnectedWidget();
               }

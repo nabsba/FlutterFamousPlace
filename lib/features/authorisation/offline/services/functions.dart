@@ -5,6 +5,7 @@ class UserInfosCRUD {
   // Create
   Future<int> addUser(UserInfos user) async {
     final db = await DatabaseHelper.instance.database;
+    //
     return await db.insert('userinfos', user.toMap());
   }
 
@@ -16,10 +17,10 @@ class UserInfosCRUD {
   }
 
   // Read One
-  Future<UserInfos?> getUserById(int id) async {
+  Future<UserInfos?> getUserById(String id) async {
     final db = await DatabaseHelper.instance.database;
     final result =
-        await db.query('userinfos', where: 'id = ?', whereArgs: [id]);
+        await db.query('userinfos', where: 'id = $id', whereArgs: [id]);
 
     if (result.isNotEmpty) {
       return UserInfos.fromMap(result.first);
@@ -34,14 +35,32 @@ class UserInfosCRUD {
     return await db.update(
       'userinfos',
       user.toMap(),
-      where: 'id = ?',
+      where: 'id = ${user.userId} ',
       // whereArgs: [user.id],
     );
   }
 
   // Delete
-  Future<int> deleteUser(int id) async {
+  Future<int> deleteUser(String id) async {
     final db = await DatabaseHelper.instance.database;
-    return await db.delete('userinfos', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('userinfos', where: 'id = $id', whereArgs: [id]);
+  }
+
+  Future<int> deleteAllUsers() async {
+    final db = await DatabaseHelper.instance.database;
+    return await db.delete('userinfos');
+  }
+
+  Future<int> handleAddNewUser(UserInfos user) async {
+    await DatabaseHelper.instance.database;
+    // Check if the user exists
+    final existingUser = await getAllUsers();
+    if (existingUser.isNotEmpty) {
+      // If the user exists, update it
+      return await updateUser(user);
+    } else {
+      // If the user does not exist, add a new one
+      return await addUser(user);
+    }
   }
 }

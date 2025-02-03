@@ -5,9 +5,7 @@ class ConnectivityHelper {
 
   /// Checks if there is an active internet connection (Wi-Fi or Mobile).
   Future<bool> hasInternetConnection() async {
-    print("hasInternetConnection called");
     final connectivityResult = await _connectivity.checkConnectivity();
-    print(connectivityResult);
     return connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi;
   }

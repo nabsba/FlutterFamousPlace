@@ -3,6 +3,7 @@ import 'package:flutter_famous_places/features/styles/services/size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../connectivityState/providers/connectivityHelper.dart';
 import '../../styles/services/typography.dart';
 import '../providers/clientProvider.dart';
 
@@ -14,6 +15,9 @@ class TitleNameAvatarRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userInfos = ref.watch(userInfosProvider);
+    final connectivityState = ref.watch(connectivityProvider);
+    final isConnected =
+        connectivityState.value != null && connectivityState.value == true;
     return Row(
       children: [
         // Add space between the avatar and text
@@ -32,7 +36,9 @@ class TitleNameAvatarRow extends ConsumerWidget {
         CircleAvatar(
           radius: 20, // Adjust the size of the avatar
           backgroundImage: userInfos?.photoURL.isNotEmpty == true
-              ? NetworkImage(userInfos!.photoURL)
+              ? isConnected
+                  ? NetworkImage(userInfos!.photoURL)
+                  : AssetImage("assets/images/userDefault.jpg") as ImageProvider
               : AssetImage("assets/images/userDefault.jpg") as ImageProvider,
           backgroundColor: Colors.grey[200], // Fallback background
         ),

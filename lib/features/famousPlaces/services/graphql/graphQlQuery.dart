@@ -29,19 +29,24 @@ class PlaceRepository {
                 price
                 hoursTravel
                 address {
+                  id
                   number
                   street
                   postcode
                   city {
+                    id
                     name
                     country {
                       name
+                      id
                     }
                   }
                 }
                 placeDetail {
+                  id
                   name
                   description
+                  languageId
                 }
                 images
                 isFavoritePlace
@@ -183,14 +188,18 @@ class PlaceRepository {
                 id
                 popularity
                 price
+                hoursTravel
                 address {
+                  id
                   number
                   street
                   postcode
                   city {
+                    id
                     name
                     country {
                       name
+                      id
                     }
                   }
                 }
@@ -198,6 +207,7 @@ class PlaceRepository {
                   name
                   description
                   id
+                  languageId
                 }
                 images
                 isFavoritePlace
