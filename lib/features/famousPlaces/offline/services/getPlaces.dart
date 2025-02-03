@@ -38,7 +38,7 @@ Future<List<Place>> getPlaces(Database db) async {
         price: maps[i]['price'],
         hoursTravel: maps[i]['hoursTravel'],
         images: [],
-        isFavoritePlace: false,
+        isFavoritePlace: maps[i]['isFavoritePlace'] ?? false,
         address: Address(
           id: maps[i]['addressId'],
           number: maps[i]['number'],

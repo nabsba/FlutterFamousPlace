@@ -105,6 +105,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
+
                   final Place place = places[index] is Place
                       ? places[index]
                       : Place(
@@ -113,7 +114,8 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                           price: places[index]['price'],
                           hoursTravel: places[index]['hoursTravel'],
                           images: [],
-                          isFavoritePlace: false,
+                          isFavoritePlace:
+                              places[index]['isFavoritePlace'] ?? false,
                           address: Address(
                             id: places[index]['address']['id'],
                             number: places[index]['address']['number'],
