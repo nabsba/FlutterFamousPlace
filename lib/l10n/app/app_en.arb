@@ -1,4 +1,6 @@
 {
+  "backOnline": "Back online",
+"offlineMode": "Offline mode",
 "notConnectedNotSign": "You need to be online and signed in to use the application",
 "@notConnectedNotSign": {
   "description": "A message displayed when the user is offline and not signed in"

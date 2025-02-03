@@ -1,4 +1,6 @@
 {
+  "backOnline": "De retour en ligne",
+"offlineMode": "Mode hors ligne",
   "notConnected": "Non connecté",
 "@notConnected": {
   "description": "A message indiquant l'état hors ligne"
