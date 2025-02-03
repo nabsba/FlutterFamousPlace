@@ -15,7 +15,7 @@ class SelectMenuType extends ConsumerWidget {
       AppLocalizations.of(context)!.mostViewed,
       AppLocalizations.of(context)!.nearby,
       AppLocalizations.of(context)!.latest,
-      'onSelection'
+      AppLocalizations.of(context)!.onSelection,
     ];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal, // Enable horizontal scrolling

@@ -50,6 +50,10 @@
   "@nearby": {
     "description": "Label for the 'Nearby' filter button"
   },
+   "onSelection": "Selection",
+  "@onSelection": {
+    "description": "Label for the 'Selection' filter button"
+  },
   "latest": "Les plus récents",
   "@latest": {
     "description": "Label for the 'Latest' filter button"

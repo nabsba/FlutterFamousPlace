@@ -29,6 +29,10 @@
   "@nearby": {
     "description": "Label for the 'Nearby' filter button"
   },
+    "onSelection": "On selection",
+  "@onSelection": {
+    "description": "Label for the 'On Selection' filter button"
+  },
     "price": "Price",
   "@price": {
     "description": "Label for the price label"
