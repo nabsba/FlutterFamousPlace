@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../placeDetail/services/Place.dart';
+import '../data/constant.dart';
 
 final placesProvider =
     StateNotifierProvider<PlacesNotifier, Map<String, List<dynamic>>>(
@@ -8,7 +9,13 @@ final placesProvider =
 );
 
 class PlacesNotifier extends StateNotifier<Map<String, List<dynamic>>> {
-  PlacesNotifier() : super({"0": [], "1": [], "2": [], "3": []});
+  PlacesNotifier()
+      : super({
+          menus[0]: [],
+          menus[1]: [],
+          menus[2]: [],
+          menus[3]: [],
+        });
 
   // Add a place to the specified array
   void addPlace(Place place, String type) {
@@ -42,6 +49,6 @@ class PlacesNotifier extends StateNotifier<Map<String, List<dynamic>>> {
 
   // Clear all arrays
   void clearAllPlaces() {
-    state = {"0": [], "1": [], "2": [], "3": []};
+    state = {"mostViewed": [], "nearby": [], "latest": [], "onSelection": []};
   }
 }

@@ -13,7 +13,7 @@ import '../../loaders/services/constant.dart';
 import '../../placeDetail/services/Place.dart';
 import '../services/function.dart';
 import '../services/providers/fetchPlaces.dart';
-import '../services/providers/indexMenu.dart';
+import '../services/providers/menuSelected.dart';
 import '../services/providers/pagination.dart';
 import '../services/providers/places.dart';
 import 'cardPlace/CardPlace.dart';
@@ -59,17 +59,17 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
   Widget build(BuildContext context) {
     final paginationState = ref.watch(paginationProvider);
     final userInfos = ref.watch(userInfosProvider);
-    final menuSelectedd = ref.watch(menuSelected).newIndex;
-
+    final menuSelectedd = ref.watch(menuSelected).menuOnSelection;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (userInfos != null && userInfos.userId.isNotEmpty) {
         ref.read(placesNotifierProvider.notifier).fetchPlaces(ref, context);
       }
     });
-    final places = ref.watch(placesProvider)[menuSelectedd.toString()];
-
-    if (places!.isEmpty) {
-      if (paginationState[menuSelectedd.toString()]!.isLoading) {
+    final places = ref.watch(placesProvider)[menuSelectedd];
+    print('1');
+    if (places == null || places.isEmpty) {
+      print(menuSelectedd);
+      if (paginationState[menuSelectedd]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);
       }
       return Padding(
@@ -79,33 +79,32 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
         ),
       );
     }
+    print('2');
     return Flexible(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.83,
-        child: paginationState[menuSelectedd.toString()]!
-                    .messageKey
-                    .isNotEmpty &&
+        child: paginationState[menuSelectedd]!.messageKey.isNotEmpty &&
+                places != null &&
                 places.isEmpty
             ? Center(
                 child: ErrorComponent(
-                  errorKey:
-                      paginationState[menuSelectedd.toString()]!.messageKey,
+                  errorKey: paginationState[menuSelectedd]!.messageKey,
                 ),
               )
             : ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: places.length +
-                    (paginationState[menuSelectedd.toString()]!.isLoading
+                itemCount: (places?.length ?? 0) +
+                    ((paginationState[menuSelectedd]?.isLoading ?? false)
                         ? 1
                         : 0),
                 controller: _scrollController,
                 itemBuilder: (context, index) {
-                  if (index == places.length) {
+                  if (places == null || index >= places!.length) {
                     return LoadingWidget(
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
-
+                  print(places);
                   final Place place = places[index] is Place
                       ? places[index]
                       : Place(

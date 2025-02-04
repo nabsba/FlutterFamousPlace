@@ -1,5 +1,7 @@
 import 'package:riverpod/riverpod.dart';
 
+import '../data/constant.dart';
+
 class PaginationState {
   final int actualPage;
   final int totalPage;
@@ -39,7 +41,7 @@ class PaginationState {
 class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
   PaginationNotifier()
       : super({
-          '0': PaginationState(
+          menus[0]: PaginationState(
             actualPage: 0,
             totalPage: 0,
             rowPerPage: 10, // Default rows per page
@@ -47,7 +49,7 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
             isLoading: false,
             messageKey: '',
           ),
-          '1': PaginationState(
+          menus[1]: PaginationState(
             actualPage: 0,
             totalPage: 0,
             rowPerPage: 10,
@@ -55,7 +57,7 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
             isLoading: false,
             messageKey: '',
           ),
-          '2': PaginationState(
+          menus[2]: PaginationState(
             actualPage: 0,
             totalPage: 0,
             rowPerPage: 10,
@@ -63,7 +65,7 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
             isLoading: false,
             messageKey: '',
           ),
-          '3': PaginationState(
+          menus[3]: PaginationState(
             actualPage: 0,
             totalPage: 0,
             rowPerPage: 10,

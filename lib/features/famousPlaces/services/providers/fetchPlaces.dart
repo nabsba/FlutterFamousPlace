@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_famous_places/features/famousPlaces/services/providers/indexMenu.dart';
+import 'package:flutter_famous_places/features/famousPlaces/services/providers/menuSelected.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providers/places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sqflite_common/sqlite_api.dart';
@@ -25,24 +25,23 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
   Future<void> fetchPlaces(WidgetRef ref, context) async {
     final userInfos = ref.watch(userInfosProvider);
     final paginationState = ref.watch(paginationProvider);
-    final menuSelectedd = ref.read(menuSelected).newIndex;
+    final menuSelectedd = ref.read(menuSelected).menuOnSelection;
+
     if (userInfos == null ||
         userInfos.userId.isEmpty ||
-        paginationState[menuSelectedd.toString()]!.isLoading ||
-        (paginationState[menuSelectedd.toString()]!.totalPage ==
-                paginationState[menuSelectedd.toString()]!.actualPage &&
-            paginationState[menuSelectedd.toString()]!.totalRows != 0)) {
+        paginationState[menuSelectedd]!.isLoading ||
+        (paginationState[menuSelectedd]!.totalPage ==
+                paginationState[menuSelectedd]!.actualPage &&
+            paginationState[menuSelectedd]!.totalRows != 0)) {
       return;
     }
 
     final locale = Localizations.localeOf(context);
     final index = getIndexOfLanguage(locale.toString());
-    ref
-        .read(paginationProvider.notifier)
-        .setLoading(menuSelectedd.toString(), true);
+    ref.read(paginationProvider.notifier).setLoading(menuSelectedd, true);
 
     try {
-      final filterProvider = ref.watch(menuSelected).newIndex;
+      final filterProvider = ref.watch(menuSelected).menuOnSelection;
       final placeRepository = PlaceRepository(GraphQLClientManager().client);
       final connectivityState = ref.watch(connectivityProvider);
       var dbInstance = await DatabaseHelper.instance.database;
@@ -52,9 +51,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
                   language: index.toString(),
                   type: filterProvider.toString(),
                   userId: userInfos.userId,
-                  page: paginationState[menuSelectedd.toString()]!
-                      .actualPage
-                      .toString(),
+                  page: paginationState[menuSelectedd]!.actualPage.toString(),
                 )
               : ResponseGraphql<String>.fromMap({
                   'status': 200,
@@ -76,7 +73,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
       if (result.isError) {
         ref
             .read(paginationProvider.notifier)
-            .setIsError(menuSelectedd.toString(), result.messageKey);
+            .setIsError(menuSelectedd, result.messageKey);
       } else if (placesReceivedFromServer.isNotEmpty) {
         if (connectivityState.value != null &&
             connectivityState.value == true) {
@@ -88,30 +85,27 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
             .read(placesProvider.notifier)
             .addPlaces(placesReceivedFromServer, filterProvider.toString());
 
-        ref.read(paginationProvider.notifier).updateRowPerPage(
-            menuSelectedd.toString(), result.data['rowPerPage']);
-        ref.read(paginationProvider.notifier).updateTotalRows(
-            menuSelectedd.toString(), result.data['totalRows']);
+        ref
+            .read(paginationProvider.notifier)
+            .updateRowPerPage(menuSelectedd, result.data['rowPerPage']);
+        ref
+            .read(paginationProvider.notifier)
+            .updateTotalRows(menuSelectedd, result.data['totalRows']);
         ref.read(paginationProvider.notifier).updateActualPage(
-            menuSelectedd.toString(),
-            paginationState[menuSelectedd.toString()]!.actualPage + 1);
+            menuSelectedd, paginationState[menuSelectedd]!.actualPage + 1);
       }
     } catch (error) {
       debugPrint('PlacesNotifier Error fetching data: $error');
     } finally {
       // Reset loading state
-      ref
-          .read(paginationProvider.notifier)
-          .setLoading(menuSelectedd.toString(), false);
+      ref.read(paginationProvider.notifier).setLoading(menuSelectedd, false);
     }
   }
 
   Future<void> fetchPlace(WidgetRef ref, context, String placeId) async {
-    final menuSelectedd = ref.read(menuSelected).newIndex;
+    final menuSelectedd = ref.read(menuSelected).menuOnSelection;
     try {
-      ref
-          .read(paginationProvider.notifier)
-          .setLoading(menuSelectedd.toString(), true);
+      ref.read(paginationProvider.notifier).setLoading(menuSelectedd, true);
       final placeRepository = PlaceRepository(GraphQLClientManager().client);
 
       final result = await placeRepository.fetchPlace(
@@ -122,26 +116,22 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
       if (result.isError) {
         ref
             .read(paginationProvider.notifier)
-            .setIsError(menuSelectedd.toString(), result.messageKey);
+            .setIsError(menuSelectedd, result.messageKey);
       } else if (placesReceivedFromServer.isNotEmpty) {
-        final place = ref.watch(placesProvider)[menuSelectedd.toString()];
+        final place = ref.watch(placesProvider)[menuSelectedd];
         if (place!.isNotEmpty) {
-          ref
-              .read(placesProvider.notifier)
-              .clearPlaces(menuSelectedd.toString());
+          ref.read(placesProvider.notifier).clearPlaces(menuSelectedd);
         }
 
         ref
             .read(placesProvider.notifier)
-            .addPlaces([placesReceivedFromServer], menuSelectedd.toString());
+            .addPlaces([placesReceivedFromServer], menuSelectedd);
       }
     } catch (error) {
       print(error);
     } finally {
       // Reset loading state
-      ref
-          .read(paginationProvider.notifier)
-          .setLoading(menuSelectedd.toString(), false);
+      ref.read(paginationProvider.notifier).setLoading(menuSelectedd, false);
     }
   }
 }

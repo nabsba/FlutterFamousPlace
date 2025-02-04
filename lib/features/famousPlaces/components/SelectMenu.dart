@@ -3,14 +3,16 @@ import 'package:flutter_famous_places/features/famousPlaces/services/providers/f
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../styles/services/typography.dart';
-import '../services/providers/indexMenu.dart';
+import '../services/data/constant.dart';
+import '../services/providers/menuSelected.dart';
 
 class SelectMenuType extends ConsumerWidget {
   const SelectMenuType({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = ref.watch(menuSelected).newIndex;
+    final selectedIndex = ref.watch(menuSelected).menuOnSelection;
+
     final List<String> buttons = [
       AppLocalizations.of(context)!.mostViewed,
       AppLocalizations.of(context)!.nearby,
@@ -21,11 +23,11 @@ class SelectMenuType extends ConsumerWidget {
       scrollDirection: Axis.horizontal, // Enable horizontal scrolling
       child: Row(
         children: List.generate(buttons.length, (index) {
-          final bool isSelected = selectedIndex == index;
+          final bool isSelected = selectedIndex == menus[index];
           return GestureDetector(
             onTap: () {
-              if (ref.watch(menuSelected).newIndex != index) {
-                ref.read(menuSelected.notifier).updateIndex(index);
+              if (ref.watch(menuSelected).menuOnSelection != menus[index]) {
+                ref.read(menuSelected.notifier).updateIndex(menus[index]);
                 ref
                     .read(placesNotifierProvider.notifier)
                     .fetchPlaces(ref, context);

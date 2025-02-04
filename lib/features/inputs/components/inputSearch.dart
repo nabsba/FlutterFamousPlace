@@ -9,7 +9,7 @@ import '../../common/services/functions.dart';
 import '../../famousPlaces/services/PreselectonName.dart';
 import '../../famousPlaces/services/graphql/graphQlQuery.dart';
 import '../../famousPlaces/services/providers/fetchPlaces.dart';
-import '../../famousPlaces/services/providers/indexMenu.dart';
+import '../../famousPlaces/services/providers/menuSelected.dart';
 import '../../famousPlaces/services/providers/places.dart';
 import '../../graphql/client.dart';
 
@@ -49,11 +49,11 @@ class _InputSearchState extends ConsumerState<InputSearch> {
         final userInfos = ref.watch(userInfosProvider);
         final locale = Localizations.localeOf(context);
         final languageIndex = getIndexOfLanguage(locale.toString());
-        final menuSelectedd = ref.read(menuSelected).newIndex;
+        final menuSelectedd = ref.read(menuSelected).menuOnSelection;
         final results = await placeRepository.preselectionNames(
           query,
           languageIndex.toString(),
-          menuSelectedd.toString(),
+          menuSelectedd,
           userInfos!.userId,
         );
         final nanb = PreselectionNameData.fromMap(results.data!);
@@ -106,8 +106,10 @@ class _InputSearchState extends ConsumerState<InputSearch> {
                 child: GestureDetector(
                   onTap: () {
                     if (_selectedId!.isNotEmpty) {
-                      ref.read(menuSelected.notifier).updateIndex(3);
-                      final place = ref.watch(placesProvider)['3'];
+                      ref
+                          .read(menuSelected.notifier)
+                          .updateIndex('onSelection');
+                      final place = ref.watch(placesProvider)['onSelection'];
                       if (place!.isNotEmpty &&
                           _selectedId == place[0]['placeDetail']['id']) {
                         return;
