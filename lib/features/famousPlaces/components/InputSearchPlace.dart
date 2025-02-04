@@ -6,11 +6,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../client/providers/clientProvider.dart';
 import '../../common/services/functions.dart';
-import '../../famousPlaces/services/PreselectonName.dart';
-import '../../famousPlaces/services/graphql/graphQlQuery.dart';
-import '../../famousPlaces/services/providers/fetchPlaces.dart';
-import '../../famousPlaces/services/providers/menuSelected.dart';
-import '../../famousPlaces/services/providers/places.dart';
+import '../services/PreselectonName.dart';
+import '../services/graphql/graphQlQuery.dart';
+import '../services/providers/fetchPlaces.dart';
+import '../services/providers/menuSelected.dart';
+import '../services/providers/places.dart';
 import '../../graphql/client.dart';
 
 class InputSearch extends ConsumerStatefulWidget {
