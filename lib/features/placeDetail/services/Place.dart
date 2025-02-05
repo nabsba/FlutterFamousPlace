@@ -3,7 +3,7 @@ class Place {
   final int popularity;
   final Address address;
   final PlaceDetail placeDetail;
-  final List<String?> images;
+  final List<dynamic> images;
   final bool isFavoritePlace;
   final String hoursTravel;
   final String? price;
