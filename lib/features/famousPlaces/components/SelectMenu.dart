@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_famous_places/features/famousPlaces/services/providers/fetchPlaces.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../../styles/services/typography.dart';
 import '../services/data/constant.dart';
 import '../services/providers/menuSelected.dart';
@@ -30,9 +30,6 @@ class SelectMenuType extends ConsumerWidget {
                 ref
                     .read(menuSelected.notifier)
                     .updateMenuOnSelection(menus[index]);
-                ref
-                    .read(placesNotifierProvider.notifier)
-                    .fetchPlaces(ref, context);
               }
             },
             child: Container(
