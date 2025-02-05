@@ -86,7 +86,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.83,
         child: paginationState[menuSelectedd]!.messageKey.isNotEmpty &&
-                places != null &&
                 places.isEmpty
             ? Center(
                 child: ErrorComponent(
@@ -101,7 +100,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         : 0),
                 controller: _scrollController,
                 itemBuilder: (context, index) {
-                  if (places == null || index >= places!.length) {
+                  if (index >= places.length) {
                     return LoadingWidget(
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
