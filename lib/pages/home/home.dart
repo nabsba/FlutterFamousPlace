@@ -17,7 +17,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 60,
+        toolbarHeight: 80,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment
               .start, // Aligns title and subtitle to the start
