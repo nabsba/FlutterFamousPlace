@@ -27,7 +27,9 @@ class SelectMenuType extends ConsumerWidget {
           return GestureDetector(
             onTap: () {
               if (ref.watch(menuSelected).menuOnSelection != menus[index]) {
-                ref.read(menuSelected.notifier).updateIndex(menus[index]);
+                ref
+                    .read(menuSelected.notifier)
+                    .updateMenuOnSelection(menus[index]);
                 ref
                     .read(placesNotifierProvider.notifier)
                     .fetchPlaces(ref, context);

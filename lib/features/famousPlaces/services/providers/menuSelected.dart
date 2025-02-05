@@ -13,7 +13,7 @@ class SelectMenu extends StateNotifier<MenuSelected> {
   SelectMenu() : super(MenuSelected(menuOnSelection: menus[0]));
 
   // Method to update the indices
-  void updateIndex(String menuOnSelection) {
+  void updateMenuOnSelection(String menuOnSelection) {
     state = MenuSelected(menuOnSelection: menuOnSelection);
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../client/providers/clientProvider.dart';
 import '../../common/services/functions.dart';
 import '../services/PreselectonName.dart';
+import '../services/data/constant.dart';
 import '../services/graphql/graphQlQuery.dart';
 import '../services/providers/fetchPlaces.dart';
 import '../services/providers/menuSelected.dart';
@@ -108,7 +109,7 @@ class _InputSearchState extends ConsumerState<InputSearch> {
                     if (_selectedId!.isNotEmpty) {
                       ref
                           .read(menuSelected.notifier)
-                          .updateIndex('onSelection');
+                          .updateMenuOnSelection(menus[3]);
                       final place = ref.watch(placesProvider)['onSelection'];
                       if (place!.isNotEmpty &&
                           _selectedId == place[0]['placeDetail']['id']) {
