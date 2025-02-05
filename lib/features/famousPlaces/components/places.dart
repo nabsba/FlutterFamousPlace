@@ -11,6 +11,7 @@ import '../../error/services/errors.dart';
 import '../../loaders/components/timeLoadingWidget.dart';
 import '../../loaders/services/constant.dart';
 import '../../placeDetail/services/Place.dart';
+import '../services/data/constant.dart';
 import '../services/function.dart';
 import '../services/providers/fetchPlaces.dart';
 import '../services/providers/menuSelected.dart';
@@ -61,14 +62,15 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     final userInfos = ref.watch(userInfosProvider);
     final menuSelectedd = ref.watch(menuSelected).menuOnSelection;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (userInfos != null && userInfos.userId.isNotEmpty) {
+      if (userInfos != null &&
+          userInfos.userId.isNotEmpty &&
+          menuSelectedd != menus[3]) {
         ref.read(placesNotifierProvider.notifier).fetchPlaces(ref, context);
       }
     });
     final places = ref.watch(placesProvider)[menuSelectedd];
-    print('1');
+
     if (places == null || places.isEmpty) {
-      print(menuSelectedd);
       if (paginationState[menuSelectedd]!.isLoading) {
         return LoadingWidget(loadingType: LoaderMessagesKeys.skelaton);
       }
@@ -79,7 +81,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
         ),
       );
     }
-    print('2');
+
     return Flexible(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.83,
@@ -104,7 +106,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
-                  print(places);
                   final Place place = places[index] is Place
                       ? places[index]
                       : Place(

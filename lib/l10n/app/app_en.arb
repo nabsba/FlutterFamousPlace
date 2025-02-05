@@ -21,6 +21,7 @@
   "@mostViewed": {
     "description": "Label for the 'Most viewed' filter button"
   },
+  "noPLaceSelected": "No place selected",
   "viewAll": "View all",
   "@viewAll": {
     "description": "Label for the View all button"

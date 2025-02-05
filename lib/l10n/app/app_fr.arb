@@ -42,6 +42,7 @@
   "@viewAll": {
     "description": "Label pour le voir tous boutton"
   },
+    "noPLaceSelected": "Pas de place selectée",
   "mostViewed": "Les plus vus",
   "@mostViewed": {
     "description": "Label for the 'Most viewed' filter button"
