@@ -17,7 +17,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: 70,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment
               .start, // Aligns title and subtitle to the start
@@ -39,7 +39,7 @@ class HomePage extends ConsumerWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Add padding around contents
+          padding: const EdgeInsets.all(10.0), // Add padding around contents
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
