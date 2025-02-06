@@ -73,6 +73,14 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
             isLoading: false,
             messageKey: '',
           ),
+          menus[4]: PaginationState(
+            actualPage: 0,
+            totalPage: 0,
+            rowPerPage: 10,
+            totalRows: 0,
+            isLoading: false,
+            messageKey: '',
+          ),
         });
 
   void updateState(String key, PaginationState newState) {

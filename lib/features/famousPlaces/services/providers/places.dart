@@ -15,6 +15,7 @@ class PlacesNotifier extends StateNotifier<Map<String, List<dynamic>>> {
           menus[1]: [],
           menus[2]: [],
           menus[3]: [],
+          menus[4]: [],
         });
 
   // Add a place to the specified array

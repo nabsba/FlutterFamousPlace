@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/styles/services/size.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../features/client/components/titleNameAvatarRow.dart';
 import '../../features/famousPlaces/components/SelectMenu.dart';
 import '../../features/famousPlaces/components/places.dart';
 import '../../features/famousPlaces/components/InputSearchPlace.dart';
+import '../../features/famousPlaces/services/data/constant.dart';
+import '../../features/famousPlaces/services/providers/menuSelected.dart';
 import '../../features/styles/services/typography.dart';
 
 class HomePage extends ConsumerWidget {
@@ -15,6 +16,11 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future(() {
+      if (ref.watch(menuSelected).menuOnSelection == menus[4]) {
+        ref.read(menuSelected.notifier).updateMenuOnSelection(menus[0]);
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,

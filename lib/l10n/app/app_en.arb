@@ -2,6 +2,7 @@
   "backOnline": "Back online",
 "offlineMode": "Offline mode",
   "user_profile": "User Profile",
+    "favourite_place": "Favourite Place",
   "log_out": "Log Out",
 "notConnectedNotSign": "You need to be online and signed in to use the application",
 "@notConnectedNotSign": {
