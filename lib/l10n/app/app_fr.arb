@@ -1,4 +1,6 @@
 {
+   "user_profile": "Profil de l'utilisateur",
+  "log_out": "Se déconnecter",
   "backOnline": "De retour en ligne",
 "offlineMode": "Mode hors ligne",
   "notConnected": "Non connecté",
