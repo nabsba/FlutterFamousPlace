@@ -61,6 +61,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
     final paginationState = ref.watch(paginationProvider);
     final userInfos = ref.watch(userInfosProvider);
     final menuSelectedd = ref.watch(menuSelected).menuOnSelection;
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (userInfos != null &&
           userInfos.userId.isNotEmpty &&
@@ -81,7 +82,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
         ),
       );
     }
-
     return Flexible(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.83,
@@ -94,7 +94,7 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
               )
             : ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: (places?.length ?? 0) +
+                itemCount: (places.length) +
                     ((paginationState[menuSelectedd]?.isLoading ?? false)
                         ? 1
                         : 0),
@@ -105,7 +105,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                         errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
                         loadingType: LoaderMessagesKeys.skelaton);
                   }
-
                   final Place place = places[index] is Place
                       ? places[index]
                       : Place(
