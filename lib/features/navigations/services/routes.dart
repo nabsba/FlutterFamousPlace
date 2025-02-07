@@ -6,14 +6,14 @@ import '../../../pages/favorite/favorite.dart';
 import '../../../pages/home/home.dart';
 import '../../../pages/placeDetail/placeDetail.dart';
 import '../../../pages/userProfile/userProfile.dart';
-import '../../layouts/main/mainLayout.dart';
+import '../../layouts/main/PageSwitcher.dart';
 
 final _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const MainLayout(),
+      builder: (context, state) => const PageSwitcher(),
     ),
     GoRoute(
       path: HomePage.routeName,

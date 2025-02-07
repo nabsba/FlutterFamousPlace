@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../connectivityState/providers/connectivityHelper.dart';
+import '../../layouts/main/providers/welcomeScreenState.dart';
+import '../providers/lastDisplayedStatusProvider.dart';
 
 // Replace this with your actual connectivity provider
 
@@ -35,13 +37,42 @@ class _ConnectivityStatusBannerState
   }
 
   void _checkAndShowBanner() {
-    _timer?.cancel();
-    setState(() => _visible = true);
-    _timer = Timer(const Duration(seconds: 3), () {
-      if (mounted) {
-        setState(() => _visible = false);
-      }
-    });
+    final connectivityState = ref.read(connectivityProvider);
+    final lastDisplayedStatus = ref.read(lastDisplayedStatusProvider);
+    final isUserHasJustOpenTheApplication = ref.read(welcomeScreenProvider);
+    final isOnline = connectivityState.when(
+      data: (value) => value,
+      loading: () => false, // Assume offline while loading
+      error: (_, __) => false, // Assume offline on error
+    );
+
+// Do not display the online connection status for the first connection.
+
+    if (isUserHasJustOpenTheApplication && connectivityState.value != false) {
+      Future.microtask(() {
+        ref.read(lastDisplayedStatusProvider.notifier).state = isOnline;
+      });
+
+      return;
+    }
+    // Only show the banner if the previous state was offline and we are now online
+    if (lastDisplayedStatus == false || lastDisplayedStatus != isOnline) {
+      Future(() {
+        ref.read(lastDisplayedStatusProvider.notifier).state = isOnline;
+        _timer?.cancel();
+        setState(() => _visible = true);
+        _timer = Timer(const Duration(seconds: 3), () {
+          if (mounted) {
+            setState(() => _visible = false);
+          }
+        });
+      });
+    } else {
+      // Just update the state without showing the banner
+      Future.microtask(() {
+        ref.read(lastDisplayedStatusProvider.notifier).state = isOnline;
+      });
+    }
   }
 
   @override
