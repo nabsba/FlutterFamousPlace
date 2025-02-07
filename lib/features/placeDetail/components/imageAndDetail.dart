@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/placeDetail/components/DescriptionDetail.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../../pages/home/home.dart';
 import '../types/DescriptionCardArguments.dart';
 
 class ImageAndDetail extends StatelessWidget {
@@ -69,8 +68,8 @@ class ImageAndDetail extends StatelessWidget {
                           onPressed: () => Navigator.canPop(context)
                               ? context
                                   .pop() // Pop the current screen if possible
-                              : context.go(HomePage
-                                  .routeName), // Pop the current screen if possible
+                              : context.go(
+                                  '/'), // Pop the current screen if possible
                           // This will pop the current screen from the navigation stack
                         ),
                       )),
