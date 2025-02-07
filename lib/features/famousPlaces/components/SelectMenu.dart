@@ -34,8 +34,8 @@ class SelectMenuType extends ConsumerWidget {
             },
             child: Container(
               margin: EdgeInsets.only(
-                  left: index > 0 ? 15.0 : 0.0), // Add spacing between items
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  left: index > 0 ? 20.0 : 0.0), // Add spacing between items
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
               decoration: BoxDecoration(
                 color: isSelected
                     ? const Color(0xFF2F2F2F)
