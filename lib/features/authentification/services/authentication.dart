@@ -51,7 +51,7 @@ class AuthenticationClass {
       return response;
     } catch (e) {
       // Handle exceptions gracefully
-      print('Error during user registration: $e');
+
       rethrow; // Optionally rethrow the error to propagate it further
     }
   }

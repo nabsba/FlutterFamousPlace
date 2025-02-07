@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../error/services/MyLogger.dart';
+
 class SignInButton extends StatelessWidget {
   final Future<void> Function() onPressed;
   final String iconType;
@@ -34,7 +36,7 @@ class SignInButton extends StatelessWidget {
             try {
               await onPressed();
             } catch (e) {
-              print('Error: $e');
+              MyLogger.logError(e as String);
             }
           },
           icon: SvgPicture.asset(

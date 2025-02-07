@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../error/services/MyLogger.dart';
 import '../../styles/services/typography.dart';
 
 class MenusPlaceDetail extends ConsumerWidget {
@@ -20,7 +21,7 @@ class MenusPlaceDetail extends ConsumerWidget {
         children: List.generate(buttons.length, (index) {
           return GestureDetector(
               onTap: () {
-                print('ok');
+                MyLogger.logInfo('Menu pressed');
               },
               child: Container(
                 margin: EdgeInsets.only(

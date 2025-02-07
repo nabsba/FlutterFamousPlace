@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:riverpod/riverpod.dart';
 import '../../graphql/client.dart';
 import '../../graphql/services/response.dart';

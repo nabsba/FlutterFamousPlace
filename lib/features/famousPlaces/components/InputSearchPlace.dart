@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../client/providers/clientProvider.dart';
 import '../../common/services/functions.dart';
 import '../../styles/services/typography.dart';
@@ -20,6 +18,7 @@ class InputSearch extends ConsumerStatefulWidget {
   const InputSearch({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InputSearchState createState() => _InputSearchState();
 }
 
@@ -158,6 +157,7 @@ class _InputSearchState extends ConsumerState<InputSearch> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.1),
                       blurRadius: 5,
                       offset: const Offset(0, 2),

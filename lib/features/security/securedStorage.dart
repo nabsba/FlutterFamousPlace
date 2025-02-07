@@ -1,5 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../error/services/MyLogger.dart';
+
 class SecuredStorageService {
   // Create storage
   final FlutterSecureStorage _storage = FlutterSecureStorage();
@@ -9,7 +11,7 @@ class SecuredStorageService {
     try {
       return await _storage.read(key: key);
     } catch (e) {
-      print('Error reading value: $e');
+      MyLogger.logError('readValue: $e');
       rethrow;
     }
   }
@@ -19,7 +21,7 @@ class SecuredStorageService {
     try {
       return await _storage.readAll();
     } catch (e) {
-      print('Error reading all values: $e');
+      MyLogger.logError('readAllValues: $e');
       rethrow;
     }
   }
@@ -29,7 +31,6 @@ class SecuredStorageService {
     try {
       await _storage.delete(key: key);
     } catch (e) {
-      print('Error deleting value: $e');
       rethrow;
     }
   }
@@ -39,7 +40,6 @@ class SecuredStorageService {
     try {
       await _storage.deleteAll();
     } catch (e) {
-      print('Error deleting all values: $e');
       rethrow;
     }
   }
@@ -49,7 +49,6 @@ class SecuredStorageService {
     try {
       await _storage.write(key: key, value: value);
     } catch (e) {
-      print('Error writing value: $e');
       rethrow;
     }
   }

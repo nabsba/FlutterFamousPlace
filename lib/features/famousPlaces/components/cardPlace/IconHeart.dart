@@ -4,7 +4,7 @@ class IconHeart extends StatelessWidget {
   final Function onClick;
   final int popularity;
 
-  IconHeart({required this.onClick, required this.popularity});
+  const IconHeart({super.key, required this.onClick, required this.popularity});
 
   @override
   Widget build(BuildContext context) {

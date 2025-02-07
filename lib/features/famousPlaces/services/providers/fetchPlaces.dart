@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providers/menuSelected.dart';
 import 'package:flutter_famous_places/features/famousPlaces/services/providers/places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sqflite_common/sqlite_api.dart';
 import '../../../client/providers/clientProvider.dart';
 import '../../../common/services/functions.dart';
 import '../../../connectivityState/providers/connectivityHelper.dart';
+import '../../../error/services/MyLogger.dart';
 import '../../../graphql/client.dart';
 import '../../../graphql/services/response.dart';
 import '../../../sqllite/createDatabase.dart';
@@ -128,7 +128,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
             .addPlaces([placesReceivedFromServer], menuSelectedd);
       }
     } catch (error) {
-      print(error);
+      MyLogger.logError('providers/fetchPlace: $error');
     } finally {
       // Reset loading state
       ref.read(paginationProvider.notifier).setLoading(menuSelectedd, false);

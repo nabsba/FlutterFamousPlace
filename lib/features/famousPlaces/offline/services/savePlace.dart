@@ -1,5 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
+import '../../../error/services/MyLogger.dart';
+
 Future<void> savePlaces(List<dynamic> apiResponse, Database db) async {
   try {
     await db.transaction((txn) async {
@@ -37,12 +39,12 @@ Future<void> savePlaces(List<dynamic> apiResponse, Database db) async {
               placeDetailLanguageId,
               txn);
         } catch (e) {
-          print('Error processing place dataAAA: $e');
+          MyLogger.logError(e as String);
         }
       }
     });
   } catch (e) {
-    print('Transaction failed: $e');
+    MyLogger.logError(e as String);
   }
 }
 
@@ -56,7 +58,6 @@ Future<int> _insertOrUpdateCountry(
     }
     return countryId;
   } catch (e) {
-    print('Error inserting/updating country: $e');
     return countryId;
   }
 }
@@ -72,7 +73,8 @@ Future<int> _insertOrUpdateCity(
     }
     return cityId;
   } catch (e) {
-    print('Error inserting/updating city: $e');
+    MyLogger.logError('Error inserting/updating city: $e');
+
     return cityId;
   }
 }
@@ -93,7 +95,7 @@ Future<String> _insertOrUpdateAddress(String addressId, int addressNumber,
     }
     return addressId;
   } catch (e) {
-    print('Error inserting/updating address: $e');
+    MyLogger.logError('Error inserting/updating city: $e');
     return addressId;
   }
 }
@@ -119,7 +121,7 @@ Future<String> _insertOrUpdatePlace(
     );
     return placeId;
   } catch (e) {
-    print('Error inserting/updating place: $e');
+    MyLogger.logError('Error inserting/updating place: $e');
     return placeId;
   }
 }
@@ -144,6 +146,6 @@ Future<void> _insertOrUpdatePlaceDetail(
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   } catch (e) {
-    print('Error inserting/updating place detail: $e');
+    MyLogger.logError('Error inserting/updating place detail: $e');
   }
 }

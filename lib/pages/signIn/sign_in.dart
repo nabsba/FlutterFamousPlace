@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_famous_places/features/styles/services/size.dart';
 
 import '../../features/authentification/components/button_signIn.dart';

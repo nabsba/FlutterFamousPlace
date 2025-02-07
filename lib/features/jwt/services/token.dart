@@ -3,6 +3,7 @@ import 'package:flutter_famous_places/features/security/securedStorage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import '../../authentification/services/authentication.dart';
+import '../../error/services/MyLogger.dart';
 import '../../error/services/errors.dart';
 import '../../graphql/client.dart';
 import '../../success/services/success.dart';
@@ -17,7 +18,7 @@ class TokenService {
     try {
       return await secureStorage.readValue('token');
     } catch (e) {
-      print('Error getting token: $e');
+      MyLogger.logError('getToken: $e');
       return null;
     }
   }

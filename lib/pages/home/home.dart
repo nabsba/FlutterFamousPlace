@@ -44,47 +44,44 @@ class HomePage extends ConsumerWidget {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0), // Add padding around contents
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                  height: AppStylesSpace
-                      .mediumSpacing), // Add space between widgets
-              InputSearch(),
-              const SizedBox(height: AppStylesSpace.largeSpacing),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.popularPlaces,
-                    style: TypographyStyles.poppins.copyWith(
-                      color: Color.fromARGB(
-                          255, 47, 47, 47), // Merges the color from bodyText1
-                      fontSize: TypographyStyles.roboto500_16
-                          .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
-                    ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+                height:
+                    AppStylesSpace.mediumSpacing), // Add space between widgets
+            InputSearch(),
+            const SizedBox(height: AppStylesSpace.largeSpacing),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.popularPlaces,
+                  style: TypographyStyles.poppins.copyWith(
+                    color: Color.fromARGB(
+                        255, 47, 47, 47), // Merges the color from bodyText1
+                    fontSize: TypographyStyles.roboto500_16
+                        .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.viewAll,
-                    style: TypographyStyles.inter20.copyWith(
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.color, // Merges the color from bodyText1
-                      fontSize: TypographyStyles.inter20
-                          .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: AppStylesSpace.largeSpacing),
-              SelectMenuType(),
-              const SizedBox(height: AppStylesSpace.largeSpacing),
-              Places()
-            ],
-          ),
+                ),
+                Text(
+                  AppLocalizations.of(context)!.viewAll,
+                  style: TypographyStyles.inter20.copyWith(
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.color, // Merges the color from bodyText1
+                    fontSize: TypographyStyles.inter20
+                        .fontSize, // Ensures font size remains the same as TypographyStyles.inter20
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: AppStylesSpace.largeSpacing),
+            SelectMenuType(),
+            const SizedBox(height: AppStylesSpace.largeSpacing),
+            Places()
+          ],
         ),
       ),
     );

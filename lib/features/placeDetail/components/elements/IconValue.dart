@@ -7,11 +7,11 @@ class IconValueWidget extends StatelessWidget {
   final TextStyle textStyle;
 
   const IconValueWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.value,
     required this.textStyle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

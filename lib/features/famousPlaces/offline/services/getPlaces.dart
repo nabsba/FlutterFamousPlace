@@ -63,7 +63,6 @@ Future<List<Place>> getPlaces(Database db) async {
     });
   } catch (e) {
     // Handle any errors that occur during the database operation
-    print('Error fetching places: $e');
 
     // Return an empty list or rethrow the exception, depending on your use case
     return [];

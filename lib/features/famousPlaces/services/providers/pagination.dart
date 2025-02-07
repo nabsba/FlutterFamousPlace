@@ -1,5 +1,6 @@
 import 'package:riverpod/riverpod.dart';
 
+import '../../../error/services/MyLogger.dart';
 import '../data/constant.dart';
 
 class PaginationState {
@@ -96,7 +97,7 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
       if (page >= 0) {
         updateState(key, currentState.copyWith(actualPage: page));
       } else {
-        print('Invalid page number');
+        MyLogger.logError('updateActualPage');
       }
     }
   }
@@ -164,7 +165,7 @@ class PaginationNotifier extends StateNotifier<Map<String, PaginationState>> {
         final totalPages = (totalRows / rowPerPage).ceil();
         updateState(key, currentState.copyWith(totalPage: totalPages));
       } else {
-        print('Invalid pagination data for key $key');
+        MyLogger.logError('Invalid pagination data for key: $key');
       }
     }
   }

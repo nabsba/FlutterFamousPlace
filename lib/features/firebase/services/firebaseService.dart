@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../error/services/MyLogger.dart';
+
 Future<String> getDownloadURL(String fileName) async {
   try {
     // Fetch the download URL
@@ -10,7 +12,8 @@ Future<String> getDownloadURL(String fileName) async {
         .child(fileName)
         .getDownloadURL();
   } catch (e) {
-    print('Error fetching download URL: $e'); // Log the error
+    // Log the error
+    MyLogger.logError('rror fetching download URL: $e');
     return 'Error fetching download URL: $e'; // Return empty string on error
   }
 }
@@ -19,7 +22,7 @@ Future<void> deleteFile(String fileName) async {
   try {
     await FirebaseStorage.instance.ref().child(fileName).delete();
   } catch (e) {
-    print(e);
+    MyLogger.logError('deleteFile: $e');
   }
 }
 
@@ -40,7 +43,7 @@ Future<List<String>> getAllFilesInFolder(String folderName) async {
 
     return downloadURLs;
   } catch (e) {
-    print('Error fetching files from folder: $e'); // Log the error
+    MyLogger.logError('Error fetching files from folder: $e');
     return []; // Return an empty list in case of error
   }
 }
@@ -52,6 +55,6 @@ Future<void> uploadFile(
   try {
     await FirebaseStorage.instance.ref().child(fileName).putData(filePath);
   } catch (e) {
-    print(e);
+    MyLogger.logError('uploadFile: $e');
   }
 }

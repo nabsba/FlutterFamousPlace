@@ -104,6 +104,7 @@ class CardPlace extends ConsumerWidget {
                   margin: EdgeInsets.all(20.0),
                   padding: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
+                    // ignore: deprecated_member_use
                     color: Color.fromARGB(255, 3, 30, 59).withOpacity(0.9),
                     borderRadius: BorderRadius.circular(10),
                   ),

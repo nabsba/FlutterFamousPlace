@@ -6,49 +6,58 @@ class ConnectivityHelper {
   /// Checks if there is an active internet connection (Wi-Fi or Mobile).
   Future<bool> hasInternetConnection() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.mobile ||
+        // ignore: unrelated_type_equality_checks
         connectivityResult == ConnectivityResult.wifi;
   }
 
   /// Checks if the device is connected via Wi-Fi.
   Future<bool> isConnectedToWiFi() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.wifi;
   }
 
   /// Checks if the device is connected via Mobile Data.
   Future<bool> isConnectedToMobileData() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.mobile;
   }
 
   /// Checks if the device is connected via Bluetooth.
   Future<bool> isConnectedToBluetooth() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.bluetooth;
   }
 
   /// Checks if the device is connected via Ethernet.
   Future<bool> isConnectedToEthernet() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.ethernet;
   }
 
   /// Checks if the device is connected via VPN.
   Future<bool> isConnectedToVPN() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.vpn;
   }
 
   /// Checks if the device is connected to an unknown network type.
   Future<bool> isConnectedToUnknown() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.other;
   }
 
   /// Checks if there is no connection available.
   Future<bool> hasNoConnection() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult == ConnectivityResult.none;
   }
 

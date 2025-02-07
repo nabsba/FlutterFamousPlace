@@ -1,6 +1,7 @@
 import 'package:flutter_famous_places/features/graphql/services/response.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import '../../../error/services/MyLogger.dart';
 import '../PreselectonName.dart';
 
 class PlaceRepository {
@@ -77,7 +78,8 @@ class PlaceRepository {
       throw (response);
       // Mapping the GraphQL response data to Place instances
     } catch (error) {
-      print(error);
+      MyLogger.logError('PlaceRepository.fetchingPlace: $error');
+
       rethrow;
     }
   }
@@ -235,7 +237,7 @@ class PlaceRepository {
       throw (response);
       // Mapping the GraphQL response data to Place instances
     } catch (error) {
-      print(error);
+      MyLogger.logError('PlaceRepository.fetchPlace: $error');
       rethrow;
     }
   }
