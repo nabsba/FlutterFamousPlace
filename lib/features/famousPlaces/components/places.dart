@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../pages/placeDetail/placeDetail.dart';
 import '../../client/providers/clientProvider.dart';
 import '../../connectivityState/providers/connectivityHelper.dart';
@@ -83,8 +82,6 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
       );
     }
     return Flexible(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.83,
         child: paginationState[menuSelectedd]!.messageKey.isNotEmpty &&
                 places.isEmpty
             ? Center(
@@ -92,85 +89,84 @@ class _InfiniteScrollingPageState extends ConsumerState<Places> {
                   errorKey: paginationState[menuSelectedd]!.messageKey,
                 ),
               )
-            : ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: (places.length) +
-                    ((paginationState[menuSelectedd]?.isLoading ?? false)
-                        ? 1
-                        : 0),
-                controller: _scrollController,
-                itemBuilder: (context, index) {
-                  if (index >= places.length) {
-                    return LoadingWidget(
-                        errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
-                        loadingType: LoaderMessagesKeys.skelaton);
-                  }
-                  final Place place = places[index] is Place
-                      ? places[index]
-                      : Place(
-                          id: places[index]['id'],
-                          popularity: places[index]['popularity'],
-                          price: places[index]['price'],
-                          hoursTravel: places[index]['hoursTravel'],
-                          images: places[index]['images'],
-                          isFavoritePlace:
-                              places[index]['isFavoritePlace'] ?? false,
-                          address: Address(
-                            id: places[index]['address']['id'],
-                            number: places[index]['address']['number'],
-                            street: places[index]['address']['street'],
-                            postcode: places[index]['address']['postcode'],
-                            city: City(
-                              id: places[index]['address']['city']['id'],
-                              name: places[index]['address']['city']['name'],
-                              country: Country(
-                                id: places[index]['address']['city']['country']
-                                    ['id'],
-                                name: places[index]['address']['city']
-                                    ['country']['name'],
+            : SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.88, // Ensure list height
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: (places.length) +
+                      ((paginationState[menuSelectedd]?.isLoading ?? false)
+                          ? 1
+                          : 0),
+                  controller: _scrollController,
+                  itemBuilder: (context, index) {
+                    if (index >= places.length) {
+                      return LoadingWidget(
+                          errorKey: errorMessagesKeys['CANNOT_LOAD_MORE_DATA']!,
+                          loadingType: LoaderMessagesKeys.skelaton);
+                    }
+                    final Place place = places[index] is Place
+                        ? places[index]
+                        : Place(
+                            id: places[index]['id'],
+                            popularity: places[index]['popularity'],
+                            price: places[index]['price'],
+                            hoursTravel: places[index]['hoursTravel'],
+                            images: places[index]['images'],
+                            isFavoritePlace:
+                                places[index]['isFavoritePlace'] ?? false,
+                            address: Address(
+                              id: places[index]['address']['id'],
+                              number: places[index]['address']['number'],
+                              street: places[index]['address']['street'],
+                              postcode: places[index]['address']['postcode'],
+                              city: City(
+                                id: places[index]['address']['city']['id'],
+                                name: places[index]['address']['city']['name'],
+                                country: Country(
+                                  id: places[index]['address']['city']
+                                      ['country']['id'],
+                                  name: places[index]['address']['city']
+                                      ['country']['name'],
+                                ),
                               ),
                             ),
-                          ),
-                          placeDetail: PlaceDetail(
-                            id: places[index]['placeDetail']['id'],
-                            name: places[index]['placeDetail']['name'],
-                            description: places[index]['placeDetail']
-                                ['description'],
-                            languageId: places[index]['placeDetail']
-                                ['languageId'],
-                          ),
-                        );
+                            placeDetail: PlaceDetail(
+                              id: places[index]['placeDetail']['id'],
+                              name: places[index]['placeDetail']['name'],
+                              description: places[index]['placeDetail']
+                                  ['description'],
+                              languageId: places[index]['placeDetail']
+                                  ['languageId'],
+                            ),
+                          );
 
-                  if (place.isFavoritePlace) {
-                    Future.microtask(() {
-                      ref
-                          .read(favoritePlacesProvider.notifier)
-                          .addFavorite(place.id);
-                    });
-                  }
-                  return Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 15),
-                      child: GestureDetector(
-                        onTap: () => context.go(
-                          PlaceDetailPage.routeName,
-                          extra: place, // Pass the place object as an argument
-                        ),
-                        child: CardPlace(
-                          id: place.id,
-                          backgroundImage:
-                              place.images.isNotEmpty ? place.images[0] : null,
-                          name: place.placeDetail.name,
-                          location: place.address.city.name,
-                          country: place.address.city.country.name,
-                          rating: place.popularity,
-                          isFavoritePlace: place.isFavoritePlace,
-                        ),
-                      ));
-                },
-              ),
-      ),
-    );
+                    if (place.isFavoritePlace) {
+                      Future.microtask(() {
+                        ref
+                            .read(favoritePlacesProvider.notifier)
+                            .addFavorite(place.id);
+                      });
+                    }
+                    return GestureDetector(
+                      onTap: () => context.go(
+                        PlaceDetailPage.routeName,
+                        extra: place, // Pass the place object as an argument
+                      ),
+                      child: CardPlace(
+                        id: place.id,
+                        backgroundImage:
+                            place.images.isNotEmpty ? place.images[0] : null,
+                        name: place.placeDetail.name,
+                        location: place.address.city.name,
+                        country: place.address.city.country.name,
+                        rating: place.popularity,
+                        isFavoritePlace: place.isFavoritePlace,
+                      ),
+                    );
+                  },
+                ),
+              ));
   }
 
   @override
