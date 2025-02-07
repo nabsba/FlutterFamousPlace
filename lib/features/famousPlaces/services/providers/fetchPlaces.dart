@@ -11,6 +11,7 @@ import '../../../graphql/services/response.dart';
 import '../../../sqllite/createDatabase.dart';
 import '../../offline/services/getPlaces.dart';
 import '../../offline/services/savePlace.dart';
+import '../data/constant.dart';
 import '../graphql/graphQlQuery.dart';
 import 'pagination.dart';
 
@@ -28,6 +29,7 @@ class PlacesNotifier extends StateNotifier<List<dynamic>> {
     final menuSelectedd = ref.read(menuSelected).menuOnSelection;
 
     if (userInfos == null ||
+        menuSelectedd == menus[3] ||
         userInfos.userId.isEmpty ||
         paginationState[menuSelectedd]!.isLoading ||
         (paginationState[menuSelectedd]!.totalPage ==
