@@ -20,7 +20,7 @@
   "@exploreTheWorld": {
     "description": "An invitation to discover new horizons"
   },
-   "mostViewed": "Most viewed",
+   "mostViewed": "Most Viewed",
   "@mostViewed": {
     "description": "Label for the 'Most viewed' filter button"
   },
